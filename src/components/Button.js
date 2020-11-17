@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
-function Button({children}) {
+function Button({text}) {
 
     return (
         <>
-            <ButtonStyled>{children}</ButtonStyled>
+            <ButtonStyled>{text}</ButtonStyled>
         </>
  )
 }
@@ -19,7 +19,7 @@ display: flex;
 height: 48px;
 justify-content: center;
 align-items: center;
-font-size: 4vw;
+font-size: 5vw;
 border-radius: 5px;
 `
 

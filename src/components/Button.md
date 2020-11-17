@@ -1,5 +1,5 @@
 Basic Button:
 
 ```jsx
-<Button>Suchen</Button>
+<Button text="Suchen" />
 ```

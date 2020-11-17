@@ -1,5 +1,5 @@
 module.exports = {
-  ignore: ['**/App.js','**/*.test.js'],
+  ignore: ['**/App.js','*/*/[A-Z]*.test.js'],
   defaultExample: true,
   exampleMode: 'expand',
   usageMode: 'expand',
