@@ -1,11 +1,15 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
-function Input({placeholderText}) {
+function Input({value, onChange, placeholderText}) {
 
     return (
         <>
-            <InputStyled placeholder={placeholderText}></InputStyled>
+            <InputStyled 
+                value={value} 
+                onChange={onChange} 
+                placeholder={placeholderText}>
+            </InputStyled>
         </>
  )
 }
