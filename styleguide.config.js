@@ -1,7 +1,14 @@
 module.exports = {
-  ignore: ['**/App.js'],
+  ignore: ['**/App.js','**/*.test.js'],
   defaultExample: true,
   exampleMode: 'expand',
   usageMode: 'expand',
   components: 'src/components/**/[A-Z]*.js',
+  styles: {
+    StyleGuide: {
+      '@global body': {
+        background: 'silver',
+      }
+    }
+  }
 }
