@@ -1,11 +1,16 @@
 import MainPage from './MainPage'
+import styled from 'styled-components/macro'
 
 function App() {
   return (
-    <div className="App">
+    <AppStyled>
       <MainPage></MainPage>
-    </div>
+    </AppStyled>
   );
 }
+
+const AppStyled = styled.div`
+width: 375px;
+`
 
 export default App;

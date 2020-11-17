@@ -19,7 +19,7 @@ display: flex;
 height: 48px;
 justify-content: center;
 align-items: center;
-font-size: 5vw;
+font-size: 150%;
 border-radius: 5px;
 `
 

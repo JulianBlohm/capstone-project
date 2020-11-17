@@ -20,10 +20,12 @@ padding: 0 10px;
 border-radius: 5px;
 border: 1px solid gray;
 height: 48px;
-font-size: 4vw;
+font-size: 115%;
 `
 
 Input.propTypes = {
+    value: PropTypes.string ,
+    onChange: PropTypes.func,
     placeholderText: PropTypes.string
 }
 

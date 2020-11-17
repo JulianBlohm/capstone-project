@@ -12,10 +12,6 @@ function MainPage() {
     
     const countyResult = county.charAt(0).toUpperCase() + county.slice(1)
 
-    console.log(userInput)
-    console.log(county)
-    console.log(incidence)
-
     useEffect(() => getCountyData(), [county])
 
     function getCountyData() {
