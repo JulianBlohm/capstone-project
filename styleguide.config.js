@@ -7,7 +7,7 @@ module.exports = {
   styles: {
     StyleGuide: {
       '@global body': {
-        background: 'silver',
+        color: 'red',
       }
     }
   }
