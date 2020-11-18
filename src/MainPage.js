@@ -1,14 +1,20 @@
-import Button from './components/Button'
-import Input from './components/Input'
+import Form from './components/Form'
 import styled from 'styled-components/macro'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import getRkiData from './services/getRkiData'
+import useUserInput from './hooks/useUserInput'
 
 function MainPage() {
     
-    const [userInput, setUserInput] = useState('')
-    const [county, setCounty] = useState('')
-    const [incidence, setIncidence] = useState(0)
+    const { 
+        userInput, 
+        setUserInput, 
+        county, 
+        setCounty, 
+        incidence, 
+        setIncidence
+    } 
+    = useUserInput()
     
     const countyResult = county.charAt(0).toUpperCase() + county.slice(1)
 
@@ -20,27 +26,16 @@ function MainPage() {
             .catch((error) => console.log('No Data from Server'))
     }       
 
-    function handleChange(event) {
-        setUserInput(event.target.value);
-        console.log(userInput)
-      }
-
-    function sendForm(event) {
-        event.preventDefault()
-        setCounty(userInput)
-        setUserInput('')
-    }
-
     return (
         <MainPageStyled>
             <h1>Wie ist der Covid-19 Inzidenzwert in meinem Landkreis?</h1>
-            <form onSubmit={sendForm}>
-                <Input 
-                    value={userInput}
-                    onChange= {handleChange} 
-                    placeholderText="Gib deinen Landkreis ein..."/>
-                <Button text="Suchen"/>
-            </form>
+            <Form 
+                userInput={userInput}
+                setUserInput={setUserInput}
+                setCounty={setCounty}
+                >
+            </Form>
+            
             { incidence ? <h2> {countyResult} hat aktuell eine 7-Tage-Inzidenz von {incidence} </h2> : '' }
         </MainPageStyled> 
     )
@@ -51,10 +46,6 @@ padding: 10px;
 display: grid;
 grid-gap: 20px;
 background: #F5F5F7;
-
-button {
-    margin-top: 20px;
-}
 `
 
 

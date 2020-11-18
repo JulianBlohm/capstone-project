@@ -21,6 +21,7 @@ justify-content: center;
 align-items: center;
 font-size: 150%;
 border-radius: 5px;
+margin: 20px 0 ;
 `
 
 Button.propTypes = {
