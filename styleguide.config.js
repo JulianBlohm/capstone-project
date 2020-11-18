@@ -7,6 +7,6 @@ module.exports = {
   usageMode: 'expand',
   components: 'src/components/**/[A-Z]*.js',
   styleguideComponents: {
-    Wrapper: path.join(_dirname, 'src/styleguide/StyleWrapper'),
+    Wrapper: path.join(__dirname, 'src/styleguide/StyleWrapper'),
   }
 }
