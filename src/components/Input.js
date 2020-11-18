@@ -20,7 +20,7 @@ padding: 0 10px;
 border-radius: 5px;
 border: 1px solid gray;
 height: 48px;
-font-size: 115%;
+font-size: 1rem;
 `
 
 Input.propTypes = {

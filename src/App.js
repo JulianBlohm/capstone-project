@@ -10,7 +10,7 @@ function App() {
 }
 
 const AppStyled = styled.div`
-width: 375px;
+max-width: 375px;
 `
 
 export default App;
