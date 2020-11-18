@@ -18,6 +18,7 @@ function MainPage() {
     
     const countyResult = county.charAt(0).toUpperCase() + county.slice(1)
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => getCountyData(), [county])
 
     function getCountyData() {

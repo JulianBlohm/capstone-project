@@ -8,4 +8,11 @@ describe('Input', () => {
         )
         expect(getByPlaceholderText(/Test/)).toBeInTheDocument()
     })
+
+    it('shows the value', () => {
+        const { getByDisplayValue } = render(
+            <Input value="Hamburg" />
+        )
+        expect(getByDisplayValue(/Hamburg/)).toBeInTheDocument()
+    })
 })

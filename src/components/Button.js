@@ -12,7 +12,7 @@ function Button({text}) {
 
 const ButtonStyled = styled.button`
 border: none;
-background: #0B79B9;
+background: var(--button);
 color: white;
 width: 100%;
 display: flex;
@@ -25,7 +25,7 @@ margin: 20px 0 ;
 `
 
 Button.propTypes = {
-    children: PropTypes.string
+    text: PropTypes.string
 }
 
 export default Button
