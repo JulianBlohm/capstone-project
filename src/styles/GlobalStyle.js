@@ -17,4 +17,9 @@ export default createGlobalStyle`
     display: flex;
     justify-content: center;
   }
+
+  span {
+    font-size: 1rem;
+    color: darkred;
+  }
 `
