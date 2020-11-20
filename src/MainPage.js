@@ -1,31 +1,44 @@
-import Form from './components/Form'
 import styled from 'styled-components/macro'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import getGeoData from './services/getGeoData'
 import getRkiData from './services/getRkiData'
 import useUserInput from './hooks/useUserInput'
+import Form from './components/Form'
+
 
 function MainPage() {
     
     const { 
         userInput, 
         setUserInput, 
-        county, 
-        setCounty, 
-        incidence, 
-        setIncidence
+        userPlace, 
+        setUserPlace,
+        coordinates,
+        setCoordinates, 
+        countyData, 
+        setCountyData
     } 
     = useUserInput()
-    
-    const countyResult = county.charAt(0).toUpperCase() + county.slice(1)
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => getCountyData(), [county])
+    const [ errorMessage, setErrorMessage ] = useState()
+    
+
+    useEffect(() => {userPlace && getCountyData()}, [userPlace])
+    useEffect(() => {coordinates.longitude && getIncidenceData()}, [coordinates])
+    useEffect(() => setErrorMessage(''), [userPlace,coordinates] )
 
     function getCountyData() {
-        getRkiData(county)
-            .then(data => setIncidence(Math.round(data.features[0].attributes.cases7_per_100k)))
-            .catch((error) => console.log('No Data from Server'))
-    }       
+        getGeoData(userPlace)
+            .then(geoData => setCoordinates({latitude: Number(geoData[0].lat).toFixed(6), longitude: Number(geoData[0].lon).toFixed(6)}))
+            .catch((error) => setErrorMessage('Ort konnte vom Server nicht bestimmt werden'))
+    }
+
+    function getIncidenceData() {
+         getRkiData(coordinates)
+            .then(data => setCountyData({countyName: data.features[0].attributes.GEN, incidence: Math.round(data.features[0].attributes.cases7_per_100k) })) 
+            .catch((error) => {!errorMessage && setErrorMessage('RKI-Daten konnten nicht geladen werden')})
+    }
+      
 
     return (
         <MainPageStyled>
@@ -33,11 +46,12 @@ function MainPage() {
             <Form 
                 userInput={userInput}
                 setUserInput={setUserInput}
-                setCounty={setCounty}
+                setUserPlace={setUserPlace}
+                errorMessage={errorMessage}
                 >
             </Form>
             
-            { incidence ? <h2> {countyResult} hat aktuell eine 7-Tage-Inzidenz von {incidence} </h2> : '' }
+            { countyData.incidence ? <h2> {countyData.countyName} hat aktuell eine 7-Tage-Inzidenz von {countyData.incidence} </h2> : '' }
         </MainPageStyled> 
     )
 }

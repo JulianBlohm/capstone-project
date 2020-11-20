@@ -3,15 +3,24 @@ import { useState } from 'react'
 export default function useUserInput() {
 
     const [userInput, setUserInput] = useState('')
-    const [county, setCounty] = useState('')
-    const [incidence, setIncidence] = useState(0)
+    const [userPlace, setUserPlace] = useState('')
+    const [coordinates, setCoordinates] = useState({
+        latitude: 0,
+        longitude: 0,
+    })
+    const [countyData, setCountyData] = useState({
+        countyName: '',
+        incidence: 0
+    })
 
     return {
         userInput,
         setUserInput,
-        county,
-        setCounty,
-        incidence,
-        setIncidence
+        userPlace,
+        setUserPlace,
+        coordinates,
+        setCoordinates,
+        countyData,
+        setCountyData
     }
 }
