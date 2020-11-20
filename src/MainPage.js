@@ -27,9 +27,6 @@ function MainPage() {
     useEffect(() => {coordinates.longitude && getIncidenceData()}, [coordinates])
     useEffect(() => setErrorMessage(''), [userPlace,coordinates] )
 
-    console.log(coordinates)
-    console.log(countyData)
-
     function getCountyData() {
         getGeoData(userPlace)
             .then(geoData => setCoordinates({latitude: Number(geoData[0].lat).toFixed(6), longitude: Number(geoData[0].lon).toFixed(6)}))
@@ -49,7 +46,7 @@ function MainPage() {
             <Form 
                 userInput={userInput}
                 setUserInput={setUserInput}
-                setPlace={setUserPlace}
+                setUserPlace={setUserPlace}
                 errorMessage={errorMessage}
                 >
             </Form>

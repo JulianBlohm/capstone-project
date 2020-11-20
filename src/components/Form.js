@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
 
-function Form({userInput, setUserInput, setPlace, errorMessage}) {
+function Form({userInput, setUserInput, setUserPlace, errorMessage}) {
     
     function handleChange(event) {
         setUserInput(event.target.value);
@@ -12,7 +12,7 @@ function Form({userInput, setUserInput, setPlace, errorMessage}) {
 
     function handleSubmitPlace(event) {
         event.preventDefault()
-        setPlace(userInput)
+        setUserPlace(userInput)
         setUserInput('')
         event.target.focus()
     }
@@ -45,7 +45,6 @@ span {
     position: absolute;
     left: 11px;
     top: 55px;
-    
   }
 `
 export default Form
