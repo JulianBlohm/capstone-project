@@ -24,7 +24,7 @@ return (
                 <Input 
                     value={userInput}
                     onChange= {handleChange} 
-                    placeholderText="Gib Ort oder PLZ ein..."/>
+                    placeholderText="Ort oder PLZ eingeben..."/>
                 <span>{errorMessage}</span>
                 <Button text="Suchen"/>
             </FormStyled>
