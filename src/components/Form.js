@@ -2,10 +2,13 @@ import Button from './Button'
 import Input from './Input'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import { useState } from 'react'
 
 
-function Form({userInput, setUserInput, setUserPlace, errorMessage}) {
+function Form({setUserPlace, errorMessage}) {
     
+    const [userInput, setUserInput] = useState('')
+
     function handleChange(event) {
         setUserInput(event.target.value);
     }
