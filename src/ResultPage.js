@@ -26,7 +26,19 @@ function ResultPage({countyData, resetSearch}) {
                 <span>Daten vom {countyData.last_update}</span>
 
             </section>
-            
+            <section className="information-wrapper">
+                <a href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-bundeslaender-1745198">
+                    <Button text="Regeln der Bundesländer"/>
+                </a>
+                
+                <a href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724">
+                    <Button text="FAQ Bundesregierung.de"/>
+                </a>
+
+
+                <Button text="Neue Suche" onClick={resetSearch}/>
+
+            </section>
         </ResultPageStyled>
     )
 }
