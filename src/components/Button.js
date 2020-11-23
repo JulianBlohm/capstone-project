@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
-function Button({text}) {
+function Button({text, onClick}) {
 
     return (
         <>
-            <ButtonStyled>{text}</ButtonStyled>
+            <ButtonStyled onClick={onClick}>{text}</ButtonStyled>
         </>
  )
 }
@@ -19,13 +19,14 @@ display: flex;
 height: 48px;
 justify-content: center;
 align-items: center;
-font-size: 1.5rem;
+font-size: 1rem;
 border-radius: 5px;
 margin: 20px 0 ;
 `
 
 Button.propTypes = {
-    text: PropTypes.string
+    text: PropTypes.string.isRequired,
+    onClick: PropTypes.func
 }
 
 export default Button

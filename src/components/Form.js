@@ -17,7 +17,6 @@ function Form({setUserPlace, errorMessage}) {
         event.preventDefault()
         setUserPlace(userInput)
         setUserInput('')
-        event.target.focus()
     }
     
 return (
