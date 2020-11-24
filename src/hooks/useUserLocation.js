@@ -11,13 +11,16 @@ export default function useUserLocation() {
     })
     const [countyData, setCountyData] = useState({
         countyName: '',
-        incidence: 0
+        incidence: 0,
+        last_update: ''
     })
     const [ errorMessage, setErrorMessage ] = useState()
+    const [ isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
 
     useEffect(() => {userPlace && getCountyData()}, [userPlace])
     useEffect(() => {coordinates.longitude && getIncidenceData()}, [coordinates])
     useEffect(() => setErrorMessage(''), [userPlace,coordinates] )
+    useEffect(() => {countyData.incidence && setIsCountyDataLoaded(true)}, [countyData])
 
     function getCountyData() {
         getGeoData(userPlace)
@@ -27,13 +30,31 @@ export default function useUserLocation() {
 
     function getIncidenceData() {
          getRkiData(coordinates)
-            .then(data => setCountyData({countyName: data.features[0].attributes.GEN, incidence: Math.round(data.features[0].attributes.cases7_per_100k) })) 
+            .then(data => {
+                const filteredData = data.features[0].attributes
+                setCountyData({countyName: filteredData.GEN, incidence: Math.round(filteredData.cases7_per_100k), last_update: filteredData.last_update })}) 
             .catch((error) => {!errorMessage && setErrorMessage('RKI-Daten konnten nicht geladen werden')})
+    }
+
+    function resetSearch() {
+        setUserPlace('')
+        setCoordinates({
+            latitude: 0,
+            longitude: 0
+        })
+        setCountyData({
+            countyName: '',
+            incidence: 0,
+            last_update: ''
+        })
+        setIsCountyDataLoaded(false)
     }
 
     return {
         setUserPlace,
         countyData,
-        errorMessage
+        errorMessage,
+        resetSearch,
+        isCountyDataLoaded
     }
 }

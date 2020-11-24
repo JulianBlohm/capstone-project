@@ -17,7 +17,6 @@ function Form({setUserPlace, errorMessage}) {
         event.preventDefault()
         setUserPlace(userInput)
         setUserInput('')
-        event.target.focus()
     }
     
 return (
@@ -25,7 +24,7 @@ return (
                 <Input 
                     value={userInput}
                     onChange= {handleChange} 
-                    placeholderText="Gib Ort oder PLZ ein..."/>
+                    placeholderText="Ort oder PLZ eingeben..."/>
                 <span>{errorMessage}</span>
                 <Button text="Suchen"/>
             </FormStyled>
