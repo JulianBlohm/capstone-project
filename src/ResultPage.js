@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Button from './components/Button'
-import { useState, useEffect } from 'react'
 
-function ResultPage({countyData, resetSearch}) {
+function ResultPage({countyData}) {
 
     const [countyClassification, setCountyClassification] = useState('')
 
@@ -32,7 +33,7 @@ function ResultPage({countyData, resetSearch}) {
                 <a href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724">
                     <Button text="FAQ Bundesregierung.de"/>
                 </a>
-                <Button text="Neue Suche" onClick={resetSearch}/>
+                <Link to="/"><Button text="Neue Suche"/></Link>
             </section>
         </ResultPageStyled>
     )

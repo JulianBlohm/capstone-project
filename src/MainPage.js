@@ -1,8 +1,11 @@
+import { useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Form from './components/Form'
 
 
-function MainPage({setUserPlace, errorMessage}) {   
+function MainPage({setUserPlace, errorMessage, newSearch}) {   
+    
+    useEffect(() => newSearch(), [])
 
     return (
         <MainPageStyled>

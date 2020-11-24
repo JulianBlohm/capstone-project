@@ -1,3 +1,4 @@
+import { Switch, Route } from "react-router-dom";
 import styled from 'styled-components/macro'
 import useUserLocation from './hooks/useUserLocation'
 import MainPage from './MainPage'
@@ -5,20 +6,32 @@ import ResultPage from './ResultPage'
 
 function App() {
 
-  const { setUserPlace, countyData, errorMessage, resetSearch, isCountyDataLoaded 
+  const { 
+    setUserPlace, 
+    countyData, 
+    errorMessage, 
+    newSearch
      } = useUserLocation()
 
   return (
-    <AppStyled>
-        {!isCountyDataLoaded ? 
-        <MainPage
+    <AppStyled>  
+        <Switch>
+
+          <Route exact path="/">
+            <MainPage
             setUserPlace={setUserPlace}
             errorMessage={errorMessage}
-            /> :
-        <ResultPage 
-            countyData={countyData} 
-            resetSearch={resetSearch}/>
-        }
+            newSearch={newSearch}
+            />
+          </Route>
+
+          <Route path="/:id">
+            <ResultPage 
+            countyData={countyData}
+            />
+          </Route>
+      
+        </Switch>
     </AppStyled>
   );
 }

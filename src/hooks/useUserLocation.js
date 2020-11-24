@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import getGeoData from '../services/getGeoData'
 import getRkiData from '../services/getRkiData'
 
 export default function useUserLocation() {
+    
+    const history = useHistory();
 
     const [userPlace, setUserPlace] = useState('')
     const [coordinates, setCoordinates] = useState({
@@ -17,10 +20,13 @@ export default function useUserLocation() {
     const [ errorMessage, setErrorMessage ] = useState()
     const [ isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
 
+    console.log(countyData)
     useEffect(() => {userPlace && getCountyData()}, [userPlace])
     useEffect(() => {coordinates.longitude && getIncidenceData()}, [coordinates])
     useEffect(() => setErrorMessage(''), [userPlace,coordinates] )
     useEffect(() => {countyData.incidence && setIsCountyDataLoaded(true)}, [countyData])
+    
+    useEffect(() => {isCountyDataLoaded && showResultPage()}, [isCountyDataLoaded])
 
     function getCountyData() {
         getGeoData(userPlace)
@@ -36,7 +42,7 @@ export default function useUserLocation() {
             .catch((error) => {!errorMessage && setErrorMessage('RKI-Daten konnten nicht geladen werden')})
     }
 
-    function resetSearch() {
+    function newSearch() {
         setUserPlace('')
         setCoordinates({
             latitude: 0,
@@ -48,13 +54,18 @@ export default function useUserLocation() {
             last_update: ''
         })
         setIsCountyDataLoaded(false)
+        history.push("/")
+    }
+
+    function showResultPage() {
+        const countyNameCompact = countyData.countyName.replace(/ /g,'')
+        history.push(`/${countyNameCompact}`)
     }
 
     return {
         setUserPlace,
         countyData,
         errorMessage,
-        resetSearch,
-        isCountyDataLoaded
+        newSearch
     }
 }
