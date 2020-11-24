@@ -1,7 +1,7 @@
-import MainPage from './MainPage'
 import styled from 'styled-components/macro'
-import ResultPage from './ResultPage'
 import useUserLocation from './hooks/useUserLocation'
+import MainPage from './MainPage'
+import ResultPage from './ResultPage'
 
 function App() {
 

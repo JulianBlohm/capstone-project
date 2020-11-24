@@ -4,20 +4,20 @@ import { useState, useEffect } from 'react'
 
 function ResultPage({countyData, resetSearch}) {
 
-    const [countyRank, setCountyRank] = useState('')
+    const [countyClassification, setCountyClassification] = useState('')
 
-    useEffect(() => rankCountyIncidence(), [countyData])
+    useEffect(() => classifyCountyIncidence(), [countyData])
 
-    function rankCountyIncidence() {
+    function classifyCountyIncidence() {
         if(countyData.incidence > 35) {
-            setCountyRank('county-rank-red')
+            setCountyClassification('county-class-red')
         } else {
-                setCountyRank('county-rank-green')}
+            setCountyClassification('county-class-green')}
     }
 
     return (
         <ResultPageStyled>
-            <section className={countyRank + " result-wrapper"}>
+            <section className={countyClassification + " result-wrapper"}>
                 {countyData.incidence > 35 ? 
                 <h2> {countyData.countyName} ist ein Covid-19 Hotspot.</h2> :
                 <h2> {countyData.countyName} ist kein Covid-19 Hotspot.</h2> 
@@ -63,12 +63,12 @@ a {
     padding: 37px;
 }
 
-.county-rank-red {
+.county-class-red {
     background: var(--red);
     color: var(--silver);
 }
 
-.county-rank-green {
+.county-class-green {
     background: var(--green);
     color: var(--silver);
 }
