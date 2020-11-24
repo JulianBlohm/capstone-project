@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Button from './components/Button'
 
-function ResultPage({countyData}) {
+function ResultPage({setUserPlace, countyData}) {
 
     const [countyClassification, setCountyClassification] = useState('')
-
+    let { id } = useParams()
+    console.log(id)
     useEffect(() => classifyCountyIncidence(), [countyData])
+    useEffect(() => setUserPlace(id), [id])
 
     function classifyCountyIncidence() {
         if(countyData.incidence > 35) {
