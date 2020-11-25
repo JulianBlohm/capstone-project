@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Button from './components/Button'
 
-function ResultPage({countyData}) {
+function ResultPage({setUserPlace, countyData}) {
 
     const [countyClassification, setCountyClassification] = useState('')
+    
+    let { id } = useParams()
 
     useEffect(() => classifyCountyIncidence(), [countyData])
-
+    useEffect(() => {countyData.countyName && setUserPlace(id)}, [id])
+    console.log(id)
     function classifyCountyIncidence() {
         if(countyData.incidence > 35) {
             setCountyClassification('county-class-red')
@@ -18,6 +21,8 @@ function ResultPage({countyData}) {
 
     return (
         <ResultPageStyled>
+            {countyData.countyName && (
+            <>
             <section className={countyClassification + " result-wrapper"}>
                 {countyData.incidence > 35 ? 
                 <h2> {countyData.countyName} ist ein Covid-19 Hotspot.</h2> :
@@ -35,6 +40,8 @@ function ResultPage({countyData}) {
                 </a>
                 <Link to="/"><Button text="Neue Suche"/></Link>
             </section>
+            </>
+            )}
         </ResultPageStyled>
     )
 }
