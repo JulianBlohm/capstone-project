@@ -5,7 +5,7 @@ import Button from './Button'
 import Input from './Input'
 
 
-function Form({setUserPlace, errorMessage,}) {
+function Form({setUserPlace, errorMessage}) {
     
     const [userInput, setUserInput] = useState('')
 

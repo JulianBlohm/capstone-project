@@ -9,7 +9,8 @@ function App() {
         setUserPlace,
         countyData,
         errorMessage,
-        newSearch,
+        isCountyDataLoaded,
+        resetSearch,
     } = useUserLocation()
 
     return (
@@ -19,7 +20,8 @@ function App() {
                     <MainPage
                         setUserPlace={setUserPlace}
                         errorMessage={errorMessage}
-                        newSearch={newSearch}
+                        isCountyDataLoaded={isCountyDataLoaded}
+                        newSearch={resetSearch}
                     />
                 </Route>
 
@@ -27,6 +29,7 @@ function App() {
                     <ResultPage
                         setUserPlace={setUserPlace}
                         countyData={countyData}
+                        isCountyDataLoaded={isCountyDataLoaded}
                     />
                 </Route>
             </Switch>

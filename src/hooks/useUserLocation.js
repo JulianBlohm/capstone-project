@@ -5,7 +5,7 @@ import getRkiData from '../services/getRkiData'
 
 export default function useUserLocation() {
     
-    const history = useHistory();
+    const history = useHistory()
 
     const [userPlace, setUserPlace] = useState('')
     const [coordinates, setCoordinates] = useState({
@@ -19,12 +19,11 @@ export default function useUserLocation() {
     })
     const [ errorMessage, setErrorMessage ] = useState()
     const [ isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
-    console.log(countyData)
-    console.log(userPlace)
+    
     useEffect(() => {userPlace && getCountyData()}, [userPlace])
     useEffect(() => {coordinates.longitude && getIncidenceData()}, [coordinates])
     useEffect(() => setErrorMessage(''), [userPlace,coordinates] )
-    useEffect(() => {countyData.incidence && setIsCountyDataLoaded(true)}, [countyData])
+    useEffect(() => {countyData.countyName && setIsCountyDataLoaded(true)}, [countyData])
     
     useEffect(() => {isCountyDataLoaded && showResultPage()}, [isCountyDataLoaded])
 
@@ -42,7 +41,7 @@ export default function useUserLocation() {
             .catch((error) => {!errorMessage && setErrorMessage('RKI-Daten konnten nicht geladen werden')})
     }
 
-    function newSearch() {
+    function resetSearch() {
         setUserPlace('')
         setCoordinates({
             latitude: 0,
@@ -65,6 +64,7 @@ export default function useUserLocation() {
         setUserPlace,
         countyData,
         errorMessage,
-        newSearch
+        isCountyDataLoaded,
+        resetSearch
     }
 }

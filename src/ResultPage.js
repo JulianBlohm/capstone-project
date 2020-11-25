@@ -3,15 +3,15 @@ import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Button from './components/Button'
 
-function ResultPage({setUserPlace, countyData}) {
+function ResultPage({setUserPlace, countyData, isCountyDataLoaded}) {
 
     const [countyClassification, setCountyClassification] = useState('')
     
     let { id } = useParams()
 
     useEffect(() => classifyCountyIncidence(), [countyData])
-    useEffect(() => {!countyData.countyName && setUserPlace(id)}, [id])
-    console.log(id)
+    useEffect(() => {!isCountyDataLoaded && setUserPlace(id)}, [id])
+
     function classifyCountyIncidence() {
         if(countyData.incidence > 35) {
             setCountyClassification('county-class-red')
@@ -21,7 +21,7 @@ function ResultPage({setUserPlace, countyData}) {
 
     return (
         <ResultPageStyled>
-            {countyData.countyName && (
+            {isCountyDataLoaded && (
             <>
             <section className={countyClassification + " result-wrapper"}>
                 {countyData.incidence > 35 ? 

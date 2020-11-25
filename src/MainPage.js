@@ -3,9 +3,9 @@ import styled from 'styled-components/macro'
 import Form from './components/Form'
 
 
-function MainPage({setUserPlace, errorMessage, newSearch}) {   
+function MainPage({setUserPlace, errorMessage, isCountyDataLoaded, resetSearch}) {   
     
-    useEffect(() => newSearch(), [])
+    useEffect(() => {isCountyDataLoaded && resetSearch()}, [])
 
     return (
         <MainPageStyled>
