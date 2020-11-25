@@ -7,7 +7,7 @@
         "node": true,
         "es6": true
     },
-    "plugins": ["json", "prettier", "react-hooks"],
+    "plugins": ["json", "prettier", "react-hooks"], //added "react-hooks" here
     "rules": {
         "prettier/prettier": ["error"],
         "no-console": "off"
@@ -24,8 +24,8 @@
                 }
             ],
             "react/prop-types": [1],
-            "react-hooks/rules-of-hooks": "error",
-            "react-hooks/exhaustive-deps": "warn" 
+            "react-hooks/rules-of-hooks": "error", // added "react-hooks/rules-of-hooks"
+            "react-hooks/exhaustive-deps": "warn" // added "react-hooks/exhaustive-deps"
         },
         "settings": {
             "import/resolver": "meteor"
