@@ -6,10 +6,11 @@ import Button from './components/Button'
 function ResultPage({setUserPlace, countyData}) {
 
     const [countyClassification, setCountyClassification] = useState('')
+    
     let { id } = useParams()
-    console.log(id)
+
     useEffect(() => classifyCountyIncidence(), [countyData])
-    useEffect(() => setUserPlace(id), [id])
+    useEffect(() => {countyData.countyName && setUserPlace(id)}, [id])
 
     function classifyCountyIncidence() {
         if(countyData.incidence > 35) {
@@ -20,6 +21,8 @@ function ResultPage({setUserPlace, countyData}) {
 
     return (
         <ResultPageStyled>
+            {countyData.countyName && (
+            <>
             <section className={countyClassification + " result-wrapper"}>
                 {countyData.incidence > 35 ? 
                 <h2> {countyData.countyName} ist ein Covid-19 Hotspot.</h2> :
@@ -37,6 +40,8 @@ function ResultPage({setUserPlace, countyData}) {
                 </a>
                 <Link to="/"><Button text="Neue Suche"/></Link>
             </section>
+            </>
+            )}
         </ResultPageStyled>
     )
 }
