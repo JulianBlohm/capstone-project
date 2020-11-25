@@ -21,7 +21,7 @@ function ResultPage({setUserPlace, countyData, isCountyDataLoaded}) {
 
     return (
         <ResultPageStyled>
-            {isCountyDataLoaded && (
+            {isCountyDataLoaded ? (
             <>
             <section className={countyClassification + " result-wrapper"}>
                 {countyData.incidence > 35 ? 
@@ -38,6 +38,16 @@ function ResultPage({setUserPlace, countyData, isCountyDataLoaded}) {
                 <a href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724">
                     <Button text="FAQ Bundesregierung.de"/>
                 </a>
+                <Link to="/"><Button text="Neue Suche"/></Link>
+            </section>
+            </>
+            ) : (
+            <>
+            <section className="county-class-red result-wrapper">
+                <h3>Sorry, Daten konnten nicht geladen werden.</h3>
+                <span>Probiere eine neue Suche!</span>
+            </section>
+            <section className="information-wrapper">
                 <Link to="/"><Button text="Neue Suche"/></Link>
             </section>
             </>

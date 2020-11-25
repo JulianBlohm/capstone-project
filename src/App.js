@@ -21,7 +21,7 @@ function App() {
                         setUserPlace={setUserPlace}
                         errorMessage={errorMessage}
                         isCountyDataLoaded={isCountyDataLoaded}
-                        newSearch={resetSearch}
+                        resetSearch={resetSearch}
                     />
                 </Route>
 
