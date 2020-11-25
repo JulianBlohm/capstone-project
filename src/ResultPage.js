@@ -10,7 +10,7 @@ function ResultPage({setUserPlace, countyData}) {
     let { id } = useParams()
 
     useEffect(() => classifyCountyIncidence(), [countyData])
-    useEffect(() => {countyData.countyName && setUserPlace(id)}, [id])
+    useEffect(() => {!countyData.countyName && setUserPlace(id)}, [id])
     console.log(id)
     function classifyCountyIncidence() {
         if(countyData.incidence > 35) {
