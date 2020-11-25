@@ -7,7 +7,7 @@
         "node": true,
         "es6": true
     },
-    "plugins": ["json", "prettier", "react-hooks"],
+    "plugins": ["prettier", "react-hooks"],
     "rules": {
         "prettier/prettier": ["error"],
         "no-console": "off"
