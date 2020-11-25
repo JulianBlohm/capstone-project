@@ -26,8 +26,7 @@ function App() {
           </Route>
 
           <Route path="/:id">
-            <ResultPage
-            setUserPlace={setUserPlace} 
+            <ResultPage 
             countyData={countyData}
             />
           </Route>

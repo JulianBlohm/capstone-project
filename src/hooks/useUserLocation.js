@@ -19,7 +19,8 @@ export default function useUserLocation() {
     })
     const [ errorMessage, setErrorMessage ] = useState()
     const [ isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
-    console.log(userPlace)
+
+    console.log(countyData)
     useEffect(() => {userPlace && getCountyData()}, [userPlace])
     useEffect(() => {coordinates.longitude && getIncidenceData()}, [coordinates])
     useEffect(() => setErrorMessage(''), [userPlace,coordinates] )
