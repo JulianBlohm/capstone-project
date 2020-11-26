@@ -31,54 +31,44 @@ function ResultPage({
         <ResultPageStyled>
             {isDataLoading ? (
                 <LoadingPage />
-            ) : isCountyDataLoaded ? (
-                <>
-                    <section
-                        className={countyClassification + ' result-wrapper'}
-                    >
-                        {countyData.incidence > 35 ? (
-                            <h2>
-                                {' '}
-                                {countyData.countyName} ist ein Covid-19
-                                Hotspot.
-                            </h2>
-                        ) : (
-                            <h2>
-                                {' '}
-                                {countyData.countyName} ist kein Covid-19
-                                Hotspot.
-                            </h2>
-                        )}
-                        <h3>
-                            Die 7-Tage-Inzidenz <br /> liegt bei{' '}
-                            {countyData.incidence}.{' '}
-                        </h3>
-                        <span>Daten vom {countyData.last_update}</span>
-                    </section>
-                    <section className="information-wrapper">
-                        <a href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-bundeslaender-1745198">
-                            <Button text="Regeln der Bundesländer" />
-                        </a>
-                        <a href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724">
-                            <Button text="FAQ Bundesregierung.de" />
-                        </a>
-                        <Link to="/">
-                            <Button text="Neue Suche" />
-                        </Link>
-                    </section>
-                </>
             ) : (
-                <>
-                    <section className="county-class-red result-wrapper">
-                        <h3>Sorry, Daten konnten nicht geladen werden.</h3>
-                        <span>Probiere eine neue Suche!</span>
-                    </section>
-                    <section className="information-wrapper">
-                        <Link to="/">
-                            <Button text="Neue Suche" />
-                        </Link>
-                    </section>
-                </>
+                isCountyDataLoaded && (
+                    <>
+                        <section
+                            className={countyClassification + ' result-wrapper'}
+                        >
+                            {countyData.incidence > 35 ? (
+                                <h2>
+                                    {' '}
+                                    {countyData.countyName} ist ein Covid-19
+                                    Hotspot.
+                                </h2>
+                            ) : (
+                                <h2>
+                                    {' '}
+                                    {countyData.countyName} ist kein Covid-19
+                                    Hotspot.
+                                </h2>
+                            )}
+                            <h3>
+                                Die 7-Tage-Inzidenz <br /> liegt bei{' '}
+                                {countyData.incidence}.{' '}
+                            </h3>
+                            <span>Daten vom {countyData.last_update}</span>
+                        </section>
+                        <section className="information-wrapper">
+                            <a href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-bundeslaender-1745198">
+                                <Button text="Regeln der Bundesländer" />
+                            </a>
+                            <a href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724">
+                                <Button text="FAQ Bundesregierung.de" />
+                            </a>
+                            <Link to="/">
+                                <Button text="Neue Suche" />
+                            </Link>
+                        </section>
+                    </>
+                )
             )}
         </ResultPageStyled>
     )

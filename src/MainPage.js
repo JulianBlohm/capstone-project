@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Form from './components/Form'
-import LoadingSpinner from './components/LoadingSpinner'
 
 function MainPage({
     setUserPlace,
@@ -10,7 +9,7 @@ function MainPage({
     resetSearch,
 }) {
     useEffect(() => {
-        isCountyDataLoaded && resetSearch()
+        isCountyDataLoaded && errorMessage && resetSearch()
     }, [])
 
     return (

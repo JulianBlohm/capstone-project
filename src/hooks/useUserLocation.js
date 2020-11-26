@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import getGeoData from '../services/getGeoData'
 import getRkiData from '../services/getRkiData'
 
 export default function useUserLocation() {
     const history = useHistory()
+
+    const loadingTimer = useRef()
 
     const [userPlace, setUserPlace] = useState('')
     const [coordinates, setCoordinates] = useState({
@@ -20,8 +22,10 @@ export default function useUserLocation() {
     const [isDataLoading, setIsDataLoading] = useState(true)
     const [isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
 
+    const countyNameUrl = countyData.countyName.replace(/ /g, '')
+
     useEffect(() => {
-        userPlace && getCountyData()
+        userPlace && startSearch()
     }, [userPlace])
     useEffect(() => {
         coordinates.longitude && getIncidenceData()
@@ -34,7 +38,27 @@ export default function useUserLocation() {
         isCountyDataLoaded && showResultPage()
     }, [isCountyDataLoaded])
 
-    function getCountyData() {
+    function startSearch() {
+        startTimer()
+        getCounty()
+    }
+
+    function startTimer() {
+        loadingTimer.current && clearTimeout(loadingTimer.current)
+        loadingTimer.current = setTimeout(() => showErrorPage(), 3000)
+    }
+
+    function showErrorPage() {
+        history.replace('/error')
+    }
+
+    function showResultPage() {
+        clearTimeout(loadingTimer.current)
+        setIsDataLoading(false)
+        history.push(`/s/${countyNameUrl}`)
+    }
+
+    function getCounty() {
         getGeoData(userPlace)
             .then((geoData) =>
                 setCoordinates({
@@ -42,9 +66,7 @@ export default function useUserLocation() {
                     longitude: Number(geoData[0].lon).toFixed(6),
                 })
             )
-            .catch((error) =>
-                setErrorMessage('Ort konnte vom Server nicht bestimmt werden')
-            )
+            .catch((error) => handleError())
     }
 
     function getIncidenceData() {
@@ -58,9 +80,12 @@ export default function useUserLocation() {
                 })
             })
             .catch((error) => {
-                !errorMessage &&
-                    setErrorMessage('RKI-Daten konnten nicht geladen werden')
+                !errorMessage && handleError()
             })
+    }
+
+    function handleError() {
+        setErrorMessage('Daten konnten nicht geladen werden')
     }
 
     function resetSearch() {
@@ -75,18 +100,14 @@ export default function useUserLocation() {
             last_update: '',
         })
         setIsCountyDataLoaded(false)
-    }
-
-    function showResultPage() {
-        setIsDataLoading(false)
-        const countyNameCompact = countyData.countyName.replace(/ /g, '')
-        history.push(`/${countyNameCompact}`)
+        setErrorMessage('')
     }
 
     return {
         setUserPlace,
         countyData,
         errorMessage,
+        setErrorMessage,
         isDataLoading,
         isCountyDataLoaded,
         resetSearch,
