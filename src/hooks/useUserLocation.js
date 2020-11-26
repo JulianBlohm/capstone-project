@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import getGeoData from '../services/getGeoData'
 import getRkiData from '../services/getRkiData'
 
 export default function useUserLocation() {
+    
+    const history = useHistory()
 
     const [userPlace, setUserPlace] = useState('')
     const [coordinates, setCoordinates] = useState({
@@ -16,11 +19,13 @@ export default function useUserLocation() {
     })
     const [ errorMessage, setErrorMessage ] = useState()
     const [ isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
-
+    
     useEffect(() => {userPlace && getCountyData()}, [userPlace])
     useEffect(() => {coordinates.longitude && getIncidenceData()}, [coordinates])
     useEffect(() => setErrorMessage(''), [userPlace,coordinates] )
-    useEffect(() => {countyData.incidence && setIsCountyDataLoaded(true)}, [countyData])
+    useEffect(() => {countyData.countyName && setIsCountyDataLoaded(true)}, [countyData])
+    
+    useEffect(() => {isCountyDataLoaded && showResultPage()}, [isCountyDataLoaded])
 
     function getCountyData() {
         getGeoData(userPlace)
@@ -50,11 +55,16 @@ export default function useUserLocation() {
         setIsCountyDataLoaded(false)
     }
 
+    function showResultPage() {
+        const countyNameCompact = countyData.countyName.replace(/ /g,'')
+        history.push(`/${countyNameCompact}`)
+    }
+
     return {
         setUserPlace,
         countyData,
         errorMessage,
-        resetSearch,
-        isCountyDataLoaded
+        isCountyDataLoaded,
+        resetSearch
     }
 }

@@ -1,8 +1,8 @@
+import { useState } from 'react'
+import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 import Button from './Button'
 import Input from './Input'
-import PropTypes from 'prop-types'
-import styled from 'styled-components/macro'
-import { useState } from 'react'
 
 
 function Form({setUserPlace, errorMessage}) {

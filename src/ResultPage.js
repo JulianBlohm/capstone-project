@@ -1,12 +1,16 @@
+import { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Button from './components/Button'
-import { useState, useEffect } from 'react'
 
-function ResultPage({countyData, resetSearch}) {
+function ResultPage({setUserPlace, countyData, isCountyDataLoaded}) {
 
     const [countyClassification, setCountyClassification] = useState('')
+    
+    let { id } = useParams()
 
     useEffect(() => classifyCountyIncidence(), [countyData])
+    useEffect(() => {!isCountyDataLoaded && setUserPlace(id)}, [id])
 
     function classifyCountyIncidence() {
         if(countyData.incidence > 35) {
@@ -17,6 +21,8 @@ function ResultPage({countyData, resetSearch}) {
 
     return (
         <ResultPageStyled>
+            {isCountyDataLoaded ? (
+            <>
             <section className={countyClassification + " result-wrapper"}>
                 {countyData.incidence > 35 ? 
                 <h2> {countyData.countyName} ist ein Covid-19 Hotspot.</h2> :
@@ -32,8 +38,20 @@ function ResultPage({countyData, resetSearch}) {
                 <a href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724">
                     <Button text="FAQ Bundesregierung.de"/>
                 </a>
-                <Button text="Neue Suche" onClick={resetSearch}/>
+                <Link to="/"><Button text="Neue Suche"/></Link>
             </section>
+            </>
+            ) : (
+            <>
+            <section className="county-class-red result-wrapper">
+                <h3>Sorry, Daten konnten nicht geladen werden.</h3>
+                <span>Probiere eine neue Suche!</span>
+            </section>
+            <section className="information-wrapper">
+                <Link to="/"><Button text="Neue Suche"/></Link>
+            </section>
+            </>
+            )}
         </ResultPageStyled>
     )
 }
