@@ -4,7 +4,6 @@ import getGeoData from '../services/getGeoData'
 import getRkiData from '../services/getRkiData'
 
 export default function useUserLocation() {
-    
     const history = useHistory()
 
     const [userPlace, setUserPlace] = useState('')
@@ -15,48 +14,72 @@ export default function useUserLocation() {
     const [countyData, setCountyData] = useState({
         countyName: '',
         incidence: 0,
-        last_update: ''
+        last_update: '',
     })
-    const [ errorMessage, setErrorMessage ] = useState()
-    const [ isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
-    
-    useEffect(() => {userPlace && getCountyData()}, [userPlace])
-    useEffect(() => {coordinates.longitude && getIncidenceData()}, [coordinates])
-    useEffect(() => setErrorMessage(''), [userPlace,coordinates] )
-    useEffect(() => {countyData.countyName && setIsCountyDataLoaded(true)}, [countyData])
-    
-    useEffect(() => {isCountyDataLoaded && showResultPage()}, [isCountyDataLoaded])
+    const [errorMessage, setErrorMessage] = useState()
+    const [isDataLoading, setIsDataLoading] = useState(true)
+    const [isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
+
+    useEffect(() => {
+        userPlace && getCountyData()
+    }, [userPlace])
+    useEffect(() => {
+        coordinates.longitude && getIncidenceData()
+    }, [coordinates])
+    useEffect(() => setErrorMessage(''), [userPlace, coordinates])
+    useEffect(() => {
+        countyData.countyName && setIsCountyDataLoaded(true)
+    }, [countyData])
+    useEffect(() => {
+        isCountyDataLoaded && showResultPage()
+    }, [isCountyDataLoaded])
 
     function getCountyData() {
         getGeoData(userPlace)
-            .then(geoData => setCoordinates({latitude: Number(geoData[0].lat).toFixed(6), longitude: Number(geoData[0].lon).toFixed(6)}))
-            .catch((error) => setErrorMessage('Ort konnte vom Server nicht bestimmt werden'))
+            .then((geoData) =>
+                setCoordinates({
+                    latitude: Number(geoData[0].lat).toFixed(6),
+                    longitude: Number(geoData[0].lon).toFixed(6),
+                })
+            )
+            .catch((error) =>
+                setErrorMessage('Ort konnte vom Server nicht bestimmt werden')
+            )
     }
 
     function getIncidenceData() {
-         getRkiData(coordinates)
-            .then(data => {
+        getRkiData(coordinates)
+            .then((data) => {
                 const filteredData = data.features[0].attributes
-                setCountyData({countyName: filteredData.GEN, incidence: Math.round(filteredData.cases7_per_100k), last_update: filteredData.last_update })}) 
-            .catch((error) => {!errorMessage && setErrorMessage('RKI-Daten konnten nicht geladen werden')})
+                setCountyData({
+                    countyName: filteredData.GEN,
+                    incidence: Math.round(filteredData.cases7_per_100k),
+                    last_update: filteredData.last_update,
+                })
+            })
+            .catch((error) => {
+                !errorMessage &&
+                    setErrorMessage('RKI-Daten konnten nicht geladen werden')
+            })
     }
 
     function resetSearch() {
         setUserPlace('')
         setCoordinates({
             latitude: 0,
-            longitude: 0
+            longitude: 0,
         })
         setCountyData({
             countyName: '',
             incidence: 0,
-            last_update: ''
+            last_update: '',
         })
         setIsCountyDataLoaded(false)
     }
 
     function showResultPage() {
-        const countyNameCompact = countyData.countyName.replace(/ /g,'')
+        setIsDataLoading(false)
+        const countyNameCompact = countyData.countyName.replace(/ /g, '')
         history.push(`/${countyNameCompact}`)
     }
 
@@ -64,7 +87,8 @@ export default function useUserLocation() {
         setUserPlace,
         countyData,
         errorMessage,
+        isDataLoading,
         isCountyDataLoaded,
-        resetSearch
+        resetSearch,
     }
 }

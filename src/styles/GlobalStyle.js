@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   * {
@@ -9,7 +9,7 @@ export default createGlobalStyle`
 
   :root {
     --silver: #F5F5F7;
-    --button: #0B79B9;
+    --blue: #0B79B9;
     --red: #C34848;
     --green: #57B160;
     

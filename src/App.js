@@ -9,6 +9,7 @@ function App() {
         setUserPlace,
         countyData,
         errorMessage,
+        isDataLoading,
         isCountyDataLoaded,
         resetSearch,
     } = useUserLocation()
@@ -29,6 +30,7 @@ function App() {
                     <ResultPage
                         setUserPlace={setUserPlace}
                         countyData={countyData}
+                        isDataLoading={isDataLoading}
                         isCountyDataLoaded={isCountyDataLoaded}
                     />
                 </Route>
