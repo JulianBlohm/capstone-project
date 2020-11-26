@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Button from './components/Button'
 
-function ErrorPage({ setErrorMessage }) {
+function ErrorPage({ setErrorMessage, showMainPage }) {
+    function handleClick() {
+        setErrorMessage('')
+        showMainPage()
+    }
+
     return (
         <ErrorPageStyled>
             <section className="county-class-red result-wrapper">
@@ -10,9 +14,7 @@ function ErrorPage({ setErrorMessage }) {
                 <span>Probiere eine neue Suche!</span>
             </section>
             <section className="information-wrapper">
-                <Link to="/">
-                    <Button text="Neue Suche" onCLick={setErrorMessage('')} />
-                </Link>
+                <Button text="Neue Suche" onClick={handleClick} />
             </section>
         </ErrorPageStyled>
     )

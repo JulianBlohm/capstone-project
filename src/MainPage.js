@@ -5,11 +5,13 @@ import Form from './components/Form'
 function MainPage({
     setUserPlace,
     errorMessage,
+    isDataLoading,
     isCountyDataLoaded,
     resetSearch,
+    setSearchOrigin,
 }) {
     useEffect(() => {
-        isCountyDataLoaded && errorMessage && resetSearch()
+        isCountyDataLoaded && resetSearch()
     }, [])
 
     return (
@@ -18,6 +20,8 @@ function MainPage({
             <Form
                 setUserPlace={setUserPlace}
                 errorMessage={errorMessage}
+                isDataLoading={isDataLoading}
+                setSearchOrigin={setSearchOrigin}
             ></Form>
         </MainPageStyled>
     )

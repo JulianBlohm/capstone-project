@@ -10,7 +10,7 @@ Disabled Button:
 <Button disabled className="disabled" text="Suchen" />
 ```
 
-Loading Button:
+Disabled loading Button:
 
 ```jsx
 <Button disabled className="disabled" text="Lädt..." />
