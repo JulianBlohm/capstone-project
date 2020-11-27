@@ -21,7 +21,7 @@ export default function useUserLocation() {
     const [isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
     const [searchOrigin, setSearchOrigin] = useState('')
 
-    const countyNameUrl = countyData.countyName.replace(/ /g, '')
+    const countyNameUrl = countyData.countyName.replace(/\s/g, '')
 
     useEffect(() => {
         userPlace && startSearch()
@@ -45,25 +45,34 @@ export default function useUserLocation() {
         getCounty()
     }
 
-    console.log(userPlace)
-    console.log(coordinates)
-    console.log(countyData)
-    console.log(isDataLoading)
-    console.log(isCountyDataLoaded)
-    console.log(searchOrigin)
+    function showResultPage() {
+        setIsDataLoading(false)
+        history.push(`/s/${countyNameUrl}`)
+    }
 
     function handleError() {
         setIsDataLoading(false)
         searchOrigin != 'MainPage' && history.push('/error')
     }
 
-    function showResultPage() {
-        setIsDataLoading(false)
-        history.push(`/s/${countyNameUrl}`)
-    }
-
     function showMainPage() {
         history.push('/')
+    }
+
+    function resetSearch() {
+        setUserPlace('')
+        setCoordinates({
+            latitude: 0,
+            longitude: 0,
+        })
+        setCountyData({
+            countyName: '',
+            incidence: 0,
+            last_update: '',
+        })
+        setIsCountyDataLoaded(false)
+        setErrorMessage('')
+        setSearchOrigin('')
     }
 
     function getCounty() {
@@ -93,22 +102,6 @@ export default function useUserLocation() {
                 !errorMessage &&
                     setErrorMessage('Daten konnten nicht geladen werden')
             })
-    }
-
-    function resetSearch() {
-        setUserPlace('')
-        setCoordinates({
-            latitude: 0,
-            longitude: 0,
-        })
-        setCountyData({
-            countyName: '',
-            incidence: 0,
-            last_update: '',
-        })
-        setIsCountyDataLoaded(false)
-        setErrorMessage('')
-        setSearchOrigin('')
     }
 
     return {

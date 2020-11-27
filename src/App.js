@@ -1,9 +1,11 @@
+import { Suspense, lazy } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import useUserLocation from './hooks/useUserLocation'
 import MainPage from './MainPage'
 import ResultPage from './ResultPage'
 import ErrorPage from './ErrorPage'
+import LoadingPage from './LoadingPage'
 
 function App() {
     const {
@@ -33,12 +35,15 @@ function App() {
                 </Route>
 
                 <Route path="/s/:id">
-                    <ResultPage
-                        setUserPlace={setUserPlace}
-                        countyData={countyData}
-                        isDataLoading={isDataLoading}
-                        isCountyDataLoaded={isCountyDataLoaded}
-                    />
+                    {isDataLoading ? (
+                        <LoadingPage />
+                    ) : (
+                        <ResultPage
+                            setUserPlace={setUserPlace}
+                            countyData={countyData}
+                            isCountyDataLoaded={isCountyDataLoaded}
+                        />
+                    )}
                 </Route>
 
                 <Route path="/error">

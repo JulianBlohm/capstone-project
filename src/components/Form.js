@@ -24,6 +24,7 @@ function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
                 value={userInput}
                 onChange={handleChange}
                 placeholderText="Ort oder PLZ eingeben..."
+                required="required"
             />
             <span>{errorMessage}</span>
             {userInput ? (
