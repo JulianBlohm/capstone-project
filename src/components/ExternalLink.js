@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro'
 
-export default styled.button`
+export default styled.a`
     border: none;
-    background: ${(props) => (props.disabled ? 'var(--gray)' : 'var(--blue)')};
+    background: var(--blue);
     color: white;
     width: 100%;
     display: flex;

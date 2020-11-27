@@ -105,6 +105,7 @@ export default function useUserLocation() {
     }
 
     return {
+        userPlace,
         setUserPlace,
         countyData,
         errorMessage,

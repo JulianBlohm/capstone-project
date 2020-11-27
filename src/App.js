@@ -1,4 +1,3 @@
-import { Suspense, lazy } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import useUserLocation from './hooks/useUserLocation'
@@ -9,6 +8,7 @@ import LoadingPage from './LoadingPage'
 
 function App() {
     const {
+        userPlace,
         setUserPlace,
         countyData,
         errorMessage,
@@ -25,10 +25,10 @@ function App() {
             <Switch>
                 <Route exact path="/">
                     <MainPage
+                        userPlace={userPlace}
                         setUserPlace={setUserPlace}
                         errorMessage={errorMessage}
                         isDataLoading={isDataLoading}
-                        isCountyDataLoaded={isCountyDataLoaded}
                         resetSearch={resetSearch}
                         setSearchOrigin={setSearchOrigin}
                     />

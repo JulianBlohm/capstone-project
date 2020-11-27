@@ -1,17 +1,17 @@
 Basic Button:
 
 ```jsx
-<Button text="Suchen" />
+<Button>Suchen</Button>
 ```
 
 Disabled Button:
 
 ```jsx
-<Button disabled className="disabled" text="Suchen" />
+<Button disabled>Suchen</Button>
 ```
 
 Disabled loading Button:
 
 ```jsx
-<Button disabled className="disabled" text="Lädt..." />
+<Button disabled>Lädt...</Button>
 ```

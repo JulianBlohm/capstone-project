@@ -23,16 +23,20 @@ function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
             <Input
                 value={userInput}
                 onChange={handleChange}
-                placeholderText="Ort oder PLZ eingeben..."
-                required="required"
+                placeholder="Ort oder PLZ eingeben..."
+                required
             />
             <span>{errorMessage}</span>
             {userInput ? (
-                <Button text="Suchen" />
+                <Button>Suchen</Button>
             ) : isDataLoading ? (
-                <Button disabled className="disabled" text="Lädt..." />
+                <Button disabled className="disabled">
+                    Lädt...
+                </Button>
             ) : (
-                <Button disabled className="disabled" text="Suchen" />
+                <Button disabled className="disabled">
+                    Suchen
+                </Button>
             )}
         </FormStyled>
     )

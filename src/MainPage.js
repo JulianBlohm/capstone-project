@@ -3,15 +3,15 @@ import styled from 'styled-components/macro'
 import Form from './components/Form'
 
 function MainPage({
+    userPlace,
     setUserPlace,
     errorMessage,
     isDataLoading,
-    isCountyDataLoaded,
     resetSearch,
     setSearchOrigin,
 }) {
     useEffect(() => {
-        isCountyDataLoaded && resetSearch()
+        userPlace && resetSearch()
     }, [])
 
     return (
@@ -22,7 +22,7 @@ function MainPage({
                 errorMessage={errorMessage}
                 isDataLoading={isDataLoading}
                 setSearchOrigin={setSearchOrigin}
-            ></Form>
+            />
         </MainPageStyled>
     )
 }
@@ -31,7 +31,7 @@ const MainPageStyled = styled.div`
     padding: 10px;
     display: grid;
     grid-gap: 20px;
-    background: #f5f5f7;
+    background: var(--silver);
 
     h1 {
         margin: 100px 0;
