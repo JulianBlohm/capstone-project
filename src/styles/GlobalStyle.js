@@ -25,8 +25,9 @@ export default createGlobalStyle`
 
   h2 {
         margin-bottom: 41px;
+        font-size: 32px;
   }
-  
+
   h3 {
         margin-bottom: 41px;
         line-height: 1.5;
