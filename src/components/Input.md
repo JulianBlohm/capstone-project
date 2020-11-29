@@ -1,3 +1,11 @@
+Input:
+
 ```jsx
-<Input placeholderText="Gib etwas ein..." />
+<Input placeholder="Gib etwas ein..." />
+```
+
+Input with text:
+
+```jsx
+<Input value="Hamburg" placeholder="Gib etwas ein..." />
 ```

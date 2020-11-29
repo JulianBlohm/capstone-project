@@ -3,14 +3,21 @@ import styled from 'styled-components/macro'
 import useUserLocation from './hooks/useUserLocation'
 import MainPage from './MainPage'
 import ResultPage from './ResultPage'
+import ErrorPage from './ErrorPage'
+import LoadingPage from './LoadingPage'
 
 function App() {
     const {
+        userPlace,
         setUserPlace,
         countyData,
         errorMessage,
+        setErrorMessage,
+        isDataLoading,
         isCountyDataLoaded,
         resetSearch,
+        showMainPage,
+        setSearchOrigin,
     } = useUserLocation()
 
     return (
@@ -18,18 +25,31 @@ function App() {
             <Switch>
                 <Route exact path="/">
                     <MainPage
+                        userPlace={userPlace}
                         setUserPlace={setUserPlace}
                         errorMessage={errorMessage}
-                        isCountyDataLoaded={isCountyDataLoaded}
+                        isDataLoading={isDataLoading}
                         resetSearch={resetSearch}
+                        setSearchOrigin={setSearchOrigin}
                     />
                 </Route>
 
-                <Route path="/:id">
-                    <ResultPage
-                        setUserPlace={setUserPlace}
-                        countyData={countyData}
-                        isCountyDataLoaded={isCountyDataLoaded}
+                <Route path="/s/:id">
+                    {isDataLoading ? (
+                        <LoadingPage />
+                    ) : (
+                        <ResultPage
+                            setUserPlace={setUserPlace}
+                            countyData={countyData}
+                            isCountyDataLoaded={isCountyDataLoaded}
+                        />
+                    )}
+                </Route>
+
+                <Route path="/error">
+                    <ErrorPage
+                        setErrorMessage={setErrorMessage}
+                        showMainPage={showMainPage}
                     />
                 </Route>
             </Switch>
