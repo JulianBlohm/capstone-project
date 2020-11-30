@@ -4,22 +4,54 @@ import data from '../data/faqData.json'
 import { ReactComponent as Plus } from '../assets/plus.svg'
 
 function FAQ() {
-    const [faqContent, setFaqContent] = useState([])
+    const [questions, setQuestions] = useState([
+        {
+            id: '',
+            question: '',
+            answer: '',
+            isAnswerHidden: true,
+        },
+    ])
 
-    useEffect(() => setFaqContent(data), [])
+    useEffect(
+        () =>
+            setQuestions(
+                data.map((question) => {
+                    return { ...question, isAnswerHidden: true }
+                })
+            ),
+        []
+    )
+
+    function toggleAnswer(id) {
+        setQuestions(
+            questions.map((question) =>
+                question.id === id
+                    ? { ...question, isAnswerHidden: !question.isAnswerHidden }
+                    : question
+            )
+        )
+    }
 
     return (
         <FAQWrapper>
-            {faqContent.map((content, index) => (
+            <h3>FAQ</h3>
+            {questions.map((question) => (
                 <>
-                    <div className="question-answer-pair">
+                    <div key={question.id} className="question-answer-pair">
                         <div className="question-wrapper">
-                            <dt key={index}>{content.question}</dt>
+                            <dt>{question.question}</dt>
                             <button>
-                                <Plus className="plus-icon" />
+                                <Plus
+                                    id={question.id}
+                                    onClick={() => toggleAnswer(question.id)}
+                                    className="plus-icon"
+                                />
                             </button>
                         </div>
-                        <dd key={index}>{content.answer}</dd>
+                        {!question.isAnswerHidden && (
+                            <dd key={question.id}>{question.answer}</dd>
+                        )}
                     </div>
                 </>
             ))}
@@ -28,6 +60,13 @@ function FAQ() {
 }
 
 const FAQWrapper = styled.dl`
+    color: var(--lightblack);
+
+    h3 {
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
+
     .question-answer-pair {
         padding-bottom: 20px;
     }
@@ -36,12 +75,10 @@ const FAQWrapper = styled.dl`
         background: var(--FAQgray);
         display: flex;
         position: relative;
-        color: var(--lightblack);
     }
 
     dt {
-        font-weight: 700;
-        margin: 10px 45px 10px 10px;
+        margin: 10px 45px 10px 20px;
     }
 
     button {
@@ -49,7 +86,7 @@ const FAQWrapper = styled.dl`
         border: none;
         position: absolute;
         top: 4px;
-        right: 5px;
+        right: 15px;
     }
 
     .plus-icon {

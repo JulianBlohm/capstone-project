@@ -1,33 +1,41 @@
 [
     {
+        "id": 1,
         "question": "Wie funktioniert “Hotspot or not?”",
         "answer": "“Hotspot or not?“ zeigt dir, ob Du dich in einem Covid-19 Hotspot befindest. Du kannst Deinen aktuellen Standort nutzen oder nach einer Stadt suchen. Diese Position wird mit den aktuellen Covid-19 Infektionszahlen des Robert Koch Instituts abgeglichen. “Hotspot or not?“ berechnet, ob Dein Landkreis nach den Beschlüssen der Landtagssitzung ein Covid-19 Hotspot ist."
     },
     {
+        "id": 2,
         "question": "Wofür nutzt “Hotspot or not?” meinen Standort?",
         "answer": "Du hast die Option “Hotspot or not?“ Deinen Standort freizugeben. Anhand Deines Standort wird die aktuelle 7-Tage-Inzidenz mit Covid-19 Infizierten in Deinem Landkreis abgerufen."
     },
     {
+        "id": 3,
         "question": "Welche persönliche Daten werden gespeichert?",
         "answer": "“Hotspot or not?“ speichert keine persönlichen Daten und nutzt keine Cookies."
     },
     {
+        "id": 4,
         "question": "Was ist ein COVID-19 Hotspot?",
         "answer": "Ein Landkreis mit einem Covid-19 Inzidenzwert über 35 wird als Covid-19 Hotspot verstanden. Ein Covid-19 Inzidenzwert über 50 wird als kritischer Covid-19 Hotspot verstanden."
     },
     {
+        "id": 5,
         "question": "Sind die Ergebnisse von “Hotspot or not?” aktuell?",
         "answer": "“Hotspot or not?“ ruft stets den aktuellen Covid-19 Inzidenzwert des RKI für Deinen Standort ab. In Ausnahmefällen kann die von Deinem Landkreis gemeldete Inzidenzzahl jedoch aktueller sein. Die unterschiedlichen Zahlen sind dann in der Regel auf einen Meldeverzug beim RKI zurückzuführen."
     },
     {
+        "id": 6,
         "question": "Warum kann der Inzidenzwert von “Hotspot or not?“ von dem meines örtlichen Gesundheitsamtes abweichen?",
         "answer": "Bei der Übermittlung der Fälle von den Gesundheitsämtern über die zuständigen Landesbehörden bis ans RKI kann es zu einem Melde- und Übermittlungsverzug von einigen Tagen kommen."
     },
     {
+        "id": 8,
         "question": "Was ist der Inzidenzwert?",
         "answer": "Der Inzidenzwert ist die Maßzahl dafür, wie viele von 100.000 Einwohnern innerhalb der letzten 7 Tage an Covid-19 erkrankt sind."
     },
     {
+        "id": 9,
         "question": "Ich habe ein Problem. Wo kann ich mich melden?",
         "answer": "Bei Problemen, Fragen oder Anmerkungen wenden Sie sich bitte an service@hotspotornot.de"
     }
