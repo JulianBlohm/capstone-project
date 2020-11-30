@@ -15,7 +15,7 @@ function FAQ() {
                     <div className="question-answer-pair">
                         <div className="question-wrapper">
                             <dt key={index}>{content.question}</dt>
-                            <button onCLick={toggleAnswer}>
+                            <button>
                                 <Plus className="plus-icon" />
                             </button>
                         </div>

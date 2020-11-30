@@ -52,7 +52,7 @@ export default function useUserLocation() {
 
     function handleError() {
         setIsDataLoading(false)
-        searchOrigin != 'MainPage' && history.push('/error')
+        searchOrigin !== 'MainPage' && history.push('/error')
     }
 
     function showMainPage() {
