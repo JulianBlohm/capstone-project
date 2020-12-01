@@ -39,7 +39,7 @@ function FAQ() {
             <h3>FAQ</h3>
             {questions.map((question) => (
                 <>
-                    <div key={question.id} className="question-answer-pair">
+                    <div key={question.id} className="question-answer-wrapper">
                         <div className="question-wrapper">
                             <dt>{question.question}</dt>
                             <button>
@@ -81,7 +81,24 @@ const FAQWrapper = styled.dl`
         color: var(--lightblack);
     }
 
-    .question-answer-pair {
+    dt {
+        margin: 12px 15px 10px 15px;
+        font-size: 20px;
+    }
+
+    dd {
+        padding: 10px 20px 30px 20px;
+        line-height: 1.3;
+        font-size: 16px;
+    }
+
+    button {
+        background: transparent;
+        border: none;
+        margin-right: 15px;
+    }
+
+    .question-answer-wrapper {
         padding-bottom: 20px;
     }
 
@@ -90,17 +107,7 @@ const FAQWrapper = styled.dl`
         //background: var(--FAQgray);
         display: flex;
         justify-content: space-between;
-    }
-
-    dt {
-        margin: 10px 15px 10px 15px;
-        font-size: 20px;
-    }
-
-    button {
-        background: transparent;
-        border: none;
-        margin-right: 15px;
+        align-items: center;
     }
 
     .plus-icon {
@@ -111,12 +118,6 @@ const FAQWrapper = styled.dl`
     .minus-icon {
         width: 30px;
         stroke: var(--blue);
-    }
-
-    dd {
-        padding: 10px 20px 30px 20px;
-        line-height: 1.3;
-        font-size: 16px;
     }
 `
 
