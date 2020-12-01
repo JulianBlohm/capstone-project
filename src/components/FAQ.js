@@ -5,14 +5,7 @@ import { ReactComponent as Plus } from '../assets/plus.svg'
 import { ReactComponent as Minus } from '../assets/minus.svg'
 
 function FAQ() {
-    const [questions, setQuestions] = useState([
-        {
-            id: '',
-            question: '',
-            answer: '',
-            isAnswerHidden: true,
-        },
-    ])
+    const [questions, setQuestions] = useState([])
 
     useEffect(
         () =>
