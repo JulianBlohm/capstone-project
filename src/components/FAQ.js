@@ -33,28 +33,21 @@ function FAQ() {
             {questions.map((question) => (
                 <>
                     <div key={question.id} className="question-answer-wrapper">
-                        <div className="question-wrapper">
+                        <div
+                            className="question-wrapper"
+                            onClick={() => toggleAnswer(question.id)}
+                        >
                             <dt>{question.question}</dt>
-                            <button>
-                                {question.isAnswerHidden ? (
-                                    <Plus
-                                        id={question.id}
-                                        onClick={() =>
-                                            toggleAnswer(question.id)
-                                        }
-                                        className="plus-icon"
-                                    />
-                                ) : (
-                                    <Minus
-                                        id={question.id}
-                                        onClick={() =>
-                                            toggleAnswer(question.id)
-                                        }
-                                        className="minus-icon"
-                                    />
-                                )}
-                            </button>
+                            {question.isAnswerHidden ? (
+                                <Plus id={question.id} className="plus-icon" />
+                            ) : (
+                                <Minus
+                                    id={question.id}
+                                    className="minus-icon"
+                                />
+                            )}
                         </div>
+
                         {!question.isAnswerHidden && (
                             <dd key={question.id}>{question.answer}</dd>
                         )}
@@ -75,8 +68,8 @@ const FAQWrapper = styled.dl`
     }
 
     dt {
-        margin: 12px 15px 10px 15px;
         font-size: 20px;
+        max-width: 85%;
     }
 
     dd {
@@ -85,22 +78,18 @@ const FAQWrapper = styled.dl`
         font-size: 16px;
     }
 
-    button {
+    .question-wrapper {
         background: transparent;
-        border: none;
-        margin-right: 15px;
+        border: 2px solid var(--FAQgray);
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 10px;
     }
 
     .question-answer-wrapper {
         padding-bottom: 20px;
-    }
-
-    .question-wrapper {
-        border: 2px solid var(--FAQgray);
-        //background: var(--FAQgray);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
     }
 
     .plus-icon {
