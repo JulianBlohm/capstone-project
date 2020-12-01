@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 import data from '../data/faqData.json'
 import { ReactComponent as Plus } from '../assets/plus.svg'
+import { ReactComponent as Minus } from '../assets/minus.svg'
 
 function FAQ() {
     const [questions, setQuestions] = useState([
@@ -42,11 +43,23 @@ function FAQ() {
                         <div className="question-wrapper">
                             <dt>{question.question}</dt>
                             <button>
-                                <Plus
-                                    id={question.id}
-                                    onClick={() => toggleAnswer(question.id)}
-                                    className="plus-icon"
-                                />
+                                {question.isAnswerHidden ? (
+                                    <Plus
+                                        id={question.id}
+                                        onClick={() =>
+                                            toggleAnswer(question.id)
+                                        }
+                                        className="plus-icon"
+                                    />
+                                ) : (
+                                    <Minus
+                                        id={question.id}
+                                        onClick={() =>
+                                            toggleAnswer(question.id)
+                                        }
+                                        className="minus-icon"
+                                    />
+                                )}
                             </button>
                         </div>
                         {!question.isAnswerHidden && (
@@ -60,11 +73,12 @@ function FAQ() {
 }
 
 const FAQWrapper = styled.dl`
-    color: var(--lightblack);
+    color: var(--gray);
 
     h3 {
         margin-bottom: 10px;
         margin-left: 10px;
+        color: var(--lightblack);
     }
 
     .question-answer-pair {
@@ -72,21 +86,21 @@ const FAQWrapper = styled.dl`
     }
 
     .question-wrapper {
-        background: var(--FAQgray);
+        border: 2px solid var(--FAQgray);
+        //background: var(--FAQgray);
         display: flex;
-        position: relative;
+        justify-content: space-between;
     }
 
     dt {
-        margin: 10px 45px 10px 20px;
+        margin: 10px 15px 10px 15px;
+        font-size: 20px;
     }
 
     button {
         background: transparent;
         border: none;
-        position: absolute;
-        top: 4px;
-        right: 15px;
+        margin-right: 15px;
     }
 
     .plus-icon {
@@ -94,8 +108,15 @@ const FAQWrapper = styled.dl`
         stroke: var(--blue);
     }
 
+    .minus-icon {
+        width: 30px;
+        stroke: var(--blue);
+    }
+
     dd {
-        padding: 10px 15px 30px 20px;
+        padding: 10px 20px 30px 20px;
+        line-height: 1.3;
+        font-size: 16px;
     }
 `
 

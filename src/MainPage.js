@@ -34,7 +34,7 @@ function MainPage({
 
 const MainPageStyled = styled.div`
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 40px;
 
     .form-wrapper {
         padding: 10px;
