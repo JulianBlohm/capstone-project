@@ -69,7 +69,7 @@ const FAQWrapper = styled.dl`
 
     dt {
         font-size: 20px;
-        max-width: 85%;
+        max-width: 90%;
     }
 
     dd {
@@ -80,7 +80,8 @@ const FAQWrapper = styled.dl`
 
     .question-wrapper {
         background: transparent;
-        border: 2px solid var(--FAQgray);
+        border-top: 2px solid var(--FAQgray);
+        border-bottom: 2px solid var(--FAQgray);
         display: flex;
         width: 100%;
         justify-content: space-between;
