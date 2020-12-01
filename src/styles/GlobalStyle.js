@@ -25,21 +25,6 @@ export default createGlobalStyle`
     justify-content: center;
   }
 
-  h2 {
-        margin-bottom: 41px;
-        font-size: 32px;
-  }
-
-  h3 {
-        margin-bottom: 41px;
-        line-height: 1.5;
-        font-size: 26px;
-    }
-
-  span {
-        font-weight: 300;
-    }
-
   a {
         text-decoration: none;
     }

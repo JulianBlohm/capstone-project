@@ -54,11 +54,11 @@ const MainPageStyled = styled.div`
         line-height: 1.3;
         color: var(--gray);
         width: 70%;
-        margin: 0;
+        margin-bottom: 48px;
     }
 
     .intro-wrapper {
-        padding: 30px;
+        padding: 0 30px;
         background: var(--silver);
     }
 

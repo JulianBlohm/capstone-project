@@ -30,5 +30,15 @@ const ErrorPageStyled = styled.div`
     .information-wrapper {
         margin: 0 18px;
     }
+
+    h3 {
+        margin-bottom: 41px;
+        line-height: 1.5;
+        font-size: 26px;
+    }
+
+    span {
+        font-weight: 300;
+    }
 `
 export default ErrorPage

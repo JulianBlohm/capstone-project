@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { ReactComponent as VirusWhite } from './assets/virus-white.svg'
 import styled from 'styled-components/macro'
 import Button from './components/Button'
 import ExternalLink from './components/ExternalLink'
+import NewSearchButton from './components/NewSearchButton'
 
 function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
     const [countyClassification, setCountyClassification] = useState('')
@@ -29,6 +31,9 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                     <section
                         className={countyClassification + ' result-wrapper'}
                     >
+                        <div className="logo-wrapper">
+                            <VirusWhite className="logo" />
+                        </div>
                         {countyData.incidence > 35 ? (
                             <h2>
                                 {countyData.countyName} ist ein Covid-19
@@ -44,7 +49,15 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                             Die 7-Tage-Inzidenz <br /> liegt bei{' '}
                             {countyData.incidence}.
                         </h3>
-                        <span>Daten vom {countyData.last_update}</span>
+                        <div className="time-stamp">
+                            <span>Daten vom </span>
+                            <time>{countyData.last_update}</time>
+                        </div>
+                        {countyData.incidence > 35 ? (
+                            <NewSearchButton isHotspot />
+                        ) : (
+                            <NewSearchButton />
+                        )}
                     </section>
                     <section className="information-wrapper">
                         <ExternalLink
@@ -71,7 +84,7 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
 
 const ResultPageStyled = styled.div`
     .result-wrapper {
-        padding: 37px;
+        padding: 0 37px 20px 37px;
     }
 
     .county-class-red {
@@ -86,6 +99,36 @@ const ResultPageStyled = styled.div`
 
     .information-wrapper {
         margin: 0 18px;
+    }
+
+    .logo-wrapper {
+        display: flex;
+        justify-content: center;
+        padding-top: 40px;
+        padding-bottom: 73px;
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    .time-stamp {
+        margin-bottom: 56px;
+    }
+
+    h2 {
+        margin-bottom: 41px;
+        font-size: 32px;
+    }
+
+    h3 {
+        margin-bottom: 41px;
+        line-height: 1.5;
+        font-size: 26px;
+    }
+
+    span {
+        font-weight: 300;
     }
 `
 

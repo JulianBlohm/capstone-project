@@ -52,7 +52,7 @@ Form.propTypes = {
 const FormStyled = styled.form`
     position: relative;
     background: var(--silver);
-    padding: 13px;
+    padding: 0 13px;
 
     span {
         font-size: 0.8rem;
