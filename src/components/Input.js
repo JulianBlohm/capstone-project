@@ -7,6 +7,6 @@ export default styled.input`
     border: 1px solid gray;
     height: 48px;
     font-size: 1rem;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     outline: none;
 `

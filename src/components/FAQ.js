@@ -60,6 +60,7 @@ function FAQ() {
 
 const FAQWrapper = styled.dl`
     color: var(--gray);
+    padding-top: 30px;
 
     h3 {
         margin-bottom: 10px;

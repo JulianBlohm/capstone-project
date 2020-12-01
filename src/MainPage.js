@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Form from './components/Form'
 import FAQ from './components/FAQ'
+import { ReactComponent as VirusRed } from './assets/virus-red.svg'
 
 function MainPage({
     userPlace,
@@ -17,15 +18,22 @@ function MainPage({
 
     return (
         <MainPageStyled>
-            <div className="form-wrapper">
+            <div className="intro-wrapper">
+                <div className="logo-wrapper">
+                    <VirusRed className="logo" />
+                </div>
                 <h1>Bin ich in einem Covid-19 Hotspot?</h1>
-                <Form
-                    setUserPlace={setUserPlace}
-                    errorMessage={errorMessage}
-                    isDataLoading={isDataLoading}
-                    setSearchOrigin={setSearchOrigin}
-                />
+                <h2>
+                    Überprüfe jetzt anhand der RKI Daten, ob dein aktueller
+                    Standort ein Covid‑19 Hotspot ist.
+                </h2>
             </div>
+            <Form
+                setUserPlace={setUserPlace}
+                errorMessage={errorMessage}
+                isDataLoading={isDataLoading}
+                setSearchOrigin={setSearchOrigin}
+            />
 
             <FAQ />
         </MainPageStyled>
@@ -34,15 +42,34 @@ function MainPage({
 
 const MainPageStyled = styled.div`
     display: grid;
-    grid-gap: 40px;
 
-    .form-wrapper {
-        padding: 10px;
+    h1 {
+        margin-bottom: 50px;
+        font-size: 35px;
+        line-height: 1.4;
+    }
+
+    h2 {
+        font-size: 20px;
+        line-height: 1.3;
+        color: var(--gray);
+        width: 70%;
+        margin: 0;
+    }
+
+    .intro-wrapper {
+        padding: 30px;
         background: var(--silver);
     }
 
-    h1 {
-        margin: 100px 0;
+    .logo-wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .logo {
+        width: 120px;
     }
 `
 

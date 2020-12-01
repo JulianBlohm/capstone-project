@@ -11,6 +11,6 @@ export default styled.button`
     align-items: center;
     font-size: 1rem;
     border-radius: 5px;
-    margin: 20px 0;
+    margin-bottom: 20px;
     cursor: pointer;
 `
