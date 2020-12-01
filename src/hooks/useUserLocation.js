@@ -22,6 +22,7 @@ export default function useUserLocation() {
     const [searchOrigin, setSearchOrigin] = useState('')
 
     const countyNameUrl = countyData.countyName.replace(/\s/g, '')
+    //const isCountyDataLoaded = !!countyData?.countyName
 
     useEffect(() => {
         userPlace && startSearch()
@@ -52,7 +53,7 @@ export default function useUserLocation() {
 
     function handleError() {
         setIsDataLoading(false)
-        searchOrigin != 'MainPage' && history.push('/error')
+        searchOrigin !== 'MainPage' && history.push('/error')
     }
 
     function showMainPage() {
