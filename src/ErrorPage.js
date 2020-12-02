@@ -23,7 +23,7 @@ function ErrorPage({ setErrorMessage, showMainPage }) {
 const ErrorPageStyled = styled.div`
     .result-wrapper {
         padding: 37px;
-        background: var(--red);
+        background: var(--primary-red);
         color: var(--silver);
     }
 
