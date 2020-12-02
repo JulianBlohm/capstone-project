@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 export default function LoadingSpinner() {
     return (
         <LoadingWrapper>
-            <div class="loading-spinner">
+            <div className="loading-spinner">
                 <div></div>
                 <div></div>
             </div>

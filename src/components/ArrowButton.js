@@ -1,16 +1,16 @@
 import styled from 'styled-components/macro'
 import { ReactComponent as Arrow } from '../assets/arrow-left.svg'
 
-function NewSearchButton({ isHotspot }) {
+function ArrowButton({ isHotspot, children }) {
     return (
-        <NewSearchButtonStyled isHotspot={isHotspot}>
+        <ArrowButtonStyled isHotspot={isHotspot}>
             <Arrow className="arrow" />
-            Neue Suche
-        </NewSearchButtonStyled>
+            {children}
+        </ArrowButtonStyled>
     )
 }
 
-const NewSearchButtonStyled = styled.button`
+const ArrowButtonStyled = styled.button`
     background: var(--silver);
     color: ${(props) => (props.isHotspot ? 'var(--red)' : 'var(--green)')};
     border: none;
@@ -32,4 +32,4 @@ const NewSearchButtonStyled = styled.button`
     }
 `
 
-export default NewSearchButton
+export default ArrowButton

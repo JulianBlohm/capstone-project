@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ReactComponent as VirusWhite } from './assets/virus-white.svg'
+import { ReactComponent as ExternalLinkIcon } from './assets/external-link.svg'
 import styled from 'styled-components/macro'
-import Button from './components/Button'
 import ExternalLink from './components/ExternalLink'
-import NewSearchButton from './components/NewSearchButton'
+import ArrowButton from './components/ArrowButton'
 
 function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
     const [countyClassification, setCountyClassification] = useState('')
@@ -34,32 +34,51 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                         <div className="logo-wrapper">
                             <VirusWhite className="logo" />
                         </div>
-                        {countyData.incidence > 35 ? (
-                            <h2>
-                                {countyData.countyName} ist ein Covid-19
-                                Hotspot.
-                            </h2>
-                        ) : (
-                            <h2>
-                                {countyData.countyName} ist kein Covid-19
-                                Hotspot.
-                            </h2>
-                        )}
-                        <h3>
-                            Die 7-Tage-Inzidenz <br /> liegt bei{' '}
-                            {countyData.incidence}.
-                        </h3>
-                        <div className="time-stamp">
-                            <span>Daten vom </span>
-                            <time>{countyData.last_update}</time>
+                        <div className="result-text">
+                            {countyData.incidence > 35 ? (
+                                <h2>
+                                    {countyData.countyName} ist ein Covid-19
+                                    Hotspot.
+                                </h2>
+                            ) : (
+                                <h2>
+                                    {countyData.countyName} ist kein Covid-19
+                                    Hotspot.
+                                </h2>
+                            )}
+                            <h3>
+                                Die 7-Tage-Inzidenz <br /> liegt bei{' '}
+                                {countyData.incidence}.
+                            </h3>
+
+                            <div className="time-stamp">
+                                <span>Daten vom </span>
+                                <time>{countyData.last_update}</time>
+                            </div>
                         </div>
-                        {countyData.incidence > 35 ? (
-                            <NewSearchButton isHotspot />
-                        ) : (
-                            <NewSearchButton />
-                        )}
+
+                        <footer>
+                            {countyData.incidence > 35 ? (
+                                <Link to="/">
+                                    <ArrowButton isHotspot>
+                                        Neue Suche
+                                    </ArrowButton>
+                                </Link>
+                            ) : (
+                                <Link to="/">
+                                    <ArrowButton>Neue Suche</ArrowButton>
+                                </Link>
+                            )}
+                        </footer>
                     </section>
                     <section className="information-wrapper">
+                        <h4>Hilfreiche Links</h4>
+                        <p>
+                            Anbei findest du nützliche Links zu
+                            vertrauenswürdigen Seiten, auf denen du dich
+                            informieren kannst.
+                        </p>
+
                         <ExternalLink
                             target="_blank"
                             href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-bundeslaender-1745198"
@@ -72,9 +91,6 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                         >
                             FAQ Bundesregierung.de
                         </ExternalLink>
-                        <Link to="/">
-                            <Button>Neue Suche</Button>
-                        </Link>
                     </section>
                 </>
             )}
@@ -84,7 +100,7 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
 
 const ResultPageStyled = styled.div`
     .result-wrapper {
-        padding: 0 37px 20px 37px;
+        padding-bottom: 20px;
     }
 
     .county-class-red {
@@ -97,8 +113,12 @@ const ResultPageStyled = styled.div`
         color: var(--silver);
     }
 
+    .result-text {
+        padding: 0 35px;
+    }
+
     .information-wrapper {
-        margin: 0 18px;
+        margin: 50px 18px;
     }
 
     .logo-wrapper {
@@ -114,6 +134,7 @@ const ResultPageStyled = styled.div`
 
     .time-stamp {
         margin-bottom: 56px;
+        font-weight: 300;
     }
 
     h2 {
@@ -127,8 +148,22 @@ const ResultPageStyled = styled.div`
         font-size: 26px;
     }
 
+    h4 {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-weight: lighter;
+        font-size: 13px;
+    }
+
     span {
         font-weight: 300;
+    }
+
+    footer {
+        padding: 0 25px;
     }
 `
 
