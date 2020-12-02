@@ -53,6 +53,7 @@ const FormStyled = styled.form`
     position: relative;
     background: var(--silver);
     padding: 0 13px;
+    display: flex;
 
     span {
         font-size: 0.8rem;

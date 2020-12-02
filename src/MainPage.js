@@ -44,7 +44,7 @@ const MainPageStyled = styled.div`
     display: grid;
 
     h1 {
-        margin-bottom: 50px;
+        margin-bottom: 25px;
         font-size: 35px;
         line-height: 1.4;
     }
@@ -54,7 +54,7 @@ const MainPageStyled = styled.div`
         line-height: 1.3;
         color: var(--gray);
         width: 70%;
-        margin-bottom: 48px;
+        margin-bottom: 42px;
     }
 
     .intro-wrapper {
@@ -65,7 +65,8 @@ const MainPageStyled = styled.div`
     .logo-wrapper {
         display: flex;
         justify-content: center;
-        padding: 40px;
+        padding-top: 40px;
+        padding-bottom: 95px;
     }
 
     .logo {
