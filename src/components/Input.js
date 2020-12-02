@@ -10,7 +10,7 @@ export default styled.input`
     border-left: 1px solid var(--gray);
     border-right: 1px solid white;
     height: 48px;
-    font-size: 1rem;
+    font-size: 16px;
     margin-bottom: 40px;
     outline: var(--blue);
 `

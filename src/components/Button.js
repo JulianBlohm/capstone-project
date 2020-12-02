@@ -9,7 +9,7 @@ export default styled.button`
     height: 48px;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    font-size: 16px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     margin-bottom: 20px;

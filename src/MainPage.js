@@ -45,15 +45,16 @@ const MainPageStyled = styled.div`
 
     h1 {
         margin-bottom: 25px;
-        font-size: 35px;
+        font-size: 32px;
         line-height: 1.4;
     }
 
     h2 {
         font-size: 20px;
         line-height: 1.3;
+        font-weight: 500;
         color: var(--gray);
-        width: 70%;
+        width: 75%;
         margin-bottom: 42px;
     }
 

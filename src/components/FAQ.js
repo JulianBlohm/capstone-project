@@ -63,8 +63,9 @@ const FAQWrapper = styled.dl`
     padding: 30px 0;
 
     h3 {
+        font-size: 32px;
         margin-bottom: 10px;
-        margin-left: 10px;
+        margin-left: 15px;
         color: var(--lightblack);
     }
 
@@ -87,7 +88,7 @@ const FAQWrapper = styled.dl`
         width: 100%;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 10px;
+        padding: 10px 15px;
     }
 
     .question-answer-wrapper {
