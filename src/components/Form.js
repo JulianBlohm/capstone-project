@@ -30,13 +30,11 @@ function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
             {userInput ? (
                 <Button>Suchen</Button>
             ) : isDataLoading ? (
-                <Button disabled className="disabled">
+                <Button disabled gray>
                     Lädt...
                 </Button>
             ) : (
-                <Button disabled className="disabled">
-                    Suchen
-                </Button>
+                <Button disabled>Suchen</Button>
             )}
         </FormStyled>
     )
