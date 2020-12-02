@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ReactComponent as VirusWhite } from './assets/virus-white.svg'
-import { ReactComponent as ExternalLinkIcon } from './assets/external-link.svg'
 import styled from 'styled-components/macro'
 import ExternalLink from './components/ExternalLink'
 import ArrowButton from './components/ArrowButton'
@@ -71,7 +70,7 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                             )}
                         </footer>
                     </section>
-                    <section className="information-wrapper">
+                    <section className="external-links-wrapper">
                         <h4>Hilfreiche Links</h4>
                         <p>
                             Anbei findest du nützliche Links zu
@@ -91,6 +90,13 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                         >
                             FAQ Bundesregierung.de
                         </ExternalLink>
+                    </section>
+                    <section className="information-wrapper">
+                        <h4>Maßnahmen</h4>
+                        <p>
+                            Seit dem 02.11.20 gelten in Deutschland die
+                            folgenden einheitlichen Regelungen.
+                        </p>
                     </section>
                 </>
             )}
@@ -117,6 +123,10 @@ const ResultPageStyled = styled.div`
         padding: 0 35px;
     }
 
+    .external-links-wrapper {
+        margin: 50px 18px;
+    }
+
     .information-wrapper {
         margin: 50px 18px;
     }
@@ -135,6 +145,7 @@ const ResultPageStyled = styled.div`
     .time-stamp {
         margin-bottom: 56px;
         font-weight: 300;
+        font-size: 14px;
     }
 
     h2 {
@@ -155,11 +166,7 @@ const ResultPageStyled = styled.div`
 
     p {
         font-weight: lighter;
-        font-size: 13px;
-    }
-
-    span {
-        font-weight: 300;
+        font-size: 16px;
     }
 
     footer {

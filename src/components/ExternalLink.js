@@ -32,6 +32,7 @@ const ExternalLinkStyled = styled.a`
     }
 
     .external-link-icon {
+        height: auto;
         width: 16px;
         fill: var(--silver);
         margin-right: 10px;
