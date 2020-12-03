@@ -40,5 +40,11 @@ const ErrorPageStyled = styled.div`
     span {
         font-weight: 300;
     }
+
+    button {
+        border-radius: 5px;
+        width: 100%;
+        margin-top: 20px;
+    }
 `
 export default ErrorPage
