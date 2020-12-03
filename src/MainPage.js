@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Form from './components/Form'
 import FAQ from './components/FAQ'
-import { ReactComponent as VirusRed } from './assets/virus-red.svg'
+import { ReactComponent as VirusRed } from './assets/virus-red2.svg'
 
 function MainPage({
     userPlace,

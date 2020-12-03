@@ -4,7 +4,7 @@ export default styled.button`
     border: none;
     background: ${(props) => (props.gray ? 'var(--gray)' : 'var(--blue)')};
     color: white;
-    width: 100%;
+    width: 35%;
     display: flex;
     height: 48px;
     justify-content: center;

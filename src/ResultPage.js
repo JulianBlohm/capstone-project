@@ -88,19 +88,20 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                             vertrauenswürdigen Seiten, auf denen du dich
                             informieren kannst.
                         </p>
-
-                        <ExternalLink
-                            target="_blank"
-                            href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-bundeslaender-1745198"
-                        >
-                            Regeln der Bundesländer
-                        </ExternalLink>
-                        <ExternalLink
-                            target="_blank"
-                            href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724"
-                        >
-                            FAQ Bundesregierung.de
-                        </ExternalLink>
+                        <div className="external-links">
+                            <ExternalLink
+                                target="_blank"
+                                href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-bundeslaender-1745198"
+                            >
+                                Regeln der Bundesländer
+                            </ExternalLink>
+                            <ExternalLink
+                                target="_blank"
+                                href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724"
+                            >
+                                FAQ Bundesregierung.de
+                            </ExternalLink>
+                        </div>
                     </section>
                     <section className="information-wrapper">
                         <h4>Maßnahmen</h4>
@@ -158,12 +159,18 @@ const ResultPageStyled = styled.div`
     }
 
     .result-text {
-        padding: 0 35px;
+        padding: 0 30px;
         margin-bottom: 105px;
     }
 
     .external-links-wrapper {
         margin: 50px 18px;
+    }
+
+    .external-links {
+        display: grid;
+        grid-gap: 20px;
+        margin-top: 20px;
     }
 
     .information-wrapper {
