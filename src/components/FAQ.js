@@ -63,21 +63,21 @@ const FAQWrapper = styled.dl`
     padding: 30px 0;
 
     h3 {
-        font-size: 32px;
+        font-size: 2rem;
         margin-bottom: 10px;
         margin-left: 15px;
         color: var(--lightblack);
     }
 
     dt {
-        font-size: 20px;
+        font-size: 1.25rem;
         max-width: 90%;
     }
 
     dd {
         padding: 30px 20px 30px 20px;
         line-height: 1.3;
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .question-wrapper {

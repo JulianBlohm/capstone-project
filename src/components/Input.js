@@ -11,7 +11,7 @@ const InputStyled = styled.input`
     border-left: 1px solid var(--gray);
     border-right: 1px solid white;
     height: 48px;
-    font-size: 16px;
+    font-size: 1rem;
     margin-bottom: 40px;
     outline: var(--blue);
 `

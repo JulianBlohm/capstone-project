@@ -10,7 +10,7 @@ const ButtonStyled = styled.button`
     height: 48px;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 1rem;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     margin-bottom: 20px;

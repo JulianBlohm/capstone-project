@@ -4,10 +4,16 @@ import { ReactComponent as VirusWhite } from './assets/virus-white.svg'
 import { ReactComponent as Arrow } from './assets/arrow-left.svg'
 import styled from 'styled-components/macro'
 import ExternalLink from './components/ExternalLink'
+import ArrowButton from './components/ArrowButton'
 import data from './data/measures.json'
 import scrollUp from './lib/scrollUp'
 
-function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
+function ResultPage({
+    setUserPlace,
+    countyData,
+    isCountyDataLoaded,
+    showMainPage,
+}) {
     const [countyClassification, setCountyClassification] = useState('')
     const [measures, setMeasures] = useState([])
 
@@ -24,78 +30,76 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
 
     function classifyCountyIncidence() {
         if (countyData.incidence > 35) {
-            setCountyClassification('county-class-red')
+            setCountyClassification(true)
         } else {
-            setCountyClassification('county-class-green')
+            setCountyClassification(false)
         }
     }
 
     return (
-        <ResultPageStyled>
+        <>
             {isCountyDataLoaded && (
                 <>
-                    <section
-                        className={countyClassification + ' result-wrapper'}
-                    >
-                        <div className="logo-wrapper">
+                    <Result hotspot={countyClassification}>
+                        <Logo>
                             <VirusWhite className="logo" />
-                        </div>
-                        <div className="result-text">
+                        </Logo>
+                        <ResultText>
                             {countyData.incidence > 35 ? (
                                 <>
-                                    <h2 className="hotspot">
+                                    <Heading hotspot>
                                         {countyData.countyName} ist ein Covid-19
                                         Hotspot.
-                                    </h2>
-                                    <h3>
+                                    </Heading>
+                                    <SubHeading>
                                         Die 7-Tage-Inzidenz <br /> liegt bei{' '}
                                         {countyData.incidence}.
-                                    </h3>
-                                    <div className="time-stamp hotspot">
+                                    </SubHeading>
+                                    <DataDate hotspot>
                                         <span>Daten vom </span>
                                         <time>{countyData.last_update}</time>
-                                    </div>
+                                    </DataDate>
                                 </>
                             ) : (
                                 <>
-                                    <h2>
+                                    <Heading>
                                         {countyData.countyName} ist kein
                                         Covid-19 Hotspot.
-                                    </h2>
-                                    <h3>
+                                    </Heading>
+                                    <SubHeading>
                                         Die 7-Tage-Inzidenz <br /> liegt bei{' '}
                                         {countyData.incidence}.
-                                    </h3>
-                                    <div className="time-stamp">
+                                    </SubHeading>
+                                    <DataDate>
                                         <span>Daten vom </span>
                                         <time>{countyData.last_update}</time>
-                                    </div>
+                                    </DataDate>
                                 </>
                             )}
-                        </div>
+                        </ResultText>
 
-                        <footer>
+                        <Navigation>
                             {countyData.incidence > 35 ? (
-                                <Link className="new-search red" to="/">
-                                    <Arrow className="arrow" />
-                                    <span>Neue Suche</span>
-                                </Link>
+                                <ArrowButton hotspot onClick={showMainPage}>
+                                    Neue Suche
+                                </ArrowButton>
                             ) : (
-                                <Link className="new-search green" to="/">
-                                    <Arrow className="arrow" />
-                                    <span>Neue Suche</span>
-                                </Link>
+                                <ArrowButton onClick={showMainPage}>
+                                    Neue Suche
+                                </ArrowButton>
                             )}
-                        </footer>
-                    </section>
-                    <section className="external-links-wrapper">
-                        <h4>Hilfreiche Links</h4>
-                        <p>
+                        </Navigation>
+                    </Result>
+                    <LinkedInformation>
+                        <InformationHeading>
+                            Hilfreiche Links
+                        </InformationHeading>
+                        <Explanation>
                             Anbei findest du nützliche Links zu
                             vertrauenswürdigen Seiten, auf denen du dich
                             informieren kannst.
-                        </p>
-                        <div className="external-links">
+                        </Explanation>
+                        <ExternalLinks>
                             <ExternalLink
                                 target="_blank"
                                 href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-bundeslaender-1745198"
@@ -108,157 +112,113 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                             >
                                 FAQ Bundesregierung.de
                             </ExternalLink>
-                        </div>
-                    </section>
-                    <section className="information-wrapper">
-                        <h4>Maßnahmen</h4>
-                        <p>
+                        </ExternalLinks>
+                    </LinkedInformation>
+                    <Information>
+                        <InformationHeading>Maßnahmen</InformationHeading>
+                        <Explanation>
                             Seit dem 02.11.20 gelten in Deutschland die
                             folgenden einheitlichen Regelungen. Diese können in
                             Außnahmefällen regional verschärft werden, deshalb
                             informiere dich auch bei deinem Gesundheitsamt.
-                        </p>
-                        <ul className="measure-list">
+                        </Explanation>
+                        <MeasureList>
                             {measures.map((measure) => (
                                 <li key={measure.id}>
-                                    <h5>{measure.heading}</h5>
-                                    <p>{measure.text}</p>
+                                    <MeasureHeading>
+                                        {measure.heading}
+                                    </MeasureHeading>
+                                    <Explanation>{measure.text}</Explanation>
                                 </li>
                             ))}
-                        </ul>
-                    </section>
+                        </MeasureList>
+                    </Information>
                 </>
             )}
-        </ResultPageStyled>
+        </>
     )
 }
 
-const ResultPageStyled = styled.div`
-    h2 {
-        margin-bottom: 21px;
-        line-height: 1.2;
-        font-size: 32px;
-        color: var(--secondary-green);
-    }
+const Heading = styled.h2`
+    margin-bottom: 21px;
+    line-height: 1.2;
+    font-size: 2rem;
+    color: ${(props) =>
+        props.hotspot ? 'var(--secondary-red)' : 'var(--secondary-green)'};
+`
 
-    h3 {
-        margin-bottom: 24px;
-        line-height: 1.5;
-        font-size: 26px;
-    }
+const SubHeading = styled.h3`
+    margin-bottom: 24px;
+    line-height: 1.5;
+    font-size: 1.625rem;
+`
 
-    h4 {
-        font-size: 26px;
-    }
+const InformationHeading = styled.h4`
+    font-size: 1.625rem;
+`
 
-    p {
-        font-size: 16px;
-        color: var(--gray);
-        margin: 20px 0;
-    }
+const Explanation = styled.p`
+    font-size: 1rem;
+    color: var(--gray);
+    margin: 20px 0;
+`
 
-    footer {
-        padding: 0 20px;
-    }
+const Navigation = styled.nav`
+    padding: 0 20px;
+`
 
-    .result-wrapper {
-        padding-bottom: 20px;
-    }
+const Result = styled.section`
+    padding-bottom: 20px;
+    background: ${(props) =>
+        props.hotspot ? 'var(--primary-red)' : 'var(--primary-green)'};
+    color: var(--silver);
+`
 
-    .county-class-red {
-        background: var(--primary-red);
-        color: var(--silver);
-    }
+const ResultText = styled.div`
+    padding: 0 30px;
+    margin-bottom: 105px;
+`
 
-    .county-class-green {
-        background: var(--primary-green);
-        color: var(--silver);
-    }
+const LinkedInformation = styled.section`
+    margin: 70px 30px;
+`
 
-    .result-text {
-        padding: 0 30px;
-        margin-bottom: 105px;
-    }
+const ExternalLinks = styled.div`
+    display: grid;
+    grid-gap: 20px;
+`
 
-    .external-links-wrapper {
-        margin: 70px 30px;
-    }
+const Information = styled.section`
+    margin: 70px 30px;
+`
 
-    .external-links {
-        display: grid;
-        grid-gap: 20px;
-    }
-
-    .information-wrapper {
-        margin: 70px 30px;
-    }
-
-    .logo-wrapper {
-        display: flex;
-        justify-content: center;
-        padding-top: 40px;
-        padding-bottom: 97px;
-    }
+const Logo = styled.div`
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 97px;
 
     .logo {
         width: 120px;
     }
+`
 
-    .time-stamp {
-        font-weight: bold;
-        font-size: 16px;
-        color: var(--secondary-green);
-    }
+const DataDate = styled.div`
+    font-weight: bold;
+    font-size: 1rem;
+    color: ${(props) =>
+        props.hotspot ? 'var(--secondary-red)' : 'var(--secondary-green)'};
+`
 
-    .new-search {
-        background: var(--silver);
-        border: none;
-        border-radius: 5px;
-        padding: 5px 0 5px 18px;
-        width: 154px;
-        height: 32px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-        font-size: 16px;
-        position: relative;
-    }
+const MeasureList = styled.ul`
+    list-style: none;
+    display: grid;
+    grid-gap: 40px;
+    margin: 50px 0;
+`
 
-    .green {
-        color: var(--primary-green);
-        fill: var(--primary-green);
-    }
-
-    .red {
-        color: var(--primary-red);
-        fill: var(--primary-red);
-    }
-
-    .arrow {
-        position: absolute;
-        left: 5px;
-    }
-
-    .new-search span {
-        margin-top: 3px;
-    }
-
-    .hotspot {
-        color: var(--secondary-red);
-        fill: var(--secondary-red);
-    }
-
-    .measure-list {
-        list-style: none;
-        display: grid;
-        grid-gap: 40px;
-        margin: 50px 0;
-    }
-
-    .measure-list h5 {
-        margin-bottom: 10px;
-    }
+const MeasureHeading = styled.h5`
+    margin-bottom: 10px;
 `
 
 export default ResultPage

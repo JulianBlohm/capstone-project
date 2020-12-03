@@ -1,4 +1,4 @@
-Basic BUtton:
+Basic Button:
 
 ```jsx
 <Button>Suchen</Button>

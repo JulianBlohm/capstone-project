@@ -17,20 +17,20 @@ function MainPage({
         userPlace && resetSearch()
     }, [])
 
-    scrollUp()
+    useEffect(() => scrollUp(), [])
 
     return (
         <MainPageStyled>
-            <div className="intro-wrapper">
-                <div className="logo-wrapper">
+            <Intro>
+                <Logo>
                     <VirusRed className="logo" />
-                </div>
-                <h1>Bin ich in einem Covid-19 Hotspot?</h1>
-                <h2>
+                </Logo>
+                <Heading>Bin ich in einem Covid-19 Hotspot?</Heading>
+                <SubHeading>
                     Überprüfe jetzt anhand der RKI Daten, ob dein aktueller
                     Standort ein Covid‑19 Hotspot ist.
-                </h2>
-            </div>
+                </SubHeading>
+            </Intro>
             <Form
                 setUserPlace={setUserPlace}
                 errorMessage={errorMessage}
@@ -46,36 +46,35 @@ function MainPage({
 const MainPageStyled = styled.div`
     display: grid;
 
-    h1 {
-        margin-bottom: 25px;
-        font-size: 32px;
-        line-height: 1.4;
-    }
-
-    h2 {
-        font-size: 20px;
-        line-height: 1.3;
-        font-weight: 500;
-        color: var(--gray);
-        width: 75%;
-        margin-bottom: 42px;
-    }
-
-    .intro-wrapper {
-        padding: 0 30px;
-        background: var(--silver);
-    }
-
-    .logo-wrapper {
-        display: flex;
-        justify-content: center;
-        padding-top: 40px;
-        padding-bottom: 95px;
-    }
-
     .logo {
         width: 120px;
     }
+`
+const Heading = styled.h1`
+    margin-bottom: 25px;
+    font-size: 2rem;
+    line-height: 1.4;
+`
+
+const SubHeading = styled.h2`
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 500;
+    color: var(--gray);
+    width: 75%;
+    margin-bottom: 42px;
+`
+
+const Intro = styled.div`
+    padding: 0 30px;
+    background: var(--silver);
+`
+
+const Logo = styled.div`
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 95px;
 `
 
 export default MainPage

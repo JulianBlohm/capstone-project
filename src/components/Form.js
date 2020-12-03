@@ -57,8 +57,8 @@ const FormStyled = styled.form`
         font-size: 0.8rem;
         color: darkred;
         position: absolute;
-        left: 11px;
-        top: 55px;
+        left: 25px;
+        top: 50px;
     }
 `
 export default Form

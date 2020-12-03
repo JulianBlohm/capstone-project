@@ -42,6 +42,7 @@ function App() {
                             setUserPlace={setUserPlace}
                             countyData={countyData}
                             isCountyDataLoaded={isCountyDataLoaded}
+                            showMainPage={showMainPage}
                         />
                     )}
                 </Route>

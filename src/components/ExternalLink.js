@@ -19,7 +19,7 @@ const ExternalLinkStyled = styled.a`
     height: 48px;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 300;
     border-radius: 5px;
     cursor: pointer;
