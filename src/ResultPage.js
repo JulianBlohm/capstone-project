@@ -5,6 +5,7 @@ import { ReactComponent as Arrow } from './assets/arrow-left.svg'
 import styled from 'styled-components/macro'
 import ExternalLink from './components/ExternalLink'
 import data from './data/measures.json'
+import scrollUp from './lib/scrollUp'
 
 function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
     const [countyClassification, setCountyClassification] = useState('')
@@ -18,6 +19,8 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
     }, [id])
 
     useEffect(() => setMeasures(data), [])
+
+    scrollUp()
 
     function classifyCountyIncidence() {
         if (countyData.incidence > 35) {

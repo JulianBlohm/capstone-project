@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import Form from './components/Form'
 import FAQ from './components/FAQ'
 import { ReactComponent as VirusRed } from './assets/virus-red2.svg'
+import scrollUp from './lib/scrollUp'
 
 function MainPage({
     userPlace,
@@ -16,6 +17,8 @@ function MainPage({
         userPlace && resetSearch()
     }, [])
 
+    scrollUp()
+
     return (
         <MainPageStyled>
             <div className="intro-wrapper">
@@ -24,7 +27,7 @@ function MainPage({
                 </div>
                 <h1>Bin ich in einem Covid-19 Hotspot?</h1>
                 <h2>
-                    Überprüfe jetzt anhand der RKI Daten, ob dein aktueller
+                    Überprüfe jetzt anhand der RKI Daten, ob dein aktueller
                     Standort ein Covid‑19 Hotspot ist.
                 </h2>
             </div>
