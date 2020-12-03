@@ -111,7 +111,9 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                         <h4>Maßnahmen</h4>
                         <p>
                             Seit dem 02.11.20 gelten in Deutschland die
-                            folgenden einheitlichen Regelungen.
+                            folgenden einheitlichen Regelungen. Diese können in
+                            Außnahmefällen regional verschärft werden, deshalb
+                            informiere dich auch bei deinem Gesundheitsamt.
                         </p>
                         <ul className="measure-list">
                             {measures.map((measure) => (
@@ -144,12 +146,12 @@ const ResultPageStyled = styled.div`
 
     h4 {
         font-size: 26px;
-        margin-bottom: 10px;
     }
 
     p {
-        font-weight: lighter;
         font-size: 16px;
+        color: var(--gray);
+        margin: 20px 0;
     }
 
     footer {
@@ -176,17 +178,16 @@ const ResultPageStyled = styled.div`
     }
 
     .external-links-wrapper {
-        margin: 50px 30px;
+        margin: 70px 30px;
     }
 
     .external-links {
         display: grid;
         grid-gap: 20px;
-        margin-top: 20px;
     }
 
     .information-wrapper {
-        margin: 50px 30px;
+        margin: 70px 30px;
     }
 
     .logo-wrapper {
@@ -249,7 +250,7 @@ const ResultPageStyled = styled.div`
         list-style: none;
         display: grid;
         grid-gap: 40px;
-        margin: 30px 0;
+        margin: 50px 0;
     }
 
     .measure-list h5 {

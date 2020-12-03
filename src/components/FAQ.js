@@ -75,7 +75,7 @@ const FAQWrapper = styled.dl`
     }
 
     dd {
-        padding: 10px 20px 30px 20px;
+        padding: 30px 20px 30px 20px;
         line-height: 1.3;
         font-size: 16px;
     }

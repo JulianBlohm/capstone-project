@@ -27,10 +27,6 @@ const ExternalLinkStyled = styled.a`
     justify-content: center;
     align-items: center;
 
-    span {
-        margin-top: 4px;
-    }
-
     .external-link-icon {
         height: auto;
         width: 16px;
