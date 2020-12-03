@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
-export default styled.button`
+const ButtonStyled = styled.button`
     border: none;
     background: ${(props) => (props.gray ? 'var(--gray)' : 'var(--blue)')};
     color: white;
@@ -15,3 +16,11 @@ export default styled.button`
     margin-bottom: 20px;
     cursor: pointer;
 `
+const Button = (props) => <ButtonStyled {...props} />
+
+Button.propTypes = {
+    disabled: PropTypes.bool,
+    children: PropTypes.string.isRequired,
+}
+
+export default Button

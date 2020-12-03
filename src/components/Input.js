@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
-export default styled.input`
+const InputStyled = styled.input`
     width: 100%;
     padding: 0 10px;
     border-top-left-radius: 5px;
@@ -14,3 +15,12 @@ export default styled.input`
     margin-bottom: 40px;
     outline: var(--blue);
 `
+
+const Input = (props) => <InputStyled {...props} />
+
+Input.propTypes = {
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+}
+
+export default Input

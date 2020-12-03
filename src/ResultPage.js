@@ -4,9 +4,11 @@ import { ReactComponent as VirusWhite } from './assets/virus-white.svg'
 import { ReactComponent as Arrow } from './assets/arrow-left.svg'
 import styled from 'styled-components/macro'
 import ExternalLink from './components/ExternalLink'
+import data from './data/measures.json'
 
 function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
     const [countyClassification, setCountyClassification] = useState('')
+    const [measures, setMeasures] = useState([])
 
     let { id } = useParams()
 
@@ -14,6 +16,8 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
     useEffect(() => {
         !isCountyDataLoaded && setUserPlace(id)
     }, [id])
+
+    useEffect(() => setMeasures(data), [])
 
     function classifyCountyIncidence() {
         if (countyData.incidence > 35) {
@@ -109,6 +113,14 @@ function ResultPage({ setUserPlace, countyData, isCountyDataLoaded }) {
                             Seit dem 02.11.20 gelten in Deutschland die
                             folgenden einheitlichen Regelungen.
                         </p>
+                        <ul className="measure-list">
+                            {measures.map((measure) => (
+                                <li key={measure.id}>
+                                    <h5>{measure.heading}</h5>
+                                    <p>{measure.text}</p>
+                                </li>
+                            ))}
+                        </ul>
                     </section>
                 </>
             )}
@@ -141,7 +153,7 @@ const ResultPageStyled = styled.div`
     }
 
     footer {
-        padding: 0 25px;
+        padding: 0 20px;
     }
 
     .result-wrapper {
@@ -164,7 +176,7 @@ const ResultPageStyled = styled.div`
     }
 
     .external-links-wrapper {
-        margin: 50px 18px;
+        margin: 50px 30px;
     }
 
     .external-links {
@@ -174,7 +186,7 @@ const ResultPageStyled = styled.div`
     }
 
     .information-wrapper {
-        margin: 50px 18px;
+        margin: 50px 30px;
     }
 
     .logo-wrapper {
@@ -231,6 +243,17 @@ const ResultPageStyled = styled.div`
     .hotspot {
         color: var(--secondary-red);
         fill: var(--secondary-red);
+    }
+
+    .measure-list {
+        list-style: none;
+        display: grid;
+        grid-gap: 40px;
+        margin: 30px 0;
+    }
+
+    .measure-list h5 {
+        margin-bottom: 10px;
     }
 `
 
