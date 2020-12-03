@@ -25,8 +25,7 @@ function ResultPage({
     }, [id])
 
     useEffect(() => setMeasures(data), [])
-
-    scrollUp()
+    useEffect(() => scrollUp(), [])
 
     function classifyCountyIncidence() {
         if (countyData.incidence > 35) {
