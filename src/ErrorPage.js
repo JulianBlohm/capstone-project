@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro'
 import Button from './components/Button'
 
-function ErrorPage({ setIsError, showMainPage }) {
-    function resetError() {
-        setIsError(false)
+function ErrorPage({ resetSearch, showMainPage }) {
+    function NewSearch() {
+        resetSearch()
         showMainPage()
     }
 
@@ -14,7 +14,7 @@ function ErrorPage({ setIsError, showMainPage }) {
                 <SubHeading>Probiere eine neue Suche!</SubHeading>
             </Result>
             <Navigation>
-                <Button onClick={resetError}>Neue Suche</Button>
+                <Button onClick={NewSearch}>Neue Suche</Button>
             </Navigation>
         </ErrorPageStyled>
     )

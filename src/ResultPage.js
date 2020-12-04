@@ -9,6 +9,7 @@ import data from './data/measures.json'
 import scrollUp from './lib/scrollUp'
 
 function ResultPage({
+    userPlace,
     setUserPlace,
     countyData,
     isCountyDataLoaded,
@@ -24,7 +25,7 @@ function ResultPage({
 
     useEffect(() => classifyCountyIncidence(), [countyData])
     useEffect(() => {
-        !isCountyDataLoaded && setUserPlace(id)
+        !isCountyDataLoaded && setUserPlace({ ...userPlace, new: id })
     }, [id])
 
     useEffect(() => setMeasures(data), [])

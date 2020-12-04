@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Button from './Button'
 import Input from './Input'
 
-function Form({ setUserPlace, error, isDataLoading }) {
+function Form({ userPlace, setUserPlace, isError, isDataLoading }) {
     const [userInput, setUserInput] = useState('')
 
     function handleChange(event) {
@@ -13,7 +13,7 @@ function Form({ setUserPlace, error, isDataLoading }) {
 
     function handleSubmitPlace(event) {
         event.preventDefault()
-        setUserPlace(userInput)
+        setUserPlace({ ...userPlace, new: userInput }) //funktioniert so noch nicht
         setUserInput('')
     }
 
@@ -25,7 +25,9 @@ function Form({ setUserPlace, error, isDataLoading }) {
                 placeholder="Ort oder PLZ eingeben..."
                 required="required"
             />
-            {error && <span>Daten konnten nicht geladen werden</span>}
+            {isError && (
+                <ErrorMessage>Daten konnten nicht geladen werden</ErrorMessage>
+            )}
             {userInput ? (
                 <Button>Suchen</Button>
             ) : isDataLoading ? (
@@ -51,13 +53,12 @@ const FormStyled = styled.form`
     background: var(--silver);
     padding: 0 20px 20px 20px;
     display: flex;
-
-    span {
-        font-size: 0.8rem;
-        color: darkred;
-        position: absolute;
-        left: 25px;
-        top: 50px;
-    }
+`
+const ErrorMessage = styled.span`
+    font-size: 0.8rem;
+    color: darkred;
+    position: absolute;
+    left: 32px;
+    top: 49px;
 `
 export default Form

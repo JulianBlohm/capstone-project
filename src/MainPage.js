@@ -31,6 +31,7 @@ function MainPage({
                 </SubHeading>
             </Intro>
             <Form
+                userPlace={userPlace}
                 setUserPlace={setUserPlace}
                 isError={isError}
                 isDataLoading={isDataLoading}

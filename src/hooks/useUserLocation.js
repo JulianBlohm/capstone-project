@@ -6,7 +6,10 @@ import getRkiData from '../services/getRkiData'
 export default function useUserLocation() {
     const history = useHistory()
 
-    const [userPlace, setUserPlace] = useState('')
+    const [userPlace, setUserPlace] = useState({
+        new: '',
+        old: '',
+    })
     const [coordinates, setCoordinates] = useState({
         latitude: 0,
         longitude: 0,
@@ -24,23 +27,39 @@ export default function useUserLocation() {
     const isCountyDataLoaded = !!countyData?.countyName
 
     useEffect(() => {
-        userPlace && startSearch()
+        if (!userPlace.new === '' && userPlace.new === userPlace.old) {
+            startSearch()
+        } else if (userPlace.new) {
+            startSearch()
+        }
     }, [userPlace])
     useEffect(() => {
-        coordinates.longitude && getIncidenceData()
+        coordinates.longitude && continueSearch()
     }, [coordinates])
-    useEffect(() => setIsError(''), [userPlace, coordinates])
+    useEffect(() => setIsError(false), [userPlace, coordinates])
     useEffect(() => {
         isCountyDataLoaded && showResultPage()
     }, [isCountyDataLoaded])
     useEffect(() => {
         isError && setIsDataLoading(false)
     }, [isError])
-
+    console.log(userPlace)
     async function startSearch() {
         setIsDataLoading(true)
-        const geoData = await getGeoData(userPlace)
-        setCoordinates(geoData)
+        const geoData = await getGeoData(userPlace.new)
+        geoData === 'error' ? handleError() : setCoordinates(geoData)
+        console.log(geoData)
+    }
+
+    async function continueSearch() {
+        const rkiData = await getRkiData(coordinates)
+        rkiData === 'error' ? handleError() : setCountyData(rkiData)
+        console.log(rkiData)
+    }
+
+    function handleError() {
+        setIsError(true)
+        setIsDataLoading(false)
     }
 
     function showResultPage() {
@@ -53,7 +72,8 @@ export default function useUserLocation() {
     }
 
     function resetSearch() {
-        setUserPlace('')
+        setIsError(false)
+        setUserPlace({ new: '' }) //verursacht Probleme
         setCoordinates({
             latitude: 0,
             longitude: 0,
@@ -63,22 +83,6 @@ export default function useUserLocation() {
             incidence: 0,
             last_update: '',
         })
-        setIsError(false)
-    }
-
-    function getIncidenceData() {
-        getRkiData(coordinates)
-            .then((data) => {
-                const filteredData = data.features[0].attributes
-                setCountyData({
-                    countyName: filteredData.GEN,
-                    incidence: Math.round(filteredData.cases7_per_100k),
-                    last_update: filteredData.last_update,
-                })
-            })
-            .catch(() => {
-                !isError && setIsError(true)
-            })
     }
 
     return {
@@ -86,7 +90,6 @@ export default function useUserLocation() {
         setUserPlace,
         countyData,
         isError,
-        setIsError,
         isDataLoading,
         isCountyDataLoaded,
         resetSearch,
