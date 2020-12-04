@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { ReactComponent as VirusWhite } from './assets/virus-white.svg'
-import { ReactComponent as Arrow } from './assets/arrow-left.svg'
 import styled from 'styled-components/macro'
 import ExternalLink from './components/ExternalLink'
 import ArrowButton from './components/ArrowButton'
@@ -175,7 +174,7 @@ const Result = styled.section`
 
 const ResultText = styled.div`
     padding: 0 30px;
-    margin-bottom: 105px;
+    margin-bottom: 50px;
 `
 
 const LinkedInformation = styled.section`
@@ -195,7 +194,7 @@ const Logo = styled.div`
     display: flex;
     justify-content: center;
     padding-top: 40px;
-    padding-bottom: 97px;
+    padding-bottom: 50px;
 
     .logo {
         width: 120px;
