@@ -18,10 +18,10 @@ export default function useUserLocation() {
     })
     const [isError, setIsError] = useState(false)
     const [isDataLoading, setIsDataLoading] = useState(false)
-    const [isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
 
     const countyNameUrl = countyData.countyName.replace(/\s/g, '')
-    //const isCountyDataLoaded = !!countyData?.countyName
+
+    const isCountyDataLoaded = !!countyData?.countyName
 
     useEffect(() => {
         userPlace && startSearch()
@@ -30,9 +30,6 @@ export default function useUserLocation() {
         coordinates.longitude && getIncidenceData()
     }, [coordinates])
     useEffect(() => setIsError(''), [userPlace, coordinates])
-    useEffect(() => {
-        countyData.countyName && setIsCountyDataLoaded(true)
-    }, [countyData])
     useEffect(() => {
         isCountyDataLoaded && showResultPage()
     }, [isCountyDataLoaded])
@@ -65,7 +62,6 @@ export default function useUserLocation() {
             incidence: 0,
             last_update: '',
         })
-        setIsCountyDataLoaded(false)
         setIsError(false)
     }
 
