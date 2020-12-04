@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "heading": "Kontaktbeschränkungen",
+        "text": "Es dürfen maximal zehn Personen mit maximal zwei Haushalten zusammenkommen. Grundsätzlich gilt, Kontakte auf ein nötiges Minimum zu reduzieren."
+    },
+    {
+        "id": 2,
+        "heading": "Groß- und Einzelhandel",
+        "text": "Der Groß- und Einzelhandel bleibt geöffnet. Es gilt eine Pflicht zum Tragen eines Mund-Nasen-Schutzes beim Einkaufen."
+    },
+    {
+        "id": 3,
+        "heading": "Gastronomie",
+        "text": "Restaurants sowie Bars, Clubs, Diskotheken, Kneipen und ähnliche Einrichtungen bleiben geschlossen. Davon ausgenommen sind die Lieferung und Abholung von Speisen für den Verzehr zu Hause."
+    },
+    {
+        "id": 4,
+        "heading": "Kino, Theater, Opern, Konzerthäuser",
+        "text": "Alle Theater, Kino, Opern- und Konzerthäuser sowie ähnliche Einrichtungen bleiben geschlossen."
+    },
+    {
+        "id": 5,
+        "heading": "Dienstleistungen Körperpflege",
+        "text": "Kosmetikstudios, Massagepraxen, Tattoo-Studios und ähnliche Betriebe bleiben geschlossen. Physio-, Ergo- und Logotherapien sowie Podologie/Fußpflege bleiben weiter möglich. Des Weiteren bleiben Friseure geöffnet."
+    },
+    {
+        "id": 6,
+        "heading": "Sport",
+        "text": "Fitnessstudios und ähnliche Einrichtungen bleiben geschlossen. Erlaubt bleibt der Individualsport sowie Sport zu zweit oder mit den Angehörigen des eigenen Hausstands."
+    },
+    {
+        "id": 7,
+        "heading": "Spielplätze",
+        "text": "Spielplätze haben in den allermeisten Bundesländern geöffnet."
+    },
+    {
+        "id": 8,
+        "heading": "Amateursport",
+        "text": "Der Freizeit- und Amateursportbetrieb wird eingestellt."
+    },
+    {
+        "id": 9,
+        "heading": "Profisport",
+        "text": "Profisportveranstaltungen dürfen nur ohne Zuschauer stattfinden."
+    },
+    {
+        "id": 10,
+        "heading": "Zoobesuche",
+        "text": "Zoos, zoologische Gärten oder Tieparks sind grundsätzlich geschlossen."
+    },
+    {
+        "id": 11,
+        "heading": "Kitas & Schulen",
+        "text": "Kitas und Schulen bleiben wie bisher auch geöffnet. Es können allerdings pro Bundesland unterschiedliche Regelungen (z.B. beim Tragen des Mund-Nasen-Schutzes) gelten."
+    }
+]

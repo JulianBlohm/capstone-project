@@ -42,6 +42,7 @@ function App() {
                             setUserPlace={setUserPlace}
                             countyData={countyData}
                             isCountyDataLoaded={isCountyDataLoaded}
+                            showMainPage={showMainPage}
                         />
                     )}
                 </Route>
@@ -58,7 +59,7 @@ function App() {
 }
 
 const AppStyled = styled.div`
-    max-width: 375px;
+    max-width: 667px;
 `
 
 export default App

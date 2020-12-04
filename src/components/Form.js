@@ -30,13 +30,11 @@ function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
             {userInput ? (
                 <Button>Suchen</Button>
             ) : isDataLoading ? (
-                <Button disabled className="disabled">
+                <Button disabled gray>
                     Lädt...
                 </Button>
             ) : (
-                <Button disabled className="disabled">
-                    Suchen
-                </Button>
+                <Button disabled>Suchen</Button>
             )}
         </FormStyled>
     )
@@ -51,13 +49,16 @@ Form.propTypes = {
 
 const FormStyled = styled.form`
     position: relative;
+    background: var(--silver);
+    padding: 0 20px 20px 20px;
+    display: flex;
 
     span {
         font-size: 0.8rem;
         color: darkred;
         position: absolute;
-        left: 11px;
-        top: 55px;
+        left: 25px;
+        top: 50px;
     }
 `
 export default Form

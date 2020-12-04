@@ -29,27 +29,23 @@ function FAQ() {
 
     return (
         <FAQWrapper>
-            <h3>FAQ</h3>
+            <Heading>FAQ</Heading>
             {questions.map((question) => (
                 <>
-                    <div key={question.id} className="question-answer-wrapper">
-                        <div
-                            className="question-wrapper"
+                    <div key={question.id}>
+                        <QuestionWrapper
                             onClick={() => toggleAnswer(question.id)}
                         >
-                            <dt>{question.question}</dt>
+                            <Question>{question.question}</Question>
                             {question.isAnswerHidden ? (
-                                <Plus id={question.id} className="plus-icon" />
+                                <PlusStyled id={question.id} />
                             ) : (
-                                <Minus
-                                    id={question.id}
-                                    className="minus-icon"
-                                />
+                                <MinusStyled id={question.id} />
                             )}
-                        </div>
+                        </QuestionWrapper>
 
                         {!question.isAnswerHidden && (
-                            <dd key={question.id}>{question.answer}</dd>
+                            <Answer key={question.id}>{question.answer}</Answer>
                         )}
                     </div>
                 </>
@@ -60,48 +56,43 @@ function FAQ() {
 
 const FAQWrapper = styled.dl`
     color: var(--gray);
+    margin: 70px 30px;
+`
+const Heading = styled.h3`
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--lightblack);
+`
 
-    h3 {
-        margin-bottom: 10px;
-        margin-left: 10px;
-        color: var(--lightblack);
-    }
+const Question = styled.dt`
+    font-size: 1.25rem;
+    max-width: 90%;
+`
 
-    dt {
-        font-size: 20px;
-        max-width: 90%;
-    }
+const Answer = styled.dd`
+    padding: 30px 20px 30px 20px;
+    line-height: 1.3;
+    font-size: 1rem;
+`
 
-    dd {
-        padding: 10px 20px 30px 20px;
-        line-height: 1.3;
-        font-size: 16px;
-    }
+const QuestionWrapper = styled.div`
+    background: transparent;
+    border-top: 2px solid var(--FAQgray);
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5px;
+`
 
-    .question-wrapper {
-        background: transparent;
-        border-top: 2px solid var(--FAQgray);
-        border-bottom: 2px solid var(--FAQgray);
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 10px;
-    }
+const PlusStyled = styled(Plus)`
+    width: 30px;
+    stroke: var(--blue);
+`
 
-    .question-answer-wrapper {
-        padding-bottom: 20px;
-    }
-
-    .plus-icon {
-        width: 30px;
-        stroke: var(--blue);
-    }
-
-    .minus-icon {
-        width: 30px;
-        stroke: var(--blue);
-    }
+const MinusStyled = styled(Minus)`
+    width: 30px;
+    stroke: var(--blue);
 `
 
 export default FAQ
