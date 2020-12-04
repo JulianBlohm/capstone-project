@@ -13,7 +13,6 @@ const ButtonStyled = styled.button`
     font-size: 1rem;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    margin-bottom: 20px;
     cursor: pointer;
 `
 const Button = (props) => <ButtonStyled {...props} />

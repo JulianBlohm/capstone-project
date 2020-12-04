@@ -50,7 +50,7 @@ Form.propTypes = {
 const FormStyled = styled.form`
     position: relative;
     background: var(--silver);
-    padding: 0 13px;
+    padding: 0 20px 20px 20px;
     display: flex;
 
     span {

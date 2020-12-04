@@ -22,9 +22,9 @@ function MainPage({
     return (
         <MainPageStyled>
             <Intro>
-                <Logo>
-                    <VirusRed className="logo" />
-                </Logo>
+                <LogoContainer>
+                    <Logo />
+                </LogoContainer>
                 <Heading>Bin ich in einem Covid-19 Hotspot?</Heading>
                 <SubHeading>
                     Überprüfe jetzt anhand der RKI Daten, ob dein aktueller
@@ -45,10 +45,6 @@ function MainPage({
 
 const MainPageStyled = styled.div`
     display: grid;
-
-    .logo {
-        width: 120px;
-    }
 `
 const Heading = styled.h1`
     margin-bottom: 25px;
@@ -70,11 +66,14 @@ const Intro = styled.div`
     background: var(--silver);
 `
 
-const Logo = styled.div`
+const LogoContainer = styled.div`
     display: flex;
     justify-content: center;
     padding-top: 40px;
-    padding-bottom: 95px;
+    padding-bottom: 50px;
+`
+const Logo = styled(VirusRed)`
+    width: 120px;
 `
 
 export default MainPage

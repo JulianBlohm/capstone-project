@@ -39,10 +39,10 @@ function ResultPage({
             {isCountyDataLoaded && (
                 <>
                     <Result hotspot={countyClassification}>
-                        <Logo>
-                            <VirusWhite className="logo" />
-                        </Logo>
-                        <ResultText>
+                        <LogoContainer>
+                            <Logo />
+                        </LogoContainer>
+                        <ResultTextWrapper>
                             {countyData.incidence > 35 ? (
                                 <>
                                     <Heading hotspot>
@@ -74,7 +74,7 @@ function ResultPage({
                                     </DataDate>
                                 </>
                             )}
-                        </ResultText>
+                        </ResultTextWrapper>
 
                         <Navigation>
                             {countyData.incidence > 35 ? (
@@ -88,7 +88,7 @@ function ResultPage({
                             )}
                         </Navigation>
                     </Result>
-                    <LinkedInformation>
+                    <InformationLinks>
                         <InformationHeading>
                             Hilfreiche Links
                         </InformationHeading>
@@ -111,7 +111,7 @@ function ResultPage({
                                 FAQ Bundesregierung.de
                             </ExternalLink>
                         </ExternalLinks>
-                    </LinkedInformation>
+                    </InformationLinks>
                     <Information>
                         <InformationHeading>Maßnahmen</InformationHeading>
                         <Explanation>
@@ -172,12 +172,12 @@ const Result = styled.section`
     color: var(--silver);
 `
 
-const ResultText = styled.div`
+const ResultTextWrapper = styled.div`
     padding: 0 30px;
     margin-bottom: 50px;
 `
 
-const LinkedInformation = styled.section`
+const InformationLinks = styled.section`
     margin: 70px 30px;
 `
 
@@ -190,15 +190,14 @@ const Information = styled.section`
     margin: 70px 30px;
 `
 
-const Logo = styled.div`
+const LogoContainer = styled.div`
     display: flex;
     justify-content: center;
     padding-top: 40px;
     padding-bottom: 50px;
-
-    .logo {
-        width: 120px;
-    }
+`
+const Logo = styled(VirusWhite)`
+    width: 120px;
 `
 
 const DataDate = styled.div`
