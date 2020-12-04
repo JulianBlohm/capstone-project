@@ -14,7 +14,6 @@ function ResultPage({
     isCountyDataLoaded,
     showMainPage,
     isError,
-    isDataLoading,
 }) {
     const [countyClassification, setCountyClassification] = useState('')
     const [measures, setMeasures] = useState([])
