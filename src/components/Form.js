@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Button from './Button'
 import Input from './Input'
 
-function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
+function Form({ setUserPlace, error, isDataLoading }) {
     const [userInput, setUserInput] = useState('')
 
     function handleChange(event) {
@@ -15,7 +15,6 @@ function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
         event.preventDefault()
         setUserPlace(userInput)
         setUserInput('')
-        setSearchOrigin('MainPage')
     }
 
     return (
@@ -26,7 +25,7 @@ function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
                 placeholder="Ort oder PLZ eingeben..."
                 required="required"
             />
-            <span>{errorMessage}</span>
+            {error && <span>Daten konnten nicht geladen werden</span>}
             {userInput ? (
                 <Button>Suchen</Button>
             ) : isDataLoading ? (

@@ -16,10 +16,9 @@ export default function useUserLocation() {
         incidence: 0,
         last_update: '',
     })
-    const [errorMessage, setErrorMessage] = useState()
+    const [isError, setIsError] = useState(false)
     const [isDataLoading, setIsDataLoading] = useState(false)
     const [isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
-    const [searchOrigin, setSearchOrigin] = useState('')
 
     const countyNameUrl = countyData.countyName.replace(/\s/g, '')
     //const isCountyDataLoaded = !!countyData?.countyName
@@ -30,7 +29,7 @@ export default function useUserLocation() {
     useEffect(() => {
         coordinates.longitude && getIncidenceData()
     }, [coordinates])
-    useEffect(() => setErrorMessage(''), [userPlace, coordinates])
+    useEffect(() => setIsError(''), [userPlace, coordinates])
     useEffect(() => {
         countyData.countyName && setIsCountyDataLoaded(true)
     }, [countyData])
@@ -38,8 +37,8 @@ export default function useUserLocation() {
         isCountyDataLoaded && showResultPage()
     }, [isCountyDataLoaded])
     useEffect(() => {
-        errorMessage && handleError()
-    }, [errorMessage])
+        isError && setIsDataLoading(false)
+    }, [isError])
 
     function startSearch() {
         setIsDataLoading(true)
@@ -49,11 +48,6 @@ export default function useUserLocation() {
     function showResultPage() {
         setIsDataLoading(false)
         history.push(`/s/${countyNameUrl}`)
-    }
-
-    function handleError() {
-        setIsDataLoading(false)
-        searchOrigin !== 'MainPage' && history.push('/error')
     }
 
     function showMainPage() {
@@ -72,8 +66,7 @@ export default function useUserLocation() {
             last_update: '',
         })
         setIsCountyDataLoaded(false)
-        setErrorMessage('')
-        setSearchOrigin('')
+        setIsError(false)
     }
 
     function getCounty() {
@@ -84,9 +77,7 @@ export default function useUserLocation() {
                     longitude: Number(geoData[0].lon).toFixed(6),
                 })
             )
-            .catch((error) =>
-                setErrorMessage('Daten konnten nicht geladen werden')
-            )
+            .catch(() => setIsError(true))
     }
 
     function getIncidenceData() {
@@ -99,9 +90,8 @@ export default function useUserLocation() {
                     last_update: filteredData.last_update,
                 })
             })
-            .catch((error) => {
-                !errorMessage &&
-                    setErrorMessage('Daten konnten nicht geladen werden')
+            .catch(() => {
+                !isError && setIsError(true)
             })
     }
 
@@ -109,12 +99,11 @@ export default function useUserLocation() {
         userPlace,
         setUserPlace,
         countyData,
-        errorMessage,
-        setErrorMessage,
+        isError,
+        setIsError,
         isDataLoading,
         isCountyDataLoaded,
         resetSearch,
         showMainPage,
-        setSearchOrigin,
     }
 }

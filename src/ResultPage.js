@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { ReactComponent as VirusWhite } from './assets/virus-white.svg'
 import styled from 'styled-components/macro'
@@ -12,9 +13,13 @@ function ResultPage({
     countyData,
     isCountyDataLoaded,
     showMainPage,
+    isError,
+    isDataLoading,
 }) {
     const [countyClassification, setCountyClassification] = useState('')
     const [measures, setMeasures] = useState([])
+
+    const history = useHistory()
 
     let { id } = useParams()
 
@@ -36,7 +41,7 @@ function ResultPage({
 
     return (
         <>
-            {isCountyDataLoaded && (
+            {isCountyDataLoaded && !isError ? (
                 <>
                     <Result hotspot={countyClassification}>
                         <LogoContainer>
@@ -132,6 +137,8 @@ function ResultPage({
                         </MeasureList>
                     </Information>
                 </>
+            ) : (
+                isError && history.push('/error')
             )}
         </>
     )
@@ -215,6 +222,7 @@ const MeasureList = styled.ul`
 `
 
 const MeasureHeading = styled.h5`
+    font-size: 1rem;
     margin-bottom: 10px;
 `
 

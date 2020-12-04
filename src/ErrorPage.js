@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro'
 import Button from './components/Button'
 
-function ErrorPage({ setErrorMessage, showMainPage }) {
+function ErrorPage({ setIsError, showMainPage }) {
     function resetError() {
-        setErrorMessage('')
+        setIsError(false)
         showMainPage()
     }
 

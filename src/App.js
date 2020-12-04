@@ -11,8 +11,8 @@ function App() {
         userPlace,
         setUserPlace,
         countyData,
-        errorMessage,
-        setErrorMessage,
+        isError,
+        setIsError,
         isDataLoading,
         isCountyDataLoaded,
         resetSearch,
@@ -27,7 +27,7 @@ function App() {
                     <MainPage
                         userPlace={userPlace}
                         setUserPlace={setUserPlace}
-                        errorMessage={errorMessage}
+                        isError={isError}
                         isDataLoading={isDataLoading}
                         resetSearch={resetSearch}
                         setSearchOrigin={setSearchOrigin}
@@ -43,13 +43,14 @@ function App() {
                             countyData={countyData}
                             isCountyDataLoaded={isCountyDataLoaded}
                             showMainPage={showMainPage}
+                            isError={isError}
                         />
                     )}
                 </Route>
 
                 <Route path="/error">
                     <ErrorPage
-                        setErrorMessage={setErrorMessage}
+                        setIsError={setIsError}
                         showMainPage={showMainPage}
                     />
                 </Route>

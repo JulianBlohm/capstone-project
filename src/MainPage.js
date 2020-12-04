@@ -8,10 +8,9 @@ import scrollUp from './lib/scrollUp'
 function MainPage({
     userPlace,
     setUserPlace,
-    errorMessage,
+    isError,
     isDataLoading,
     resetSearch,
-    setSearchOrigin,
 }) {
     useEffect(() => {
         userPlace && resetSearch()
@@ -33,9 +32,8 @@ function MainPage({
             </Intro>
             <Form
                 setUserPlace={setUserPlace}
-                errorMessage={errorMessage}
+                isError={isError}
                 isDataLoading={isDataLoading}
-                setSearchOrigin={setSearchOrigin}
             />
 
             <FAQ />
