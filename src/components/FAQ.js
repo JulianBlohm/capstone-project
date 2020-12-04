@@ -31,24 +31,20 @@ function FAQ() {
         <FAQWrapper>
             <Heading>FAQ</Heading>
             {questions.map((question) => (
-                <>
-                    <div key={question.id}>
-                        <QuestionWrapper
-                            onClick={() => toggleAnswer(question.id)}
-                        >
-                            <Question>{question.question}</Question>
-                            {question.isAnswerHidden ? (
-                                <PlusStyled id={question.id} />
-                            ) : (
-                                <MinusStyled id={question.id} />
-                            )}
-                        </QuestionWrapper>
-
-                        {!question.isAnswerHidden && (
-                            <Answer key={question.id}>{question.answer}</Answer>
+                <div key={question.id}>
+                    <QuestionWrapper onClick={() => toggleAnswer(question.id)}>
+                        <Question>{question.question}</Question>
+                        {question.isAnswerHidden ? (
+                            <PlusStyled id={question.id} />
+                        ) : (
+                            <MinusStyled id={question.id} />
                         )}
-                    </div>
-                </>
+                    </QuestionWrapper>
+
+                    {!question.isAnswerHidden && (
+                        <Answer key={question.id}>{question.answer}</Answer>
+                    )}
+                </div>
             ))}
         </FAQWrapper>
     )

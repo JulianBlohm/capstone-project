@@ -37,9 +37,10 @@ export default function useUserLocation() {
         isError && setIsDataLoading(false)
     }, [isError])
 
-    function startSearch() {
+    async function startSearch() {
         setIsDataLoading(true)
-        getCounty()
+        const geoData = await getGeoData(userPlace)
+        setCoordinates(geoData)
     }
 
     function showResultPage() {
@@ -63,17 +64,6 @@ export default function useUserLocation() {
             last_update: '',
         })
         setIsError(false)
-    }
-
-    function getCounty() {
-        getGeoData(userPlace)
-            .then((geoData) =>
-                setCoordinates({
-                    latitude: Number(geoData[0].lat).toFixed(6),
-                    longitude: Number(geoData[0].lon).toFixed(6),
-                })
-            )
-            .catch(() => setIsError(true))
     }
 
     function getIncidenceData() {
