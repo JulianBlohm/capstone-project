@@ -13,7 +13,6 @@ function ResultPage({
     setUserPlace,
     countyData,
     isCountyDataLoaded,
-    showMainPage,
     isError,
 }) {
     const [countyClassification, setCountyClassification] = useState('')
@@ -37,6 +36,10 @@ function ResultPage({
         } else {
             setCountyClassification(false)
         }
+    }
+
+    function showMainPage() {
+        history.push('/')
     }
 
     return (

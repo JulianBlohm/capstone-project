@@ -6,10 +6,7 @@ import getRkiData from '../services/getRkiData'
 export default function useUserLocation() {
     const history = useHistory()
 
-    const [userPlace, setUserPlace] = useState({
-        new: '',
-        old: '',
-    })
+    const [userPlace, setUserPlace] = useState('')
     const [coordinates, setCoordinates] = useState({
         latitude: 0,
         longitude: 0,
@@ -19,6 +16,9 @@ export default function useUserLocation() {
         incidence: 0,
         last_update: '',
     })
+
+    const [status, setStatus] = useState('input')
+
     const [isError, setIsError] = useState(false)
     const [isDataLoading, setIsDataLoading] = useState(false)
 
@@ -27,11 +27,7 @@ export default function useUserLocation() {
     const isCountyDataLoaded = !!countyData?.countyName
 
     useEffect(() => {
-        if (!userPlace.new === '' && userPlace.new === userPlace.old) {
-            startSearch()
-        } else if (userPlace.new) {
-            startSearch()
-        }
+        userPlace && startSearch()
     }, [userPlace])
     useEffect(() => {
         coordinates.longitude && continueSearch()
@@ -43,12 +39,12 @@ export default function useUserLocation() {
     useEffect(() => {
         isError && setIsDataLoading(false)
     }, [isError])
-    console.log(userPlace)
+
     async function startSearch() {
         setIsDataLoading(true)
-        const geoData = await getGeoData(userPlace.new)
+        const geoData = await getGeoData(userPlace)
         geoData === 'error' ? handleError() : setCoordinates(geoData)
-        console.log(geoData)
+        console.log('geo' + geoData)
     }
 
     async function continueSearch() {
@@ -67,13 +63,9 @@ export default function useUserLocation() {
         history.push(`/s/${countyNameUrl}`)
     }
 
-    function showMainPage() {
-        history.push('/')
-    }
-
     function resetSearch() {
         setIsError(false)
-        setUserPlace({ new: '' }) //verursacht Probleme
+        setUserPlace('')
         setCoordinates({
             latitude: 0,
             longitude: 0,
@@ -93,6 +85,5 @@ export default function useUserLocation() {
         isDataLoading,
         isCountyDataLoaded,
         resetSearch,
-        showMainPage,
     }
 }

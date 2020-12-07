@@ -1,10 +1,13 @@
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Button from './components/Button'
 
-function ErrorPage({ resetSearch, showMainPage }) {
+function ErrorPage({ resetSearch }) {
+    const history = useHistory()
+
     function NewSearch() {
         resetSearch()
-        showMainPage()
+        history.push('/')
     }
 
     return (

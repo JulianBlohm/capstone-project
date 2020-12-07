@@ -15,8 +15,6 @@ function App() {
         isDataLoading,
         isCountyDataLoaded,
         resetSearch,
-        showMainPage,
-        setSearchOrigin,
     } = useUserLocation()
 
     return (
@@ -29,7 +27,6 @@ function App() {
                         isError={isError}
                         isDataLoading={isDataLoading}
                         resetSearch={resetSearch}
-                        setSearchOrigin={setSearchOrigin}
                     />
                 </Route>
 
@@ -42,17 +39,13 @@ function App() {
                             setUserPlace={setUserPlace}
                             countyData={countyData}
                             isCountyDataLoaded={isCountyDataLoaded}
-                            showMainPage={showMainPage}
                             isError={isError}
                         />
                     )}
                 </Route>
 
                 <Route path="/error">
-                    <ErrorPage
-                        resetSearch={resetSearch}
-                        showMainPage={showMainPage}
-                    />
+                    <ErrorPage resetSearch={resetSearch} />
                 </Route>
             </Switch>
         </AppStyled>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Button from './Button'
 import Input from './Input'
 
-function Form({ userPlace, setUserPlace, isError, isDataLoading }) {
+function Form({ setUserPlace, isError, isDataLoading }) {
     const [userInput, setUserInput] = useState('')
 
     function handleChange(event) {
@@ -13,7 +13,7 @@ function Form({ userPlace, setUserPlace, isError, isDataLoading }) {
 
     function handleSubmitPlace(event) {
         event.preventDefault()
-        setUserPlace({ ...userPlace, new: userInput }) //funktioniert so noch nicht
+        setUserPlace(userInput)
         setUserInput('')
     }
 
