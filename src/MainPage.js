@@ -24,8 +24,11 @@ function MainPage({ userPlace, setUserPlace, resetSearch, status }) {
                     Standort ein Covid‑19 Hotspot ist.
                 </SubHeading>
             </Intro>
-            <Form setUserPlace={setUserPlace} status={status} />
-
+            <Form
+                userPlace={userPlace}
+                setUserPlace={setUserPlace}
+                status={status}
+            />
             <FAQ />
         </MainPageStyled>
     )

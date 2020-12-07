@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Button from './Button'
 import Input from './Input'
 
-function Form({ setUserPlace, status }) {
+function Form({ userPlace, setUserPlace, status }) {
     const [userInput, setUserInput] = useState('')
 
     function handleChange(event) {
@@ -13,7 +13,9 @@ function Form({ setUserPlace, status }) {
 
     function handleSubmitPlace(event) {
         event.preventDefault()
-        setUserPlace(userInput)
+        userInput === userPlace
+            ? setUserPlace(userInput + ' ')
+            : setUserPlace(userInput)
         setUserInput('')
     }
 
