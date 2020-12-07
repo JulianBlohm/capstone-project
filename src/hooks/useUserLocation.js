@@ -17,54 +17,45 @@ export default function useUserLocation() {
         last_update: '',
     })
 
-    const [status, setStatus] = useState('input')
-
-    const [isError, setIsError] = useState(false)
-    const [isDataLoading, setIsDataLoading] = useState(false)
+    const [status, setStatus] = useState('')
 
     const countyNameUrl = countyData.countyName.replace(/\s/g, '')
 
-    const isCountyDataLoaded = !!countyData?.countyName
-
     useEffect(() => {
-        userPlace && startSearch()
+        userPlace && setStatus('loading')
     }, [userPlace])
     useEffect(() => {
-        coordinates.longitude && continueSearch()
+        !!coordinates?.longitude && continueSearch()
     }, [coordinates])
-    useEffect(() => setIsError(false), [userPlace, coordinates])
     useEffect(() => {
-        isCountyDataLoaded && showResultPage()
-    }, [isCountyDataLoaded])
+        !!countyData?.countyName && setStatus('loaded')
+    }, [countyData])
     useEffect(() => {
-        isError && setIsDataLoading(false)
-    }, [isError])
+        status !== 'error' && handleStatusChange()
+    }, [status])
 
     async function startSearch() {
-        setIsDataLoading(true)
         const geoData = await getGeoData(userPlace)
-        geoData === 'error' ? handleError() : setCoordinates(geoData)
+        geoData === 'error' ? setStatus('error') : setCoordinates(geoData)
         console.log('geo' + geoData)
     }
 
     async function continueSearch() {
         const rkiData = await getRkiData(coordinates)
-        rkiData === 'error' ? handleError() : setCountyData(rkiData)
+        rkiData === 'error' ? setStatus('error') : setCountyData(rkiData)
         console.log(rkiData)
     }
 
-    function handleError() {
-        setIsError(true)
-        setIsDataLoading(false)
-    }
-
-    function showResultPage() {
-        setIsDataLoading(false)
-        history.push(`/s/${countyNameUrl}`)
+    function handleStatusChange() {
+        if (status === 'loading') {
+            startSearch()
+        } else if (status === 'loaded') {
+            history.push(`/s/${countyNameUrl}`)
+        }
     }
 
     function resetSearch() {
-        setIsError(false)
+        setStatus('')
         setUserPlace('')
         setCoordinates({
             latitude: 0,
@@ -81,9 +72,7 @@ export default function useUserLocation() {
         userPlace,
         setUserPlace,
         countyData,
-        isError,
-        isDataLoading,
-        isCountyDataLoaded,
+        status,
         resetSearch,
     }
 }

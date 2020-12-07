@@ -5,13 +5,7 @@ import FAQ from './components/FAQ'
 import { ReactComponent as VirusRed } from './assets/virus-red2.svg'
 import scrollUp from './lib/scrollUp'
 
-function MainPage({
-    userPlace,
-    setUserPlace,
-    isError,
-    isDataLoading,
-    resetSearch,
-}) {
+function MainPage({ userPlace, setUserPlace, resetSearch, status }) {
     useEffect(() => {
         userPlace && resetSearch()
     }, [])
@@ -30,11 +24,7 @@ function MainPage({
                     Standort ein Covid‑19 Hotspot ist.
                 </SubHeading>
             </Intro>
-            <Form
-                setUserPlace={setUserPlace}
-                isError={isError}
-                isDataLoading={isDataLoading}
-            />
+            <Form setUserPlace={setUserPlace} status={status} />
 
             <FAQ />
         </MainPageStyled>

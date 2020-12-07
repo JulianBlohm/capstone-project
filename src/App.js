@@ -11,10 +11,8 @@ function App() {
         userPlace,
         setUserPlace,
         countyData,
-        isError,
-        isDataLoading,
-        isCountyDataLoaded,
         resetSearch,
+        status,
     } = useUserLocation()
 
     return (
@@ -24,22 +22,19 @@ function App() {
                     <MainPage
                         userPlace={userPlace}
                         setUserPlace={setUserPlace}
-                        isError={isError}
-                        isDataLoading={isDataLoading}
                         resetSearch={resetSearch}
+                        status={status}
                     />
                 </Route>
 
                 <Route path="/s/:id">
-                    {isDataLoading ? (
+                    {status === 'loading' ? (
                         <LoadingPage />
                     ) : (
                         <ResultPage
-                            userPlace={userPlace}
                             setUserPlace={setUserPlace}
                             countyData={countyData}
-                            isCountyDataLoaded={isCountyDataLoaded}
-                            isError={isError}
+                            status={status}
                         />
                     )}
                 </Route>

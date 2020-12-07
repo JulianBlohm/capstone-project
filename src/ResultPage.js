@@ -8,13 +8,7 @@ import ArrowButton from './components/ArrowButton'
 import data from './data/measures.json'
 import scrollUp from './lib/scrollUp'
 
-function ResultPage({
-    userPlace,
-    setUserPlace,
-    countyData,
-    isCountyDataLoaded,
-    isError,
-}) {
+function ResultPage({ setUserPlace, countyData, status }) {
     const [countyClassification, setCountyClassification] = useState('')
     const [measures, setMeasures] = useState([])
 
@@ -24,7 +18,7 @@ function ResultPage({
 
     useEffect(() => classifyCountyIncidence(), [countyData])
     useEffect(() => {
-        !isCountyDataLoaded && setUserPlace({ ...userPlace, new: id })
+        status !== 'loaded' && setUserPlace(id)
     }, [id])
 
     useEffect(() => setMeasures(data), [])
@@ -44,7 +38,7 @@ function ResultPage({
 
     return (
         <>
-            {isCountyDataLoaded && !isError ? (
+            {status === 'loaded' ? (
                 <>
                     <Result hotspot={countyClassification}>
                         <LogoContainer>
@@ -141,7 +135,7 @@ function ResultPage({
                     </Information>
                 </>
             ) : (
-                isError && history.push('/error')
+                status === 'error' && history.push('/error')
             )}
         </>
     )
