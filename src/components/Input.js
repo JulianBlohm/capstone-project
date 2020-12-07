@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 
 const InputStyled = styled.input`
     width: 100%;
-    padding: 0 10px;
-    border-top-left-radius: 5px;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 30%;
+    border-radius: 5px;
     border-bottom-left-radius: 5px;
-    border-top: 1px solid var(--gray);
-    border-bottom: 1px solid var(--gray);
-    border-left: 1px solid var(--gray);
-    border-right: 1px solid white;
+    border: 1px solid var(--gray);
     height: 48px;
     font-size: 1rem;
     outline: var(--blue);

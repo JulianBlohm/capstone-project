@@ -5,7 +5,7 @@ const ButtonStyled = styled.button`
     border: none;
     background: ${(props) => (props.gray ? 'var(--gray)' : 'var(--blue)')};
     color: white;
-    width: 35%;
+    width: 25%;
     display: flex;
     height: 48px;
     justify-content: center;

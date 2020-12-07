@@ -26,18 +26,22 @@ function Form({ userPlace, setUserPlace, status }) {
                 onChange={handleChange}
                 placeholder="Ort oder PLZ eingeben..."
                 required="required"
+                minlength="2"
+                maxlength="32"
+                pattern="[A-Za-z0-9]"
+                title="Max. 32 Zeichen - Keine Sonderzeichen"
             />
             {status === 'error' && (
                 <ErrorMessage>Daten konnten nicht geladen werden</ErrorMessage>
             )}
             {userInput ? (
-                <Button>Suchen</Button>
+                <InputButton>Suchen</InputButton>
             ) : status === 'loading' ? (
-                <Button disabled gray>
+                <InputButton disabled gray>
                     Lädt...
-                </Button>
+                </InputButton>
             ) : (
-                <Button disabled>Suchen</Button>
+                <InputButton disabled>Suchen</InputButton>
             )}
         </FormStyled>
     )
@@ -54,13 +58,19 @@ const FormStyled = styled.form`
     position: relative;
     background: var(--silver);
     padding: 0 20px 20px 20px;
-    display: flex;
 `
+
 const ErrorMessage = styled.span`
     font-size: 0.8rem;
     color: darkred;
     position: absolute;
     left: 32px;
     top: 49px;
+`
+
+const InputButton = styled(Button)`
+    position: absolute;
+    top: 0;
+    right: 20px;
 `
 export default Form
