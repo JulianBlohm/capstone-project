@@ -28,8 +28,6 @@ function Form({ userPlace, setUserPlace, status }) {
                 required="required"
                 minlength="2"
                 maxlength="32"
-                pattern="[A-Za-z0-9]"
-                title="Max. 32 Zeichen - Keine Sonderzeichen"
             />
             {status === 'error' && (
                 <ErrorMessage>Daten konnten nicht geladen werden</ErrorMessage>
