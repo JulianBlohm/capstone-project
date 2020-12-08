@@ -26,8 +26,6 @@ function Form({ userPlace, setUserPlace, status }) {
                 onChange={handleChange}
                 placeholder="Ort oder PLZ eingeben..."
                 required="required"
-                minlength="2"
-                maxlength="32"
             />
             {status === 'error' && (
                 <ErrorMessage>Daten konnten nicht geladen werden</ErrorMessage>
@@ -60,7 +58,7 @@ const FormStyled = styled.form`
 
 const ErrorMessage = styled.span`
     font-size: 0.8rem;
-    color: darkred;
+    color: var(--primary-red);
     position: absolute;
     left: 32px;
     top: 49px;
@@ -71,4 +69,5 @@ const InputButton = styled(Button)`
     top: 0;
     right: 20px;
 `
+
 export default Form

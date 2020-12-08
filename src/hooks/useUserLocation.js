@@ -37,13 +37,11 @@ export default function useUserLocation() {
     async function startSearch() {
         const geoData = await getGeoData(userPlace)
         geoData === 'error' ? setStatus('error') : setCoordinates(geoData)
-        console.log('geo' + geoData)
     }
 
     async function continueSearch() {
         const rkiData = await getRkiData(coordinates)
         rkiData === 'error' ? setStatus('error') : setCountyData(rkiData)
-        console.log(rkiData)
     }
 
     function handleStatusChange() {

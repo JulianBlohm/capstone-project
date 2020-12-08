@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-import { ReactComponent as VirusWhite } from './assets/virus-white.svg'
 import styled from 'styled-components/macro'
 import ExternalLink from './components/ExternalLink'
 import ArrowButton from './components/ArrowButton'
 import data from './data/measures.json'
+import { VirusWhiteIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
 
 function ResultPage({ setUserPlace, countyData, status }) {
@@ -200,7 +200,8 @@ const LogoContainer = styled.div`
     padding-top: 40px;
     padding-bottom: 50px;
 `
-const Logo = styled(VirusWhite)`
+
+const Logo = styled(VirusWhiteIcon)`
     width: 120px;
 `
 

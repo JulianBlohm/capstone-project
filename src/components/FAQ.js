@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 import data from '../data/faqData.json'
-import { ReactComponent as Plus } from '../assets/plus.svg'
-import { ReactComponent as Minus } from '../assets/minus.svg'
+import { PlusIcon, MinusIcon } from '../lib/Icons'
 
 function FAQ() {
     const [questions, setQuestions] = useState([])
@@ -54,6 +53,7 @@ const FAQWrapper = styled.dl`
     color: var(--gray);
     margin: 70px 30px;
 `
+
 const Heading = styled.h3`
     font-size: 2rem;
     margin-bottom: 10px;
@@ -81,12 +81,12 @@ const QuestionWrapper = styled.div`
     padding: 15px 5px;
 `
 
-const PlusStyled = styled(Plus)`
+const PlusStyled = styled(PlusIcon)`
     width: 30px;
     stroke: var(--blue);
 `
 
-const MinusStyled = styled(Minus)`
+const MinusStyled = styled(MinusIcon)`
     width: 30px;
     stroke: var(--blue);
 `

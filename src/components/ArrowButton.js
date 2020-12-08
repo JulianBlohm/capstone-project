@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import { ReactComponent as Arrow } from '../assets/arrow-left.svg'
+import { ArrowIcon } from '../lib/Icons'
 
 function ArrowButton({ children, hotspot, onClick }) {
     return (
@@ -10,6 +10,7 @@ function ArrowButton({ children, hotspot, onClick }) {
         </ArrowButtonStyled>
     )
 }
+
 const ArrowButtonStyled = styled.button`
     border: none;
     background: var(--silver);
@@ -27,7 +28,8 @@ const ArrowButtonStyled = styled.button`
     position: relative;
     cursor: pointer;
 `
-const ArrowStyled = styled(Arrow)`
+
+const ArrowStyled = styled(ArrowIcon)`
     position: absolute;
     left: 5px;
     fill: ${(props) =>

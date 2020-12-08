@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro'
-import { ReactComponent as ExternalLinkIcon } from '../assets/external-link.svg'
+import { ExternalLinkIcon } from '../lib/Icons'
 
 function ExternalLink({ children }) {
     return (
         <ExternalLinkStyled>
-            <ExternalLinkIcon className="external-link-icon" />
+            <ExternalLinkIconStyled />
             <span>{children}</span>
         </ExternalLinkStyled>
     )
@@ -26,12 +26,13 @@ const ExternalLinkStyled = styled.a`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .external-link-icon {
-        height: auto;
-        width: 16px;
-        fill: var(--silver);
-        margin-right: 10px;
-    }
 `
+
+const ExternalLinkIconStyled = styled(ExternalLinkIcon)`
+    height: auto;
+    width: 16px;
+    fill: var(--silver);
+    margin-right: 10px;
+`
+
 export default ExternalLink

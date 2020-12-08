@@ -15,6 +15,7 @@ const ButtonStyled = styled.button`
     border-bottom-right-radius: 5px;
     cursor: pointer;
 `
+
 const Button = (props) => <ButtonStyled {...props} />
 
 Button.propTypes = {
