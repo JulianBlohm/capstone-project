@@ -5,7 +5,7 @@ const ButtonStyled = styled.button`
     border: none;
     background: ${(props) => (props.gray ? 'var(--gray)' : 'var(--blue)')};
     color: white;
-    width: 35%;
+    width: 25%;
     display: flex;
     height: 48px;
     justify-content: center;
@@ -15,6 +15,7 @@ const ButtonStyled = styled.button`
     border-bottom-right-radius: 5px;
     cursor: pointer;
 `
+
 const Button = (props) => <ButtonStyled {...props} />
 
 Button.propTypes = {

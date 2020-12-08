@@ -16,51 +16,44 @@ export default function useUserLocation() {
         incidence: 0,
         last_update: '',
     })
-    const [errorMessage, setErrorMessage] = useState()
-    const [isDataLoading, setIsDataLoading] = useState(false)
-    const [isCountyDataLoaded, setIsCountyDataLoaded] = useState(false)
-    const [searchOrigin, setSearchOrigin] = useState('')
+
+    const [status, setStatus] = useState('')
 
     const countyNameUrl = countyData.countyName.replace(/\s/g, '')
-    //const isCountyDataLoaded = !!countyData?.countyName
 
     useEffect(() => {
-        userPlace && startSearch()
+        userPlace && setStatus('loading')
     }, [userPlace])
     useEffect(() => {
-        coordinates.longitude && getIncidenceData()
+        !!coordinates?.longitude && continueSearch()
     }, [coordinates])
-    useEffect(() => setErrorMessage(''), [userPlace, coordinates])
     useEffect(() => {
-        countyData.countyName && setIsCountyDataLoaded(true)
+        !!countyData?.countyName && setStatus('loaded')
     }, [countyData])
     useEffect(() => {
-        isCountyDataLoaded && showResultPage()
-    }, [isCountyDataLoaded])
-    useEffect(() => {
-        errorMessage && handleError()
-    }, [errorMessage])
+        status !== 'error' && handleStatusChange()
+    }, [status])
 
-    function startSearch() {
-        setIsDataLoading(true)
-        getCounty()
+    async function startSearch() {
+        const geoData = await getGeoData(userPlace)
+        geoData === 'error' ? setStatus('error') : setCoordinates(geoData)
     }
 
-    function showResultPage() {
-        setIsDataLoading(false)
-        history.push(`/s/${countyNameUrl}`)
+    async function continueSearch() {
+        const rkiData = await getRkiData(coordinates)
+        rkiData === 'error' ? setStatus('error') : setCountyData(rkiData)
     }
 
-    function handleError() {
-        setIsDataLoading(false)
-        searchOrigin !== 'MainPage' && history.push('/error')
-    }
-
-    function showMainPage() {
-        history.push('/')
+    function handleStatusChange() {
+        if (status === 'loading') {
+            startSearch()
+        } else if (status === 'loaded') {
+            history.push(`/s/${countyNameUrl}`)
+        }
     }
 
     function resetSearch() {
+        setStatus('')
         setUserPlace('')
         setCoordinates({
             latitude: 0,
@@ -71,50 +64,13 @@ export default function useUserLocation() {
             incidence: 0,
             last_update: '',
         })
-        setIsCountyDataLoaded(false)
-        setErrorMessage('')
-        setSearchOrigin('')
-    }
-
-    function getCounty() {
-        getGeoData(userPlace)
-            .then((geoData) =>
-                setCoordinates({
-                    latitude: Number(geoData[0].lat).toFixed(6),
-                    longitude: Number(geoData[0].lon).toFixed(6),
-                })
-            )
-            .catch((error) =>
-                setErrorMessage('Daten konnten nicht geladen werden')
-            )
-    }
-
-    function getIncidenceData() {
-        getRkiData(coordinates)
-            .then((data) => {
-                const filteredData = data.features[0].attributes
-                setCountyData({
-                    countyName: filteredData.GEN,
-                    incidence: Math.round(filteredData.cases7_per_100k),
-                    last_update: filteredData.last_update,
-                })
-            })
-            .catch((error) => {
-                !errorMessage &&
-                    setErrorMessage('Daten konnten nicht geladen werden')
-            })
     }
 
     return {
         userPlace,
         setUserPlace,
         countyData,
-        errorMessage,
-        setErrorMessage,
-        isDataLoading,
-        isCountyDataLoaded,
+        status,
         resetSearch,
-        showMainPage,
-        setSearchOrigin,
     }
 }

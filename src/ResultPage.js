@@ -1,26 +1,24 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-import { ReactComponent as VirusWhite } from './assets/virus-white.svg'
 import styled from 'styled-components/macro'
 import ExternalLink from './components/ExternalLink'
 import ArrowButton from './components/ArrowButton'
 import data from './data/measures.json'
+import { VirusWhiteIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
 
-function ResultPage({
-    setUserPlace,
-    countyData,
-    isCountyDataLoaded,
-    showMainPage,
-}) {
+function ResultPage({ setUserPlace, countyData, status }) {
     const [countyClassification, setCountyClassification] = useState('')
     const [measures, setMeasures] = useState([])
+
+    const history = useHistory()
 
     let { id } = useParams()
 
     useEffect(() => classifyCountyIncidence(), [countyData])
     useEffect(() => {
-        !isCountyDataLoaded && setUserPlace(id)
+        status !== 'loaded' && setUserPlace(id)
     }, [id])
 
     useEffect(() => setMeasures(data), [])
@@ -34,9 +32,13 @@ function ResultPage({
         }
     }
 
+    function showMainPage() {
+        history.push('/')
+    }
+
     return (
         <>
-            {isCountyDataLoaded && (
+            {status === 'loaded' ? (
                 <>
                     <Result hotspot={countyClassification}>
                         <LogoContainer>
@@ -132,6 +134,8 @@ function ResultPage({
                         </MeasureList>
                     </Information>
                 </>
+            ) : (
+                status === 'error' && history.push('/error')
             )}
         </>
     )
@@ -196,7 +200,8 @@ const LogoContainer = styled.div`
     padding-top: 40px;
     padding-bottom: 50px;
 `
-const Logo = styled(VirusWhite)`
+
+const Logo = styled(VirusWhiteIcon)`
     width: 120px;
 `
 
@@ -215,6 +220,7 @@ const MeasureList = styled.ul`
 `
 
 const MeasureHeading = styled.h5`
+    font-size: 1rem;
     margin-bottom: 10px;
 `
 

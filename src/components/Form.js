@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Button from './Button'
 import Input from './Input'
 
-function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
+function Form({ userPlace, setUserPlace, status }) {
     const [userInput, setUserInput] = useState('')
 
     function handleChange(event) {
@@ -13,9 +13,10 @@ function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
 
     function handleSubmitPlace(event) {
         event.preventDefault()
-        setUserPlace(userInput)
+        userInput === userPlace
+            ? setUserPlace(userInput + ' ')
+            : setUserPlace(userInput)
         setUserInput('')
-        setSearchOrigin('MainPage')
     }
 
     return (
@@ -26,15 +27,17 @@ function Form({ setUserPlace, errorMessage, isDataLoading, setSearchOrigin }) {
                 placeholder="Ort oder PLZ eingeben..."
                 required="required"
             />
-            <span>{errorMessage}</span>
+            {status === 'error' && (
+                <ErrorMessage>Daten konnten nicht geladen werden</ErrorMessage>
+            )}
             {userInput ? (
-                <Button>Suchen</Button>
-            ) : isDataLoading ? (
-                <Button disabled gray>
+                <InputButton>Suchen</InputButton>
+            ) : status === 'loading' ? (
+                <InputButton disabled gray>
                     Lädt...
-                </Button>
+                </InputButton>
             ) : (
-                <Button disabled>Suchen</Button>
+                <InputButton disabled>Suchen</InputButton>
             )}
         </FormStyled>
     )
@@ -51,14 +54,20 @@ const FormStyled = styled.form`
     position: relative;
     background: var(--silver);
     padding: 0 20px 20px 20px;
-    display: flex;
-
-    span {
-        font-size: 0.8rem;
-        color: darkred;
-        position: absolute;
-        left: 25px;
-        top: 50px;
-    }
 `
+
+const ErrorMessage = styled.span`
+    font-size: 0.8rem;
+    color: var(--primary-red);
+    position: absolute;
+    left: 32px;
+    top: 49px;
+`
+
+const InputButton = styled(Button)`
+    position: absolute;
+    top: 0;
+    right: 20px;
+`
+
 export default Form

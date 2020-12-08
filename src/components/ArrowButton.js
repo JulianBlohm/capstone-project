@@ -1,15 +1,16 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import { ReactComponent as Arrow } from '../assets/arrow-left.svg'
+import { ArrowIcon } from '../lib/Icons'
 
 function ArrowButton({ children, hotspot, onClick }) {
     return (
         <ArrowButtonStyled hotspot={hotspot} onClick={onClick}>
-            <Arrow hotspot={hotspot} className="arrow" />
+            <ArrowStyled hotspot={hotspot && 'hotspot'} />
             <span>{children}</span>
         </ArrowButtonStyled>
     )
 }
+
 const ArrowButtonStyled = styled.button`
     border: none;
     background: var(--silver);
@@ -26,14 +27,15 @@ const ArrowButtonStyled = styled.button`
     font-size: 1rem;
     position: relative;
     cursor: pointer;
-
-    .arrow {
-        position: absolute;
-        left: 5px;
-        fill: ${(props) =>
-            props.hotspot ? 'var(--primary-red)' : 'var(--primary-green)'};
-    }
 `
+
+const ArrowStyled = styled(ArrowIcon)`
+    position: absolute;
+    left: 5px;
+    fill: ${(props) =>
+        props.hotspot ? 'var(--primary-red)' : 'var(--primary-green)'};
+`
+
 ArrowButton.propTypes = {
     children: PropTypes.string.isRequired,
     hotspot: PropTypes.bool,

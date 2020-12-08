@@ -2,17 +2,10 @@ import { useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Form from './components/Form'
 import FAQ from './components/FAQ'
-import { ReactComponent as VirusRed } from './assets/virus-red2.svg'
+import { VirusRedIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
 
-function MainPage({
-    userPlace,
-    setUserPlace,
-    errorMessage,
-    isDataLoading,
-    resetSearch,
-    setSearchOrigin,
-}) {
+function MainPage({ userPlace, setUserPlace, resetSearch, status }) {
     useEffect(() => {
         userPlace && resetSearch()
     }, [])
@@ -32,12 +25,10 @@ function MainPage({
                 </SubHeading>
             </Intro>
             <Form
+                userPlace={userPlace}
                 setUserPlace={setUserPlace}
-                errorMessage={errorMessage}
-                isDataLoading={isDataLoading}
-                setSearchOrigin={setSearchOrigin}
+                status={status}
             />
-
             <FAQ />
         </MainPageStyled>
     )
@@ -46,6 +37,7 @@ function MainPage({
 const MainPageStyled = styled.div`
     display: grid;
 `
+
 const Heading = styled.h1`
     margin-bottom: 25px;
     font-size: 2rem;
@@ -72,7 +64,8 @@ const LogoContainer = styled.div`
     padding-top: 40px;
     padding-bottom: 50px;
 `
-const Logo = styled(VirusRed)`
+
+const Logo = styled(VirusRedIcon)`
     width: 120px;
 `
 
