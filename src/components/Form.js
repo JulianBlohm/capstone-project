@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createRef } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Button from './Button'
@@ -8,6 +8,8 @@ import { CrossIcon } from '../lib/Icons'
 function Form({ userPlace, setUserPlace, status }) {
     const [userInput, setUserInput] = useState('')
     const [validation, setValidation] = useState(true)
+
+    const textInput = createRef()
 
     useEffect(() => setValidation(true), [userInput])
 
@@ -38,17 +40,25 @@ function Form({ userPlace, setUserPlace, status }) {
         }
     }
 
+    function resetInput() {
+        setUserInput('')
+        textInput.current.focus()
+    }
+
     return (
         <FormStyled onSubmit={handleSubmitPlace}>
             <Input
+                ref={textInput}
                 value={userInput}
                 onChange={handleChange}
                 placeholder="Ort oder PLZ eingeben..."
                 required="required"
             />
-            <ButtonStyled type="button">
-                <CrossIconStyled />
-            </ButtonStyled>
+            {userInput && (
+                <ButtonStyled type="button" onClick={resetInput}>
+                    <CrossIconStyled />
+                </ButtonStyled>
+            )}
 
             {!validation && (
                 <ErrorMessage>Ortsname oder PLZ eingeben</ErrorMessage>

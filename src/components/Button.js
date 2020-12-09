@@ -20,7 +20,8 @@ const Button = (props) => <ButtonStyled {...props} />
 
 Button.propTypes = {
     disabled: PropTypes.bool,
-    children: PropTypes.string.isRequired,
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
 }
 
 export default Button

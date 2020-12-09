@@ -1,5 +1,16 @@
+import { forwardRef } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+
+const Input = forwardRef((props, ref) => (
+    <InputStyled
+        placeholder={props.placeholder}
+        onChange={props.onChange}
+        value={props.value}
+        required={props.required}
+        ref={ref}
+    />
+))
 
 const InputStyled = styled.input`
     width: 100%;
@@ -12,8 +23,6 @@ const InputStyled = styled.input`
     font-size: 1rem;
     outline: var(--blue);
 `
-
-const Input = (props) => <InputStyled {...props} />
 
 Input.propTypes = {
     placeholder: PropTypes.string,
