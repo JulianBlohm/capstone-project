@@ -38,7 +38,7 @@ function ResultPage({ setUserPlace, countyData, status }) {
 
     return (
         <>
-            {status === 'loaded' ? (
+            {status === 'loaded' && (
                 <>
                     <Result hotspot={countyClassification}>
                         <LogoContainer>
@@ -134,8 +134,6 @@ function ResultPage({ setUserPlace, countyData, status }) {
                         </MeasureList>
                     </Information>
                 </>
-            ) : (
-                status === 'error' && history.push('/error')
             )}
         </>
     )
