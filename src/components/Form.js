@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Button from './Button'
 import Input from './Input'
+import { CrossIcon } from '../lib/Icons'
 
 function Form({ userPlace, setUserPlace, status }) {
     const [userInput, setUserInput] = useState('')
@@ -45,7 +46,13 @@ function Form({ userPlace, setUserPlace, status }) {
                 placeholder="Ort oder PLZ eingeben..."
                 required="required"
             />
-            {!validation && <ErrorMessage>Eingabe ist ungültig</ErrorMessage>}
+            <ButtonStyled type="button">
+                <CrossIconStyled />
+            </ButtonStyled>
+
+            {!validation && (
+                <ErrorMessage>Ortsname oder PLZ eingeben</ErrorMessage>
+            )}
             {userInput ? (
                 <InputButton>Suchen</InputButton>
             ) : status === 'loading' ? (
@@ -57,13 +64,6 @@ function Form({ userPlace, setUserPlace, status }) {
             )}
         </FormStyled>
     )
-}
-
-Form.propTypes = {
-    userInput: PropTypes.string,
-    setUserInput: PropTypes.func,
-    setPlace: PropTypes.func,
-    errorMessage: PropTypes.string,
 }
 
 const FormStyled = styled.form`
@@ -85,5 +85,26 @@ const InputButton = styled(Button)`
     top: 0;
     right: 20px;
 `
+
+const ButtonStyled = styled(Button)`
+    background: transparent;
+    border-radius: 0;
+    position: absolute;
+    left: 223px;
+    top: 0;
+    width: 10%;
+`
+
+const CrossIconStyled = styled(CrossIcon)`
+    width: 25px;
+    stroke: var(--gray);
+`
+
+Form.propTypes = {
+    userInput: PropTypes.string,
+    setUserInput: PropTypes.func,
+    setPlace: PropTypes.func,
+    errorMessage: PropTypes.string,
+}
 
 export default Form
