@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Button from './Button'
@@ -6,6 +6,9 @@ import Input from './Input'
 
 function Form({ userPlace, setUserPlace, status }) {
     const [userInput, setUserInput] = useState('')
+    const [validation, setValidation] = useState(true)
+
+    useEffect(() => setValidation(true), [userInput])
 
     function handleChange(event) {
         setUserInput(event.target.value)
@@ -13,10 +16,25 @@ function Form({ userPlace, setUserPlace, status }) {
 
     function handleSubmitPlace(event) {
         event.preventDefault()
-        userInput === userPlace
-            ? setUserPlace(userInput + ' ')
-            : setUserPlace(userInput)
-        setUserInput('')
+        if (validateInput()) {
+            userInput === userPlace
+                ? setUserPlace(userInput + ' ')
+                : setUserPlace(userInput.trim())
+            setUserInput('')
+        } else {
+            setValidation(false)
+        }
+    }
+
+    function validateInput() {
+        const regexCountyCode = /[0-9]/g
+        const regexPlaceName = /[^a-z-\s]/gi
+
+        if (!regexPlaceName.test(userInput)) {
+            return userInput.length >= 2 && userInput.length <= 32
+        } else {
+            return regexCountyCode.test(userInput) && userInput.length === 5
+        }
     }
 
     return (
@@ -27,9 +45,7 @@ function Form({ userPlace, setUserPlace, status }) {
                 placeholder="Ort oder PLZ eingeben..."
                 required="required"
             />
-            {status === 'error' && (
-                <ErrorMessage>Daten konnten nicht geladen werden</ErrorMessage>
-            )}
+            {!validation && <ErrorMessage>Eingabe ist ungültig</ErrorMessage>}
             {userInput ? (
                 <InputButton>Suchen</InputButton>
             ) : status === 'loading' ? (

@@ -49,6 +49,8 @@ export default function useUserLocation() {
             startSearch()
         } else if (status === 'loaded') {
             history.push(`/s/${countyNameUrl}`)
+        } else if (status === 'error') {
+            history.push('/error')
         }
     }
 
