@@ -5,6 +5,7 @@ import FAQ from './components/FAQ'
 import { VirusRedIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
 import Button from './components/Button'
+import { GpsIcon } from './lib/Icons'
 
 function MainPage({
     userPlace,
@@ -40,15 +41,18 @@ function MainPage({
                 />
                 {status === 'locating' ? (
                     <GeolocationButton gray disabled>
+                        <GpsIconStyled />
                         Lokalisiert...
                     </GeolocationButton>
                 ) : isLocationAvailable ? (
                     <GeolocationButton onClick={startLocating}>
+                        <GpsIconStyled />
                         Lass dich orten
                     </GeolocationButton>
                 ) : (
                     <GeolocationButton gray disabled>
-                        Ortung nicht möglich!
+                        <GpsIconStyled />
+                        Ortung nicht möglich
                     </GeolocationButton>
                 )}
             </Search>
@@ -102,6 +106,11 @@ const GeolocationButton = styled(Button)`
     width: 100%;
     border-radius: 5px;
     margin-bottom: 20px;
+`
+
+const GpsIconStyled = styled(GpsIcon)`
+    margin-right: 10px;
+    width: 20px;
 `
 
 export default MainPage
