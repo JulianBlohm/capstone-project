@@ -1,4 +1,4 @@
-import { useState, useEffect, createRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Button from './Button'
@@ -9,7 +9,7 @@ function Form({ userPlace, setUserPlace, status }) {
     const [userInput, setUserInput] = useState('')
     const [validation, setValidation] = useState(true)
 
-    const textInput = createRef()
+    const textInput = useRef()
 
     useEffect(() => setValidation(true), [userInput])
 
@@ -20,9 +20,9 @@ function Form({ userPlace, setUserPlace, status }) {
     function handleSubmitPlace(event) {
         event.preventDefault()
         if (validateInput()) {
-            userInput === userPlace
-                ? setUserPlace(userInput + ' ')
-                : setUserPlace(userInput.trim())
+            setUserPlace(
+                userInput === userPlace ? userInput + ' ' : userInput.trim()
+            )
             setUserInput('')
         } else {
             setValidation(false)
@@ -35,9 +35,8 @@ function Form({ userPlace, setUserPlace, status }) {
 
         if (!regexPlaceName.test(userInput)) {
             return userInput.length >= 2 && userInput.length <= 32
-        } else {
-            return regexCountyCode.test(userInput) && userInput.length === 5
         }
+        return regexCountyCode.test(userInput) && userInput.length === 5
     }
 
     function resetInput() {

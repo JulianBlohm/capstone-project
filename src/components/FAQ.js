@@ -51,18 +51,20 @@ function FAQ() {
 
 const FAQWrapper = styled.dl`
     color: var(--gray);
-    margin: 70px 30px;
+    margin: 70px 20px;
 `
 
 const Heading = styled.h3`
-    font-size: 2rem;
     margin-bottom: 10px;
+    margin-left: 10px;
+    font-size: 2rem;
     color: var(--lightblack);
 `
 
 const Question = styled.dt`
     font-size: 1.25rem;
-    max-width: 90%;
+    max-width: 85%;
+    margin-left: 10px;
 `
 
 const Answer = styled.dd`
@@ -74,11 +76,11 @@ const Answer = styled.dd`
 const QuestionWrapper = styled.div`
     background: transparent;
     border-top: 2px solid var(--FAQgray);
-    display: flex;
     width: 100%;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5px;
+    padding: 15px 0;
 `
 
 const PlusStyled = styled(PlusIcon)`
