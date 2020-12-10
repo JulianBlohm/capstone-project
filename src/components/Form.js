@@ -98,7 +98,7 @@ const ButtonStyled = styled(Button)`
     background: transparent;
     border-radius: 0;
     position: absolute;
-    right: 31%;
+    right: 25%;
     top: 0;
     width: 10%;
 `
