@@ -99,7 +99,7 @@ const ButtonStyled = styled(Button)`
     background: transparent;
     border-radius: 0;
     position: absolute;
-    left: 223px;
+    right: 31%;
     top: 0;
     width: 10%;
 `
