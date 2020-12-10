@@ -5,6 +5,7 @@ import { ReactComponent as MinusIcon } from '../assets/minus.svg'
 import { ReactComponent as PlusIcon } from '../assets/plus.svg'
 import { ReactComponent as VirusRedIcon } from '../assets/virus-red.svg'
 import { ReactComponent as VirusWhiteIcon } from '../assets/virus-white.svg'
+import { ReactComponent as CrossIcon } from '../assets/cross.svg'
 
 export {
     ArrowIcon,
@@ -14,4 +15,5 @@ export {
     PlusIcon,
     VirusRedIcon,
     VirusWhiteIcon,
+    CrossIcon,
 }

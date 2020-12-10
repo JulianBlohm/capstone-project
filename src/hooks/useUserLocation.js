@@ -31,7 +31,7 @@ export default function useUserLocation() {
         !!countyData?.countyName && setStatus('loaded')
     }, [countyData])
     useEffect(() => {
-        status !== 'error' && handleStatusChange()
+        handleStatusChange()
     }, [status])
 
     async function startSearch() {
@@ -49,6 +49,8 @@ export default function useUserLocation() {
             startSearch()
         } else if (status === 'loaded') {
             history.push(`/s/${countyNameUrl}`)
+        } else if (status === 'error') {
+            history.push('/error')
         }
     }
 

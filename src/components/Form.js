@@ -1,11 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Button from './Button'
 import Input from './Input'
+import { CrossIcon } from '../lib/Icons'
 
 function Form({ userPlace, setUserPlace, status }) {
     const [userInput, setUserInput] = useState('')
+    const [validation, setValidation] = useState(true)
+
+    const textInput = useRef()
+
+    useEffect(() => setValidation(true), [userInput])
 
     function handleChange(event) {
         setUserInput(event.target.value)
@@ -13,22 +19,48 @@ function Form({ userPlace, setUserPlace, status }) {
 
     function handleSubmitPlace(event) {
         event.preventDefault()
-        userInput === userPlace
-            ? setUserPlace(userInput + ' ')
-            : setUserPlace(userInput)
+        if (validateInput()) {
+            setUserPlace(
+                userInput === userPlace ? userInput + ' ' : userInput.trim()
+            )
+            setUserInput('')
+        } else {
+            setValidation(false)
+        }
+    }
+
+    function validateInput() {
+        const regexCountyCode = /[0-9]/g
+        const regexPlaceName = /[^a-z-\s]/gi
+
+        if (!regexPlaceName.test(userInput)) {
+            return userInput.length >= 2 && userInput.length <= 32
+        }
+        return regexCountyCode.test(userInput) && userInput.length === 5
+    }
+
+    function resetInput() {
         setUserInput('')
+        textInput.current.focus()
     }
 
     return (
         <FormStyled onSubmit={handleSubmitPlace}>
             <Input
+                ref={textInput}
                 value={userInput}
                 onChange={handleChange}
                 placeholder="Ort oder PLZ eingeben..."
                 required="required"
             />
-            {status === 'error' && (
-                <ErrorMessage>Daten konnten nicht geladen werden</ErrorMessage>
+            {userInput && (
+                <ButtonStyled type="button" onClick={resetInput}>
+                    <CrossIconStyled />
+                </ButtonStyled>
+            )}
+
+            {!validation && (
+                <ErrorMessage>Ortsname oder PLZ eingeben</ErrorMessage>
             )}
             {userInput ? (
                 <InputButton>Suchen</InputButton>
@@ -41,13 +73,6 @@ function Form({ userPlace, setUserPlace, status }) {
             )}
         </FormStyled>
     )
-}
-
-Form.propTypes = {
-    userInput: PropTypes.string,
-    setUserInput: PropTypes.func,
-    setPlace: PropTypes.func,
-    errorMessage: PropTypes.string,
 }
 
 const FormStyled = styled.form`
@@ -69,5 +94,26 @@ const InputButton = styled(Button)`
     top: 0;
     right: 20px;
 `
+
+const ButtonStyled = styled(Button)`
+    background: transparent;
+    border-radius: 0;
+    position: absolute;
+    left: 223px;
+    top: 0;
+    width: 10%;
+`
+
+const CrossIconStyled = styled(CrossIcon)`
+    width: 25px;
+    stroke: var(--gray);
+`
+
+Form.propTypes = {
+    userInput: PropTypes.string,
+    setUserInput: PropTypes.func,
+    setPlace: PropTypes.func,
+    errorMessage: PropTypes.string,
+}
 
 export default Form
