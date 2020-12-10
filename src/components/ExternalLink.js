@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro'
 import { ExternalLinkIcon } from '../lib/Icons'
 
-function ExternalLink({ children }) {
+function ExternalLink({ children, target, href }) {
     return (
-        <ExternalLinkStyled>
+        <ExternalLinkStyled target={target} href={href}>
             <ExternalLinkIconStyled />
             <span>{children}</span>
         </ExternalLinkStyled>
