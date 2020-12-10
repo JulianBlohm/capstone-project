@@ -15,7 +15,7 @@ export default function usePosition() {
 
     function getPosition() {
         if (!geo) {
-            console.log('Geolocation is not supported')
+            setPosition('noService')
         } else {
             geo.getCurrentPosition(success, error, options)
         }
@@ -30,7 +30,7 @@ export default function usePosition() {
     }
 
     function error(err) {
-        console.log('location error')
+        setPosition('locationError')
     }
 
     return { position, getPosition }

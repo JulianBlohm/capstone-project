@@ -21,6 +21,7 @@ export default function useUserLocation() {
     })
 
     const [status, setStatus] = useState('')
+    const [isLocationAvailable, setIsLocationAvailable] = useState(true)
 
     const countyNameUrl = countyData.countyName.replace(/\s/g, '')
 
@@ -28,7 +29,7 @@ export default function useUserLocation() {
         userPlace && setStatus('loading')
     }, [userPlace])
     useEffect(() => {
-        !!position?.longitude && setCoordinates(position)
+        !!position?.longitude && handlePosition()
     }, [position])
     useEffect(() => {
         !!coordinates?.longitude && continueSearch()
@@ -40,12 +41,13 @@ export default function useUserLocation() {
         handleStatusChange()
     }, [status])
 
-    console.log(coordinates)
-    console.log(status)
-    console.log(position)
-
-    function startLocating() {
+    function handlePosition() {
         setStatus('locating')
+        if (position === 'noService') {
+            setIsLocationAvailable(false)
+        } else if (position === 'locationError') {
+            setStatus('error')
+        } else setCoordinates(position)
     }
 
     async function startSearch() {
@@ -65,8 +67,6 @@ export default function useUserLocation() {
             history.push(`/s/${countyNameUrl}`)
         } else if (status === 'error') {
             history.push('/error')
-        } else if (status === 'locating') {
-            getPosition()
         }
     }
 
@@ -90,6 +90,7 @@ export default function useUserLocation() {
         countyData,
         status,
         resetSearch,
-        startLocating,
+        getPosition,
+        isLocationAvailable,
     }
 }

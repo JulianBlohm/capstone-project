@@ -13,7 +13,8 @@ function App() {
         countyData,
         resetSearch,
         status,
-        startLocating,
+        getPosition,
+        isLocationAvailable,
     } = useUserLocation()
 
     return (
@@ -25,12 +26,13 @@ function App() {
                         setUserPlace={setUserPlace}
                         resetSearch={resetSearch}
                         status={status}
-                        startLocating={startLocating}
+                        startLocating={getPosition}
+                        isLocationAvailable={isLocationAvailable}
                     />
                 </Route>
 
                 <Route path="/s/:id">
-                    {status === 'loading' ? (
+                    {status === 'loading' || status === 'locating' ? (
                         <LoadingPage />
                     ) : (
                         <ResultPage

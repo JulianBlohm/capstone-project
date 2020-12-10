@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import styled from 'styled-components/macro'
-import usePosition from './hooks/usePosition'
 import Form from './components/Form'
 import FAQ from './components/FAQ'
 import { VirusRedIcon } from './lib/Icons'
@@ -13,6 +12,7 @@ function MainPage({
     resetSearch,
     status,
     startLocating,
+    isLocationAvailable,
 }) {
     useEffect(() => {
         userPlace && resetSearch()
@@ -38,13 +38,17 @@ function MainPage({
                     setUserPlace={setUserPlace}
                     status={status}
                 />
-                {status === 'loading' ? (
+                {status === 'locating' ? (
                     <GeolocationButton gray disabled>
-                        Lädt...
+                        Lokalisiert...
                     </GeolocationButton>
-                ) : (
+                ) : isLocationAvailable ? (
                     <GeolocationButton onClick={startLocating}>
                         Lass dich orten
+                    </GeolocationButton>
+                ) : (
+                    <GeolocationButton gray disabled>
+                        Ortung nicht möglich!
                     </GeolocationButton>
                 )}
             </Search>
