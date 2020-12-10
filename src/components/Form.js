@@ -77,8 +77,7 @@ function Form({ userPlace, setUserPlace, status }) {
 
 const FormStyled = styled.form`
     position: relative;
-    background: var(--silver);
-    padding: 0 20px 20px 20px;
+    margin-bottom: 25px;
 `
 
 const ErrorMessage = styled.span`
@@ -92,7 +91,7 @@ const ErrorMessage = styled.span`
 const InputButton = styled(Button)`
     position: absolute;
     top: 0;
-    right: 20px;
+    right: 0;
 `
 
 const ButtonStyled = styled(Button)`

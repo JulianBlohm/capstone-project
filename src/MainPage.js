@@ -1,11 +1,19 @@
 import { useEffect } from 'react'
 import styled from 'styled-components/macro'
+import usePosition from './hooks/usePosition'
 import Form from './components/Form'
 import FAQ from './components/FAQ'
 import { VirusRedIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
+import Button from './components/Button'
 
-function MainPage({ userPlace, setUserPlace, resetSearch, status }) {
+function MainPage({
+    userPlace,
+    setUserPlace,
+    resetSearch,
+    status,
+    startLocating,
+}) {
     useEffect(() => {
         userPlace && resetSearch()
     }, [])
@@ -24,11 +32,23 @@ function MainPage({ userPlace, setUserPlace, resetSearch, status }) {
                     Standort ein Covid‑19 Hotspot ist.
                 </SubHeading>
             </Intro>
-            <Form
-                userPlace={userPlace}
-                setUserPlace={setUserPlace}
-                status={status}
-            />
+            <Search>
+                <Form
+                    userPlace={userPlace}
+                    setUserPlace={setUserPlace}
+                    status={status}
+                />
+                {status === 'loading' ? (
+                    <GeolocationButton gray disabled>
+                        Lädt...
+                    </GeolocationButton>
+                ) : (
+                    <GeolocationButton onClick={startLocating}>
+                        Lass dich orten
+                    </GeolocationButton>
+                )}
+            </Search>
+
             <FAQ />
         </MainPageStyled>
     )
@@ -58,6 +78,11 @@ const Intro = styled.div`
     background: var(--silver);
 `
 
+const Search = styled.div`
+    background: var(--silver);
+    padding: 0 20px;
+`
+
 const LogoContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -67,6 +92,12 @@ const LogoContainer = styled.div`
 
 const Logo = styled(VirusRedIcon)`
     width: 120px;
+`
+
+const GeolocationButton = styled(Button)`
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 20px;
 `
 
 export default MainPage

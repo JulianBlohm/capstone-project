@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import getGeoData from '../services/getGeoData'
 import getRkiData from '../services/getRkiData'
+import usePosition from './usePosition'
 
 export default function useUserLocation() {
+    const { position, getPosition } = usePosition()
+
     const history = useHistory()
 
     const [userPlace, setUserPlace] = useState('')
@@ -25,6 +28,9 @@ export default function useUserLocation() {
         userPlace && setStatus('loading')
     }, [userPlace])
     useEffect(() => {
+        !!position?.longitude && setCoordinates(position)
+    }, [position])
+    useEffect(() => {
         !!coordinates?.longitude && continueSearch()
     }, [coordinates])
     useEffect(() => {
@@ -33,6 +39,14 @@ export default function useUserLocation() {
     useEffect(() => {
         handleStatusChange()
     }, [status])
+
+    console.log(coordinates)
+    console.log(status)
+    console.log(position)
+
+    function startLocating() {
+        setStatus('locating')
+    }
 
     async function startSearch() {
         const geoData = await getGeoData(userPlace)
@@ -51,6 +65,8 @@ export default function useUserLocation() {
             history.push(`/s/${countyNameUrl}`)
         } else if (status === 'error') {
             history.push('/error')
+        } else if (status === 'locating') {
+            getPosition()
         }
     }
 
@@ -74,5 +90,6 @@ export default function useUserLocation() {
         countyData,
         status,
         resetSearch,
+        startLocating,
     }
 }

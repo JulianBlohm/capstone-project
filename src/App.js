@@ -13,6 +13,7 @@ function App() {
         countyData,
         resetSearch,
         status,
+        startLocating,
     } = useUserLocation()
 
     return (
@@ -24,6 +25,7 @@ function App() {
                         setUserPlace={setUserPlace}
                         resetSearch={resetSearch}
                         status={status}
+                        startLocating={startLocating}
                     />
                 </Route>
 
