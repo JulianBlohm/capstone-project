@@ -40,7 +40,7 @@ This idea was originally created together with two friends and deployed at [hots
 
 <br>
 
----
+
 
 ## How to use?
 
@@ -68,7 +68,7 @@ The build is minified and the filenames include the hashes. The app is ready to 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
----
+
 
 ## License
 
