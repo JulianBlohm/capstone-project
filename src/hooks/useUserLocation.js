@@ -42,7 +42,6 @@ export default function useUserLocation() {
     }, [status])
 
     function handlePosition() {
-        setStatus('locating')
         if (position === 'noService') {
             setIsLocationAvailable(false)
         } else if (position === 'locationError') {
@@ -58,6 +57,11 @@ export default function useUserLocation() {
     async function continueSearch() {
         const rkiData = await getRkiData(coordinates)
         rkiData === 'error' ? setStatus('error') : setCountyData(rkiData)
+    }
+
+    function startLocating() {
+        setStatus('locating')
+        getPosition()
     }
 
     function handleStatusChange() {
@@ -90,7 +94,7 @@ export default function useUserLocation() {
         countyData,
         status,
         resetSearch,
-        getPosition,
+        startLocating,
         isLocationAvailable,
     }
 }

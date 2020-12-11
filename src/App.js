@@ -13,7 +13,7 @@ function App() {
         countyData,
         resetSearch,
         status,
-        getPosition,
+        startLocating,
         isLocationAvailable,
     } = useUserLocation()
 
@@ -26,7 +26,7 @@ function App() {
                         setUserPlace={setUserPlace}
                         resetSearch={resetSearch}
                         status={status}
-                        startLocating={getPosition}
+                        startLocating={startLocating}
                         isLocationAvailable={isLocationAvailable}
                     />
                 </Route>
