@@ -31,4 +31,9 @@ export default createGlobalStyle`
   a {
         text-decoration: none;
     }
+
+  a:focus,
+  button:focus {
+    outline: none;
+  }
 `
