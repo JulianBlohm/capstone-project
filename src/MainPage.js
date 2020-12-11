@@ -4,8 +4,17 @@ import Form from './components/Form'
 import FAQ from './components/FAQ'
 import { VirusRedIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
+import Button from './components/Button'
+import { GpsIcon } from './lib/Icons'
 
-function MainPage({ userPlace, setUserPlace, resetSearch, status }) {
+function MainPage({
+    userPlace,
+    setUserPlace,
+    resetSearch,
+    status,
+    startLocating,
+    isLocationAvailable,
+}) {
     useEffect(() => {
         userPlace && resetSearch()
     }, [])
@@ -24,11 +33,30 @@ function MainPage({ userPlace, setUserPlace, resetSearch, status }) {
                     Standort ein Covid‑19 Hotspot ist.
                 </SubHeading>
             </Intro>
-            <Form
-                userPlace={userPlace}
-                setUserPlace={setUserPlace}
-                status={status}
-            />
+            <Search>
+                <Form
+                    userPlace={userPlace}
+                    setUserPlace={setUserPlace}
+                    status={status}
+                />
+                {status === 'locating' ? (
+                    <GeolocationButton gray disabled>
+                        <GpsIconStyled />
+                        Lokalisiert...
+                    </GeolocationButton>
+                ) : isLocationAvailable ? (
+                    <GeolocationButton onClick={startLocating}>
+                        <GpsIconStyled />
+                        Lass dich orten
+                    </GeolocationButton>
+                ) : (
+                    <GeolocationButton gray disabled>
+                        <GpsIconStyled />
+                        Ortung nicht möglich
+                    </GeolocationButton>
+                )}
+            </Search>
+
             <FAQ />
         </MainPageStyled>
     )
@@ -58,6 +86,11 @@ const Intro = styled.div`
     background: var(--silver);
 `
 
+const Search = styled.div`
+    background: var(--silver);
+    padding: 0 20px;
+`
+
 const LogoContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -67,6 +100,17 @@ const LogoContainer = styled.div`
 
 const Logo = styled(VirusRedIcon)`
     width: 120px;
+`
+
+const GeolocationButton = styled(Button)`
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+`
+
+const GpsIconStyled = styled(GpsIcon)`
+    margin-right: 10px;
+    width: 20px;
 `
 
 export default MainPage

@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import getGeoData from '../services/getGeoData'
 import getRkiData from '../services/getRkiData'
+import usePosition from './usePosition'
 
 export default function useUserLocation() {
+    const { position, getPosition } = usePosition()
+
     const history = useHistory()
 
     const [userPlace, setUserPlace] = useState('')
@@ -18,12 +21,16 @@ export default function useUserLocation() {
     })
 
     const [status, setStatus] = useState('')
+    const [isLocationAvailable, setIsLocationAvailable] = useState(true)
 
     const countyNameUrl = countyData.countyName.replace(/\s/g, '')
 
     useEffect(() => {
         userPlace && setStatus('loading')
     }, [userPlace])
+    useEffect(() => {
+        !!position?.longitude && handlePosition()
+    }, [position])
     useEffect(() => {
         !!coordinates?.longitude && continueSearch()
     }, [coordinates])
@@ -34,6 +41,14 @@ export default function useUserLocation() {
         handleStatusChange()
     }, [status])
 
+    function handlePosition() {
+        if (position === 'noService') {
+            setIsLocationAvailable(false)
+        } else if (position === 'locationError') {
+            setStatus('error')
+        } else setCoordinates(position)
+    }
+
     async function startSearch() {
         const geoData = await getGeoData(userPlace)
         geoData === 'error' ? setStatus('error') : setCoordinates(geoData)
@@ -42,6 +57,11 @@ export default function useUserLocation() {
     async function continueSearch() {
         const rkiData = await getRkiData(coordinates)
         rkiData === 'error' ? setStatus('error') : setCountyData(rkiData)
+    }
+
+    function startLocating() {
+        setStatus('locating')
+        getPosition()
     }
 
     function handleStatusChange() {
@@ -74,5 +94,7 @@ export default function useUserLocation() {
         countyData,
         status,
         resetSearch,
+        startLocating,
+        isLocationAvailable,
     }
 }

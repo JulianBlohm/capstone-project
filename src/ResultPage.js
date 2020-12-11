@@ -219,7 +219,6 @@ const MeasureList = styled.ul`
 
 const MeasureHeading = styled.h5`
     font-size: 1rem;
-    margin-bottom: 10px;
 `
 
 export default ResultPage
