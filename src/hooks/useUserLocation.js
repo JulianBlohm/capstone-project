@@ -23,7 +23,10 @@ export default function useUserLocation() {
     const [status, setStatus] = useState('')
     const [isLocationAvailable, setIsLocationAvailable] = useState(true)
 
-    const countyNameUrl = countyData.countyName.replace(/\s/g, '')
+    const countyNameUrl = countyData.countyName
+        .replace(/\s/g, '-')
+        .toLowerCase()
+        .replace(/([A-Z])(.*)/g, '')
 
     useEffect(() => {
         userPlace && setStatus('loading')
