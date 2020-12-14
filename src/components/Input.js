@@ -26,7 +26,7 @@ const InputStyled = styled.input`
 
 Input.propTypes = {
     placeholder: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default Input
