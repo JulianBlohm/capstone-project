@@ -54,7 +54,11 @@ function Form({ userPlace, setUserPlace, status }) {
                 required="required"
             />
             {userInput && (
-                <ButtonStyled type="button" onClick={resetInput}>
+                <ButtonStyled
+                    data-testid="clear-button"
+                    type="button"
+                    onClick={resetInput}
+                >
                     <CrossIconStyled />
                 </ButtonStyled>
             )}
