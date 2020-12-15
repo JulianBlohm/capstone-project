@@ -31,7 +31,7 @@ function Form({ userPlace, setUserPlace, status }) {
 
     function validateInput() {
         const regexCountyCode = /[0-9]/g
-        const regexPlaceName = /[^a-z-\s]/gi
+        const regexPlaceName = /[^\u00C0-\u017Fa-z-\s]/gi
 
         if (!regexPlaceName.test(userInput)) {
             return userInput.length >= 2 && userInput.length <= 32
@@ -54,7 +54,11 @@ function Form({ userPlace, setUserPlace, status }) {
                 required="required"
             />
             {userInput && (
-                <ButtonStyled type="button" onClick={resetInput}>
+                <ButtonStyled
+                    data-testid="clear-button"
+                    type="button"
+                    onClick={resetInput}
+                >
                     <CrossIconStyled />
                 </ButtonStyled>
             )}
@@ -112,7 +116,6 @@ Form.propTypes = {
     userInput: PropTypes.string,
     setUserInput: PropTypes.func,
     setPlace: PropTypes.func,
-    errorMessage: PropTypes.string,
 }
 
 export default Form

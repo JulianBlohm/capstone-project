@@ -54,6 +54,10 @@ Installs all packages.
 
 Verify that the project runs without errors.
 
+`$ npm run styleguide`
+
+See the styleguidist
+
 `$npm run build`
 
 Builds the app for production to the `build` folder.\
