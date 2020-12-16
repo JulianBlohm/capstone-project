@@ -1,21 +1,21 @@
 import { render } from '@testing-library/react'
 import user from '@testing-library/user-event'
-import Button from './Button'
+import ArrowButton from './ArrowButton'
 
 describe('Button', () => {
     it('shows the text', () => {
-        const { getByText } = render(<Button>Test</Button>)
+        const { getByText } = render(<ArrowButton>Test</ArrowButton>)
         expect(getByText(/Test/)).toBeInTheDocument()
     })
 
     it('calls given function', () => {
-        const startSearch = jest.fn()
+        const newSearch = jest.fn()
         const { getByText } = render(
-            <Button onClick={startSearch}>Suchen</Button>
+            <ArrowButton onClick={newSearch}>Neue Suche</ArrowButton>
         )
 
-        const button = getByText('Suchen')
+        const button = getByText('Neue Suche')
         user.click(button)
-        expect(startSearch).toHaveBeenCalledTimes(1)
+        expect(newSearch).toHaveBeenCalledTimes(1)
     })
 })
