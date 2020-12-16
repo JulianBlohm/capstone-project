@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
-import data from '../data/faqData.json'
 import { PlusIcon, MinusIcon } from '../lib/Icons'
 
-function FAQ() {
+function FAQ({ data }) {
     const [questions, setQuestions] = useState([])
 
     useEffect(

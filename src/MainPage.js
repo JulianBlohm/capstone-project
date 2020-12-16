@@ -2,10 +2,11 @@ import { useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Form from './components/Form'
 import FAQ from './components/FAQ'
-import { VirusRedIcon } from './lib/Icons'
-import scrollUp from './lib/scrollUp'
 import Button from './components/Button'
+import { VirusRedIcon } from './lib/Icons'
 import { GpsIcon } from './lib/Icons'
+import scrollUp from './lib/scrollUp'
+import data from './data/faqData.json'
 
 function MainPage({
     userPlace,
@@ -57,7 +58,7 @@ function MainPage({
                 )}
             </Search>
 
-            <FAQ />
+            <FAQ data={data} />
         </MainPageStyled>
     )
 }

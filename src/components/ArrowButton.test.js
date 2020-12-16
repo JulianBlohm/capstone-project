@@ -2,7 +2,7 @@ import { render } from '@testing-library/react'
 import user from '@testing-library/user-event'
 import ArrowButton from './ArrowButton'
 
-describe('Button', () => {
+describe('ArrowButton', () => {
     it('shows the text', () => {
         const { getByText } = render(<ArrowButton>Test</ArrowButton>)
         expect(getByText(/Test/)).toBeInTheDocument()

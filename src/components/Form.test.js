@@ -87,7 +87,7 @@ describe('Form', () => {
         expect(setUserPlace).toHaveBeenCalledTimes(0)
     })
 
-    it('doesnt call function just with 33 or more characters', () => {
+    it('doesnt call function with 33 or more characters', () => {
         const setUserPlace = jest.fn()
 
         const { getByPlaceholderText, getByText } = render(
@@ -215,11 +215,9 @@ describe('Form', () => {
             <Form setUserPlace={setUserPlace} />
         )
         const input = getByPlaceholderText(/Ort oder PLZ eingeben.../)
-
         user.type(input, 'Hannover123')
 
         const button = getByRole('button', { name: /cross/i })
-
         user.click(button)
 
         expect(input).toHaveValue('')
