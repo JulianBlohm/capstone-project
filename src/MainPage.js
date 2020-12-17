@@ -41,17 +41,17 @@ function MainPage({
                     status={status}
                 />
                 {status === 'locating' ? (
-                    <GeolocationButton gray disabled>
+                    <GeolocationButton type="button" gray disabled>
                         <GpsIconStyled />
                         Lokalisiert...
                     </GeolocationButton>
                 ) : isLocationAvailable ? (
-                    <GeolocationButton onClick={startLocating}>
+                    <GeolocationButton type="button" onClick={startLocating}>
                         <GpsIconStyled />
                         Lass dich orten
                     </GeolocationButton>
                 ) : (
-                    <GeolocationButton gray disabled>
+                    <GeolocationButton type="button" gray disabled>
                         <GpsIconStyled />
                         Ortung nicht möglich
                     </GeolocationButton>

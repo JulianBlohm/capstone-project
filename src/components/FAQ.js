@@ -28,27 +28,31 @@ function FAQ({ data }) {
     return (
         <FAQWrapper>
             <Heading>FAQ</Heading>
-            {questions.map((question) => (
-                <div key={question.id}>
-                    <QuestionWrapper onClick={() => toggleAnswer(question.id)}>
-                        <Question>{question.question}</Question>
-                        {question.isAnswerHidden ? (
-                            <PlusStyled id={question.id} />
-                        ) : (
-                            <MinusStyled id={question.id} />
-                        )}
-                    </QuestionWrapper>
+            <ul>
+                {questions.map((question) => (
+                    <QaWrapper key={question.id}>
+                        <QuestionWrapper
+                            onClick={() => toggleAnswer(question.id)}
+                        >
+                            <Question>{question.question}</Question>
+                            {question.isAnswerHidden ? (
+                                <PlusStyled id={question.id} />
+                            ) : (
+                                <MinusStyled id={question.id} />
+                            )}
+                        </QuestionWrapper>
 
-                    {!question.isAnswerHidden && (
-                        <Answer key={question.id}>{question.answer}</Answer>
-                    )}
-                </div>
-            ))}
+                        {!question.isAnswerHidden && (
+                            <Answer key={question.id}>{question.answer}</Answer>
+                        )}
+                    </QaWrapper>
+                ))}
+            </ul>
         </FAQWrapper>
     )
 }
 
-const FAQWrapper = styled.dl`
+const FAQWrapper = styled.section`
     color: var(--gray);
     margin: 70px 20px;
 `
@@ -60,13 +64,17 @@ const Heading = styled.h3`
     color: var(--lightblack);
 `
 
-const Question = styled.dt`
+const QaWrapper = styled.li`
+    list-style-type: none;
+`
+
+const Question = styled.p`
     font-size: 1.25rem;
     max-width: 85%;
     margin-left: 10px;
 `
 
-const Answer = styled.dd`
+const Answer = styled.p`
     padding: 30px 20px 30px 20px;
     line-height: 1.3;
     font-size: 1rem;
