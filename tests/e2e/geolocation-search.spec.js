@@ -8,6 +8,6 @@ describe('geolocation', () => {
 
     it('should show result page after button is clicked', () => {
         cy.get('button[type="button"]').click()
-        cy.url().should('include', '/s/')
+        cy.wait(3000).url().should('include', '/s/')
     })
 })

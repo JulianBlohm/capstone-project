@@ -2,5 +2,10 @@
     "baseUrl": "http://localhost:3000",
     "integrationFolder": "tests/e2e",
     "viewportWidth": 450,
-    "viewportHeight": 750
+    "viewportHeight": 750,
+    "env": {
+        "browserPermissions": {
+            "geolocation": "allow"
+        }
+    }
 }
