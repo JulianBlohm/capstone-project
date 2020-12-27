@@ -16,7 +16,7 @@ describe('input search', () => {
         cy.get('form button[type="button"]')
     })
 
-    it('should delete user input if cross is clicked', () => {
+    it('should delete user input if "clear input" button is clicked', () => {
         cy.get('form button[type="button"]').click()
         cy.get('input[placeholder="Ort oder PLZ eingeben..."]').should(
             'have.value',
