@@ -8,7 +8,7 @@ describe('Button', () => {
         expect(getByText(/Test/)).toBeInTheDocument()
     })
 
-    it('renders with gray background', () => {
+    it('calls given function', () => {
         const startSearch = jest.fn()
         const { getByText } = render(
             <Button onClick={startSearch}>Suchen</Button>

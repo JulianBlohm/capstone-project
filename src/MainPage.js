@@ -2,10 +2,11 @@ import { useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Form from './components/Form'
 import FAQ from './components/FAQ'
-import { VirusRedIcon } from './lib/Icons'
-import scrollUp from './lib/scrollUp'
 import Button from './components/Button'
+import { VirusRedIcon } from './lib/Icons'
 import { GpsIcon } from './lib/Icons'
+import scrollUp from './lib/scrollUp'
+import data from './data/faqData.json'
 
 function MainPage({
     userPlace,
@@ -40,24 +41,24 @@ function MainPage({
                     status={status}
                 />
                 {status === 'locating' ? (
-                    <GeolocationButton gray disabled>
+                    <GeolocationButton type="button" gray disabled>
                         <GpsIconStyled />
                         Lokalisiert...
                     </GeolocationButton>
                 ) : isLocationAvailable ? (
-                    <GeolocationButton onClick={startLocating}>
+                    <GeolocationButton type="button" onClick={startLocating}>
                         <GpsIconStyled />
                         Lass dich orten
                     </GeolocationButton>
                 ) : (
-                    <GeolocationButton gray disabled>
+                    <GeolocationButton type="button" gray disabled>
                         <GpsIconStyled />
                         Ortung nicht möglich
                     </GeolocationButton>
                 )}
             </Search>
 
-            <FAQ />
+            <FAQ data={data} />
         </MainPageStyled>
     )
 }

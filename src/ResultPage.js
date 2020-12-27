@@ -139,7 +139,7 @@ function ResultPage({ setUserPlace, countyData, status }) {
     )
 }
 
-const Heading = styled.h2`
+const Heading = styled.h1`
     margin-bottom: 21px;
     line-height: 1.2;
     font-size: 2rem;
@@ -147,13 +147,13 @@ const Heading = styled.h2`
         props.hotspot ? 'var(--secondary-red)' : 'var(--secondary-green)'};
 `
 
-const SubHeading = styled.h3`
+const SubHeading = styled.h2`
     margin-bottom: 24px;
     line-height: 1.5;
     font-size: 1.625rem;
 `
 
-const InformationHeading = styled.h4`
+const InformationHeading = styled.h3`
     font-size: 1.625rem;
 `
 
@@ -217,7 +217,7 @@ const MeasureList = styled.ul`
     margin: 50px 0;
 `
 
-const MeasureHeading = styled.h5`
+const MeasureHeading = styled.h4`
     font-size: 1rem;
 `
 
