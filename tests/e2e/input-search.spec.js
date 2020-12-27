@@ -9,7 +9,7 @@ describe('input search', () => {
         })
     })
 
-    it('should show delete cross if user types', () => {
+    it('should show "clear input" button if user types', () => {
         cy.get('input[placeholder="Ort oder PLZ eingeben..."]').type(
             'nbjehshsfewuf'
         )
