@@ -1,11 +1,8 @@
 /// <reference types="cypress" />
 
 describe('input search', () => {
-    it('should open the main page by first load', () => {
-        cy.visit('/')
-    })
-
     it('should display all mainpage components', () => {
+        cy.visit('/')
         cy.get('form').within(() => {
             cy.get('input[placeholder="Ort oder PLZ eingeben..."]')
             cy.get('button').should('be.disabled')
