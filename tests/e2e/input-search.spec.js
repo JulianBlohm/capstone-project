@@ -24,7 +24,7 @@ describe('input search', () => {
         )
     })
 
-    it('should show error message if input invalid', () => {
+    it('should show error message if input is invalid', () => {
         cy.get('form').within(() => {
             cy.get('input[placeholder="Ort oder PLZ eingeben..."]').type('A')
             cy.get('button:last').click()
