@@ -49,7 +49,7 @@ describe('input search', () => {
         cy.url().should('eq', 'http://localhost:3000/')
     })
 
-    it('should show error page if there is no result for the input', () => {
+    it('should show error page if there are no results for the given searchterm', () => {
         cy.get('form').within(() => {
             cy.get('input[placeholder="Ort oder PLZ eingeben..."]').type(
                 'djskdushgewiehkb'
