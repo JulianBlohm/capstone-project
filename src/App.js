@@ -18,7 +18,7 @@ function App() {
     } = useUserLocation()
 
     return (
-        <AppStyled>
+        <Wrapper>
             <Switch>
                 <Route exact path="/">
                     <MainPage
@@ -47,11 +47,11 @@ function App() {
                     <ErrorPage resetSearch={resetSearch} />
                 </Route>
             </Switch>
-        </AppStyled>
+        </Wrapper>
     )
 }
 
-const AppStyled = styled.div`
+const Wrapper = styled.div`
     max-width: 667px;
 `
 

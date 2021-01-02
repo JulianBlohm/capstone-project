@@ -23,7 +23,7 @@ function MainPage({
     useEffect(() => scrollUp(), [])
 
     return (
-        <MainPageStyled>
+        <MainPageGrid>
             <Intro>
                 <LogoContainer>
                     <Logo />
@@ -42,28 +42,28 @@ function MainPage({
                 />
                 {status === 'locating' ? (
                     <GeolocationButton type="button" gray disabled>
-                        <GpsIconStyled />
+                        <GpsIconSized />
                         Lokalisiert...
                     </GeolocationButton>
                 ) : isLocationAvailable ? (
                     <GeolocationButton type="button" onClick={startLocating}>
-                        <GpsIconStyled />
+                        <GpsIconSized />
                         Lass dich orten
                     </GeolocationButton>
                 ) : (
                     <GeolocationButton type="button" gray disabled>
-                        <GpsIconStyled />
+                        <GpsIconSized />
                         Ortung nicht möglich
                     </GeolocationButton>
                 )}
             </Search>
 
             <FAQ data={data} />
-        </MainPageStyled>
+        </MainPageGrid>
     )
 }
 
-const MainPageStyled = styled.div`
+const MainPageGrid = styled.div`
     display: grid;
 `
 
@@ -109,7 +109,7 @@ const GeolocationButton = styled(Button)`
     margin-bottom: 20px;
 `
 
-const GpsIconStyled = styled(GpsIcon)`
+const GpsIconSized = styled(GpsIcon)`
     margin-right: 10px;
     width: 20px;
 `

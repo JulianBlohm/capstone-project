@@ -12,7 +12,7 @@ function ErrorPage({ resetSearch }) {
     }
 
     return (
-        <ErrorPageStyled>
+        <>
             <Result>
                 <LogoContainer>
                     <Logo />
@@ -21,18 +21,18 @@ function ErrorPage({ resetSearch }) {
                 <SubHeading>Probiere eine neue Suche!</SubHeading>
             </Result>
             <Navigation>
-                <Button onClick={newSearch}>Neue Suche</Button>
+                <FullWidthButton onClick={newSearch}>
+                    Neue Suche
+                </FullWidthButton>
             </Navigation>
-        </ErrorPageStyled>
+        </>
     )
 }
 
-const ErrorPageStyled = styled.div`
-    button {
-        border-radius: 5px;
-        width: 100%;
-        margin-top: 20px;
-    }
+const FullWidthButton = styled(Button)`
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
 `
 
 const Result = styled.section`
