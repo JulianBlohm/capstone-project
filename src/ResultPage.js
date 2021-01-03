@@ -8,7 +8,7 @@ import data from './data/measures.json'
 import { VirusWhiteIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
 
-function ResultPage({ setUserPlace, countyData, status }) {
+function ResultPage({ startSearch, countyData, status }) {
     const [countyClassification, setCountyClassification] = useState('')
     const [measures, setMeasures] = useState([])
 
@@ -16,9 +16,11 @@ function ResultPage({ setUserPlace, countyData, status }) {
 
     let { id } = useParams()
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => classifyCountyIncidence(), [countyData])
     useEffect(() => {
-        status !== 'loaded' && setUserPlace(id)
+        status !== 'loaded' && startSearch(id)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
     useEffect(() => setMeasures(data), [])

@@ -5,7 +5,7 @@ import Button from './Button'
 import Input from './Input'
 import { CrossIcon } from '../lib/Icons'
 
-function Form({ userPlace, setUserPlace, status }) {
+function Form({ status, startSearch }) {
     const [userInput, setUserInput] = useState('')
     const [validation, setValidation] = useState(true)
 
@@ -20,9 +20,8 @@ function Form({ userPlace, setUserPlace, status }) {
     function handleSubmitPlace(event) {
         event.preventDefault()
         if (validateInput()) {
-            setUserPlace(
-                userInput === userPlace ? userInput + ' ' : userInput.trim()
-            )
+            const place = userInput.trim()
+            startSearch(place)
             setUserInput('')
         } else {
             setValidation(false)

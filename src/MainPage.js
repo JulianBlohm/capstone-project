@@ -9,15 +9,15 @@ import scrollUp from './lib/scrollUp'
 import data from './data/faqData.json'
 
 function MainPage({
-    userPlace,
-    setUserPlace,
     resetSearch,
     status,
     startLocating,
     isLocationAvailable,
+    startSearch,
 }) {
     useEffect(() => {
-        userPlace && resetSearch()
+        resetSearch()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => scrollUp(), [])
@@ -35,11 +35,7 @@ function MainPage({
                 </SubHeading>
             </Intro>
             <Search>
-                <Form
-                    userPlace={userPlace}
-                    setUserPlace={setUserPlace}
-                    status={status}
-                />
+                <Form status={status} startSearch={startSearch} />
                 {status === 'locating' ? (
                     <GeolocationButton type="button" gray disabled>
                         <GpsIconSized />
