@@ -86,7 +86,7 @@ function ResultPage({ startSearch, countyData, status }) {
                                     Neue Suche
                                 </ArrowButton>
                             )}
-                            {countyData.incidence < 200 && (
+                            {countyData.incidence > 35 && (
                                 <ArrowButton hotspot={'hotspot'} onClick={showMainPage}>
                                     Neue Suche
                                 </ArrowButton>
@@ -137,9 +137,9 @@ function ResultPage({ startSearch, countyData, status }) {
                         </Explanation>
                         {countyData.incidence > 200 && (
                         <Explanation highHotspot>
-                            Ab dem 11. Januar gilt für Landkreise mit einer 7-Tages-Inzidenz über 200 eine Beschränkung des
-                            Bewegungsradius auf 15km um den Wohnort eingeschränkt werden, 
-                            sofern kein triftiger Grund vorliegt.
+                            Ab dem 11. Januar gilt für Landkreise mit einer 7-Tages-Inzidenz 
+                            über 200 eine Beschränkung des Bewegungsradius auf 15km um den 
+                            Wohnort, sofern kein triftiger Grund vorliegt.
                         </Explanation>
                         )}
                         <MeasureList>
