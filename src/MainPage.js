@@ -9,21 +9,21 @@ import scrollUp from './lib/scrollUp'
 import data from './data/faqData.json'
 
 function MainPage({
-    userPlace,
-    setUserPlace,
     resetSearch,
     status,
     startLocating,
     isLocationAvailable,
+    startSearch,
 }) {
     useEffect(() => {
-        userPlace && resetSearch()
+        resetSearch()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => scrollUp(), [])
 
     return (
-        <MainPageStyled>
+        <MainPageGrid>
             <Intro>
                 <LogoContainer>
                     <Logo />
@@ -35,35 +35,31 @@ function MainPage({
                 </SubHeading>
             </Intro>
             <Search>
-                <Form
-                    userPlace={userPlace}
-                    setUserPlace={setUserPlace}
-                    status={status}
-                />
+                <Form status={status} startSearch={startSearch} />
                 {status === 'locating' ? (
                     <GeolocationButton type="button" gray disabled>
-                        <GpsIconStyled />
+                        <GpsIconSmall />
                         Lokalisiert...
                     </GeolocationButton>
                 ) : isLocationAvailable ? (
                     <GeolocationButton type="button" onClick={startLocating}>
-                        <GpsIconStyled />
+                        <GpsIconSmall />
                         Lass dich orten
                     </GeolocationButton>
                 ) : (
                     <GeolocationButton type="button" gray disabled>
-                        <GpsIconStyled />
+                        <GpsIconSmall />
                         Ortung nicht möglich
                     </GeolocationButton>
                 )}
             </Search>
 
             <FAQ data={data} />
-        </MainPageStyled>
+        </MainPageGrid>
     )
 }
 
-const MainPageStyled = styled.div`
+const MainPageGrid = styled.div`
     display: grid;
 `
 
@@ -109,7 +105,7 @@ const GeolocationButton = styled(Button)`
     margin-bottom: 20px;
 `
 
-const GpsIconStyled = styled(GpsIcon)`
+const GpsIconSmall = styled(GpsIcon)`
     margin-right: 10px;
     width: 20px;
 `
