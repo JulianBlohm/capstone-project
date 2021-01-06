@@ -38,17 +38,17 @@ function MainPage({
                 <Form status={status} startSearch={startSearch} />
                 {status === 'locating' ? (
                     <GeolocationButton type="button" gray disabled>
-                        <GpsIconSized />
+                        <GpsIconSmall />
                         Lokalisiert...
                     </GeolocationButton>
                 ) : isLocationAvailable ? (
                     <GeolocationButton type="button" onClick={startLocating}>
-                        <GpsIconSized />
+                        <GpsIconSmall />
                         Lass dich orten
                     </GeolocationButton>
                 ) : (
                     <GeolocationButton type="button" gray disabled>
-                        <GpsIconSized />
+                        <GpsIconSmall />
                         Ortung nicht möglich
                     </GeolocationButton>
                 )}
@@ -105,7 +105,7 @@ const GeolocationButton = styled(Button)`
     margin-bottom: 20px;
 `
 
-const GpsIconSized = styled(GpsIcon)`
+const GpsIconSmall = styled(GpsIcon)`
     margin-right: 10px;
     width: 20px;
 `

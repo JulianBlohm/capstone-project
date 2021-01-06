@@ -15,7 +15,9 @@ function ResultPage({ startSearch, countyData, status }) {
     const history = useHistory()
 
     let { id } = useParams()
-
+    
+    useEffect(() => setMeasures(data), [])
+    useEffect(() => scrollUp(), [])
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => classifyCountyIncidence(), [countyData])
     useEffect(() => {
@@ -23,8 +25,6 @@ function ResultPage({ startSearch, countyData, status }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
-    useEffect(() => setMeasures(data), [])
-    useEffect(() => scrollUp(), [])
 
     function classifyCountyIncidence() {
         if (countyData.incidence > 35) {

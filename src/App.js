@@ -83,7 +83,7 @@ function App() {
     }
 
     return (
-        <Wrapper>
+        <AppWrapper>
             <Switch>
                 <Route exact path="/">
                     <MainPage
@@ -111,11 +111,11 @@ function App() {
                     <ErrorPage resetSearch={resetSearch} />
                 </Route>
             </Switch>
-        </Wrapper>
+        </AppWrapper>
     )
 }
 
-const Wrapper = styled.div`
+const AppWrapper = styled.div`
     max-width: 667px;
 `
 

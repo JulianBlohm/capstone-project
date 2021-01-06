@@ -21,15 +21,15 @@ function ErrorPage({ resetSearch }) {
                 <SubHeading>Probiere eine neue Suche!</SubHeading>
             </Result>
             <Navigation>
-                <FullWidthButton onClick={newSearch}>
+                <ButtonFullWidth onClick={newSearch}>
                     Neue Suche
-                </FullWidthButton>
+                </ButtonFullWidth>
             </Navigation>
         </>
     )
 }
 
-const FullWidthButton = styled(Button)`
+const ButtonFullWidth = styled(Button)`
     border-radius: 5px;
     width: 100%;
     margin-top: 20px;
