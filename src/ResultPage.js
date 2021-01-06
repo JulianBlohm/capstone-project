@@ -125,7 +125,7 @@ function ResultPage({ startSearch, countyData, status }) {
                     <Information>
                         <InformationHeading>Maßnahmen</InformationHeading>
                         <Explanation>
-                            Seit dem 17.12.20 gelten in Deutschland die
+                            Seit dem 16.12.20 gelten in Deutschland die
                             folgenden einheitlichen Regelungen. Diese können in
                             Außnahmefällen regional verschärft werden, deshalb
                             informiere dich auch bei deinem Gesundheitsamt.
@@ -137,7 +137,7 @@ function ResultPage({ startSearch, countyData, status }) {
                         </Explanation>
                         {countyData.incidence > 200 && (
                         <Explanation highHotspot>
-                            Für Landkreise mit einer 7-Tages-Inzidenz über 200 soll der 
+                            Ab dem 11. Januar gilt für Landkreise mit einer 7-Tages-Inzidenz über 200 eine Beschränkung des
                             Bewegungsradius auf 15km um den Wohnort eingeschränkt werden, 
                             sofern kein triftiger Grund vorliegt.
                         </Explanation>
