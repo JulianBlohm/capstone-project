@@ -15,7 +15,7 @@ const ArrowButtonStyled = styled.button`
     border: none;
     background: var(--silver);
     color: ${(props) =>
-        props.hotspot ? 'var(--primary-red)' : 'var(--primary-green)'};
+        props.hotspot === 'highHotspot' ? 'var(--primary-dark-red)' : props.hotspot === 'hotspot' ?  'var(--primary-red)' : 'var(--primary-green)'};
     border-radius: 5px;
     padding: 5px 0 5px 18px;
     width: 154px;
@@ -33,12 +33,12 @@ const ArrowStyled = styled(ArrowIcon)`
     position: absolute;
     left: 5px;
     fill: ${(props) =>
-        props.hotspot ? 'var(--primary-red)' : 'var(--primary-green)'};
+        props.hotspot === 'highHotspot' ? 'var(--primary-dark-red)' : props.hotspot === 'hotspot' ?  'var(--primary-red)' : 'var(--primary-green)'};
 `
 
 ArrowButton.propTypes = {
     children: PropTypes.string.isRequired,
-    hotspot: PropTypes.bool,
+    hotspot: PropTypes.string,
     onClick: PropTypes.func,
 }
 

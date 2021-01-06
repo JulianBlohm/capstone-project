@@ -5,7 +5,7 @@ function ExternalLink({ children, target, href }) {
     return (
         <ExternalLinkStyled target={target} href={href}>
             <ExternalLinkIconStyled />
-            <span>{children}</span>
+            <Text>{children}</Text>
         </ExternalLinkStyled>
     )
 }
@@ -33,6 +33,10 @@ const ExternalLinkIconStyled = styled(ExternalLinkIcon)`
     width: 16px;
     fill: var(--silver);
     margin-right: 10px;
+`
+
+const Text = styled.span`
+margin-bottom: 3px;
 `
 
 export default ExternalLink

@@ -2,12 +2,12 @@
     {
         "id": 1,
         "heading": "Kontaktbeschränkungen",
-        "text": "Es dürfen maximal zehn Personen mit maximal zwei Haushalten zusammenkommen. Grundsätzlich gilt, Kontakte auf ein nötiges Minimum zu reduzieren."
+        "text": "Private Zusammenkünfte sind im Kreis der Angehörigen des eigenen Hausstandes und mit max. einer weiteren nicht im Haushalt lebenden Person gestattet."
     },
     {
         "id": 2,
         "heading": "Groß- und Einzelhandel",
-        "text": "Der Groß- und Einzelhandel bleibt geöffnet. Es gilt eine Pflicht zum Tragen eines Mund-Nasen-Schutzes beim Einkaufen."
+        "text": "Der Einzelhandel ist geschlossen. Ausnahmen gelten für Lebensmittelgeschäfte, Drogerien, Apotheken, Optiker, Tankstellen, Autowerkstätten, Banken, die Post, Reinigungen."
     },
     {
         "id": 3,
@@ -22,7 +22,7 @@
     {
         "id": 5,
         "heading": "Dienstleistungen Körperpflege",
-        "text": "Kosmetikstudios, Massagepraxen, Tattoo-Studios und ähnliche Betriebe bleiben geschlossen. Physio-, Ergo- und Logotherapien sowie Podologie/Fußpflege bleiben weiter möglich. Des Weiteren bleiben Friseure geöffnet."
+        "text": "Kosmetikstudios, Massagepraxen, Tattoo-Studios, Friseure und ähnliche Betriebe bleiben geschlossen. Physio-, Ergo- und Logotherapien sowie Podologie/Fußpflege bleiben weiter möglich. Des Weiteren bleiben Friseure geöffnet."
     },
     {
         "id": 6,
@@ -37,7 +37,7 @@
     {
         "id": 8,
         "heading": "Amateursport",
-        "text": "Der Freizeit- und Amateursportbetrieb wird eingestellt."
+        "text": "Der Freizeit- und Amateursportbetrieb ist eingestellt."
     },
     {
         "id": 9,
@@ -52,6 +52,11 @@
     {
         "id": 11,
         "heading": "Kitas & Schulen",
-        "text": "Kitas und Schulen bleiben wie bisher auch geöffnet. Es können allerdings pro Bundesland unterschiedliche Regelungen (z.B. beim Tragen des Mund-Nasen-Schutzes) gelten."
+        "text": "Kinder sollen in dieser Zeit wann immer möglich zu Hause betreut werden. Daher werden in diesem Zeitraum Schulen und Kindertagesstätte grundsätzlich geschlossen oder die Präsenzpflicht wird ausgesetzt. Es wird eine Notfallbetreuung sichergestellt und Distanzlernen angeboten."
+    },
+    {
+        "id": 12,
+        "heading": "Betriebsstätten",
+        "text": "Arbeitgeberinnen und Arbeitgeber werden dringend gebeten zu prüfen, ob die Betriebsstätten entweder durch Betriebsferien oder großzügige Home-Office-Lösungen bis zum 31. Januar 2021 geschlossen werden können."
     }
 ]

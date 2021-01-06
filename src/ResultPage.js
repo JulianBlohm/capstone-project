@@ -27,11 +27,11 @@ function ResultPage({ startSearch, countyData, status }) {
 
 
     function classifyCountyIncidence() {
-        if (countyData.incidence > 35) {
-            setCountyClassification(true)
-        } else {
-            setCountyClassification(false)
-        }
+        if (countyData.incidence < 35) {
+            setCountyClassification('noHotspot')
+        } else if (countyData.incidence < 200) {
+            setCountyClassification('hotspot')
+        } else {setCountyClassification('highHotspot')}
     }
 
     function showMainPage() {
@@ -49,7 +49,7 @@ function ResultPage({ startSearch, countyData, status }) {
                         <ResultTextWrapper>
                             {countyData.incidence > 35 ? (
                                 <>
-                                    <Heading hotspot>
+                                    <Heading hotspot={countyClassification}>
                                         {countyData.countyName} ist ein Covid-19
                                         Hotspot.
                                     </Heading>
@@ -57,7 +57,7 @@ function ResultPage({ startSearch, countyData, status }) {
                                         Die 7-Tage-Inzidenz <br /> liegt bei{' '}
                                         {countyData.incidence}.
                                     </SubHeading>
-                                    <DataDate hotspot>
+                                    <DataDate hotspot={countyClassification}>
                                         <span>Daten vom </span>
                                         <time>{countyData.last_update}</time>
                                     </DataDate>
@@ -81,12 +81,18 @@ function ResultPage({ startSearch, countyData, status }) {
                         </ResultTextWrapper>
 
                         <Navigation>
-                            {countyData.incidence > 35 ? (
-                                <ArrowButton hotspot onClick={showMainPage}>
+                            {countyData.incidence < 35 && (
+                                <ArrowButton onClick={showMainPage}>
                                     Neue Suche
                                 </ArrowButton>
-                            ) : (
-                                <ArrowButton onClick={showMainPage}>
+                            )}
+                            {countyData.incidence < 200 && (
+                                <ArrowButton hotspot={'hotspot'} onClick={showMainPage}>
+                                    Neue Suche
+                                </ArrowButton>
+                            )}
+                            {countyData.incidence > 200 && (
+                                <ArrowButton hotspot={'highHotspot'} onClick={showMainPage}>
                                     Neue Suche
                                 </ArrowButton>
                             )}
@@ -104,26 +110,38 @@ function ResultPage({ startSearch, countyData, status }) {
                         <ExternalLinks>
                             <ExternalLink
                                 target="_blank"
-                                href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-bundeslaender-1745198"
+                                href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724"
                             >
-                                Regeln der Bundesländer
+                                Infos Bundesregierung.de
                             </ExternalLink>
                             <ExternalLink
                                 target="_blank"
-                                href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-massnahmen-1734724"
+                                href="https://www.bundesregierung.de/breg-de/themen/coronavirus/corona-bundeslaender-1745198"
                             >
-                                FAQ Bundesregierung.de
+                                Regeln der Bundesländer
                             </ExternalLink>
                         </ExternalLinks>
                     </InformationLinks>
                     <Information>
                         <InformationHeading>Maßnahmen</InformationHeading>
                         <Explanation>
-                            Seit dem 02.11.20 gelten in Deutschland die
+                            Seit dem 17.12.20 gelten in Deutschland die
                             folgenden einheitlichen Regelungen. Diese können in
                             Außnahmefällen regional verschärft werden, deshalb
                             informiere dich auch bei deinem Gesundheitsamt.
                         </Explanation>
+                        <Explanation>
+                            Alle bis zum 10. Januar befristeten Maßnahmen werden 
+                            bis zum 31. Januar 2021 verlängert - auch die Einschränkungen
+                            des Schulbetriebs und der Kindertagesstätten.
+                        </Explanation>
+                        {countyData.incidence > 200 && (
+                        <Explanation highHotspot>
+                            Für Landkreise mit einer 7-Tages-Inzidenz über 200 soll der 
+                            Bewegungsradius auf 15km um den Wohnort eingeschränkt werden, 
+                            sofern kein triftiger Grund vorliegt.
+                        </Explanation>
+                        )}
                         <MeasureList>
                             {measures.map((measure) => (
                                 <li key={measure.id}>
@@ -146,7 +164,7 @@ const Heading = styled.h1`
     line-height: 1.2;
     font-size: 2rem;
     color: ${(props) =>
-        props.hotspot ? 'var(--secondary-red)' : 'var(--secondary-green)'};
+        props.hotspot === 'highHotspot' ? 'var(--primary-red)' : props.hotspot === 'hotspot' ?  'var(--secondary-red)' : 'var(--secondary-green)'};
 `
 
 const SubHeading = styled.h2`
@@ -161,7 +179,7 @@ const InformationHeading = styled.h3`
 
 const Explanation = styled.p`
     font-size: 1rem;
-    color: var(--gray);
+    color: ${(props) => props.highHotspot ? 'var(--primary-red)' : 'var(--gray)'};
     margin: 20px 0;
 `
 
@@ -172,7 +190,7 @@ const Navigation = styled.nav`
 const Result = styled.section`
     padding-bottom: 20px;
     background: ${(props) =>
-        props.hotspot ? 'var(--primary-red)' : 'var(--primary-green)'};
+        props.hotspot === 'highHotspot' ? 'var(--primary-dark-red)' : props.hotspot === 'hotspot' ?  'var(--primary-red)' : 'var(--primary-green)'};
     color: var(--silver);
 `
 
@@ -209,7 +227,7 @@ const DataDate = styled.div`
     font-weight: bold;
     font-size: 1rem;
     color: ${(props) =>
-        props.hotspot ? 'var(--secondary-red)' : 'var(--secondary-green)'};
+        props.hotspot === 'highHotspot' ? 'var(--primary-red)' : props.hotspot === 'hotspot' ?  'var(--secondary-red)' : 'var(--secondary-green)'};
 `
 
 const MeasureList = styled.ul`
