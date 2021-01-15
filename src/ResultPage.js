@@ -27,7 +27,7 @@ function ResultPage({ startSearch, countyData, status }) {
 
 
     function classifyCountyIncidence() {
-        if (countyData.incidence < 35) {
+        if (countyData.incidence <= 35) {
             setCountyClassification('noHotspot')
         } else if (countyData.incidence < 200) {
             setCountyClassification('hotspot')
@@ -81,17 +81,17 @@ function ResultPage({ startSearch, countyData, status }) {
                         </ResultTextWrapper>
 
                         <Navigation>
-                            {countyData.incidence < 35 && (
+                            {countyData.incidence <= 35 && (
                                 <ArrowButton onClick={showMainPage}>
                                     Neue Suche
                                 </ArrowButton>
                             )}
-                            {countyData.incidence > 35 && (
+                            {35 < countyData.incidence && countyData.incidence < 200 && (
                                 <ArrowButton hotspot={'hotspot'} onClick={showMainPage}>
                                     Neue Suche
                                 </ArrowButton>
                             )}
-                            {countyData.incidence > 200 && (
+                            {countyData.incidence >= 200 && (
                                 <ArrowButton hotspot={'highHotspot'} onClick={showMainPage}>
                                     Neue Suche
                                 </ArrowButton>
