@@ -24,7 +24,6 @@ function App() {
     async function startSearch(place) {
         setStatus('loading')
         const geoData = await getGeoData(place)
-        console.log(geoData)
         geoData === 'error' ? history.push('/error') : continueSearch(geoData)
     }
 

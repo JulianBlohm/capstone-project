@@ -5,7 +5,6 @@ export default function getRkiData(coordinates) {
         .then((res) => res.json())
         .then((data) => {
             const filteredData = data.features[0].attributes
-            console.log(data)
             return {
                 countyType: filteredData.BEZ,
                 countyName: filteredData.GEN,
