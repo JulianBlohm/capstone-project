@@ -12,6 +12,7 @@ function App() {
     const history = useHistory()
 
     const [countyData, setCountyData] = useState({
+        countyType: '',
         countyName: '',
         incidence: 0,
         last_update: '',
@@ -23,6 +24,7 @@ function App() {
     async function startSearch(place) {
         setStatus('loading')
         const geoData = await getGeoData(place)
+        console.log(geoData)
         geoData === 'error' ? history.push('/error') : continueSearch(geoData)
     }
 
@@ -76,6 +78,7 @@ function App() {
     function resetSearch() {
         setStatus('')
         setCountyData({
+            countyType: '',
             countyName: '',
             incidence: 0,
             last_update: '',
