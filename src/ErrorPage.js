@@ -20,7 +20,7 @@ function ErrorPage({ resetSearch }) {
                 <Heading>Daten konnten nicht geladen werden.</Heading>
                 <SubHeading>
                     Probiere die Suche
-                    anders (z.B. PLZ statt Ortsnamen)<br/>oder<br/> zu einem späteren
+                    anders<br/> (z.B. PLZ statt Ortsnamen)<br/>oder<br/> zu einem späteren
                     Zeitpunkt.
                 </SubHeading>
             </Result>
