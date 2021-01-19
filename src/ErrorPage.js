@@ -17,8 +17,12 @@ function ErrorPage({ resetSearch }) {
                 <LogoContainer>
                     <Logo />
                 </LogoContainer>
-                <Heading>Sorry, Daten konnten nicht geladen werden.</Heading>
-                <SubHeading>Probiere eine neue Suche!</SubHeading>
+                <Heading>Daten konnten nicht geladen werden.</Heading>
+                <SubHeading>
+                    Probiere die Suche
+                    anders (z.B. PLZ statt Ortsnamen)<br/>oder<br/> zu einem späteren
+                    Zeitpunkt.
+                </SubHeading>
             </Result>
             <Navigation>
                 <ButtonFullWidth onClick={newSearch}>
@@ -38,7 +42,7 @@ const ButtonFullWidth = styled(Button)`
 const Result = styled.section`
     padding: 0 37px 37px 37px;
     background: var(--primary-red);
-    color: var(--silver);
+    color: var(--secondary-red);
 `
 
 const LogoContainer = styled.div`
@@ -65,7 +69,7 @@ const Heading = styled.h3`
 const SubHeading = styled.span`
     font-weight: bold;
     font-size: 1rem;
-    color: var(--secondary-red);
+    color: var(--silver);
 `
 
 export default ErrorPage

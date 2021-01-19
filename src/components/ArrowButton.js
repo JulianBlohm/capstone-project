@@ -18,7 +18,7 @@ const ArrowButtonStyled = styled.button`
         props.hotspot === 'highHotspot' ? 'var(--primary-dark-red)' : props.hotspot === 'hotspot' ?  'var(--primary-red)' : 'var(--primary-green)'};
     border-radius: 5px;
     padding: 5px 0 5px 18px;
-    width: 100%;
+    width: 150px;
     height: 48px;
     display: flex;
     justify-content: center;
