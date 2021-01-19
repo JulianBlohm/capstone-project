@@ -12,6 +12,7 @@ function App() {
     const history = useHistory()
 
     const [countyData, setCountyData] = useState({
+        countyType: '',
         countyName: '',
         incidence: 0,
         last_update: '',
@@ -76,6 +77,7 @@ function App() {
     function resetSearch() {
         setStatus('')
         setCountyData({
+            countyType: '',
             countyName: '',
             incidence: 0,
             last_update: '',

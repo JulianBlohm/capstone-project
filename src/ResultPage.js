@@ -15,7 +15,7 @@ function ResultPage({ startSearch, countyData, status }) {
     const history = useHistory()
 
     let { id } = useParams()
-    
+
     useEffect(() => setMeasures(data), [])
     useEffect(() => scrollUp(), [])
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -25,13 +25,14 @@ function ResultPage({ startSearch, countyData, status }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
-
     function classifyCountyIncidence() {
         if (countyData.incidence <= 35) {
             setCountyClassification('noHotspot')
         } else if (countyData.incidence < 200) {
             setCountyClassification('hotspot')
-        } else {setCountyClassification('highHotspot')}
+        } else {
+            setCountyClassification('highHotspot')
+        }
     }
 
     function showMainPage() {
@@ -50,8 +51,10 @@ function ResultPage({ startSearch, countyData, status }) {
                             {countyData.incidence > 35 ? (
                                 <>
                                     <Heading hotspot={countyClassification}>
-                                        {countyData.countyName} ist ein Covid-19
-                                        Hotspot.
+                                        {countyData.countyType +
+                                            ' ' +
+                                            countyData.countyName}{' '}
+                                        ist ein Covid-19 Hotspot.
                                     </Heading>
                                     <SubHeading>
                                         Die 7-Tage-Inzidenz <br /> liegt bei{' '}
@@ -65,8 +68,10 @@ function ResultPage({ startSearch, countyData, status }) {
                             ) : (
                                 <>
                                     <Heading>
-                                        {countyData.countyName} ist kein
-                                        Covid-19 Hotspot.
+                                        {countyData.countyType +
+                                            ' ' +
+                                            countyData.countyName}{' '}
+                                        ist kein Covid-19 Hotspot.
                                     </Heading>
                                     <SubHeading>
                                         Die 7-Tage-Inzidenz <br /> liegt bei{' '}
@@ -86,13 +91,20 @@ function ResultPage({ startSearch, countyData, status }) {
                                     Neue Suche
                                 </ArrowButton>
                             )}
-                            {35 < countyData.incidence && countyData.incidence < 200 && (
-                                <ArrowButton hotspot={'hotspot'} onClick={showMainPage}>
-                                    Neue Suche
-                                </ArrowButton>
-                            )}
+                            {35 < countyData.incidence &&
+                                countyData.incidence < 200 && (
+                                    <ArrowButton
+                                        hotspot={'hotspot'}
+                                        onClick={showMainPage}
+                                    >
+                                        Neue Suche
+                                    </ArrowButton>
+                                )}
                             {countyData.incidence >= 200 && (
-                                <ArrowButton hotspot={'highHotspot'} onClick={showMainPage}>
+                                <ArrowButton
+                                    hotspot={'highHotspot'}
+                                    onClick={showMainPage}
+                                >
                                     Neue Suche
                                 </ArrowButton>
                             )}
@@ -131,16 +143,18 @@ function ResultPage({ startSearch, countyData, status }) {
                             informiere dich auch bei deinem Gesundheitsamt.
                         </Explanation>
                         <Explanation>
-                            Alle bis zum 10. Januar befristeten Maßnahmen werden 
-                            bis zum 31. Januar 2021 verlängert - auch die Einschränkungen
-                            des Schulbetriebs und der Kindertagesstätten.
+                            Alle bis zum 10. Januar befristeten Maßnahmen werden
+                            bis zum 31. Januar 2021 verlängert - auch die
+                            Einschränkungen des Schulbetriebs und der
+                            Kindertagesstätten.
                         </Explanation>
                         {countyData.incidence > 200 && (
-                        <Explanation highHotspot>
-                            Ab dem 11. Januar gilt für Landkreise mit einer 7-Tages-Inzidenz 
-                            über 200 eine Beschränkung des Bewegungsradius auf 15km um den 
-                            Wohnort, sofern kein triftiger Grund vorliegt.
-                        </Explanation>
+                            <Explanation highHotspot>
+                                Ab dem 11. Januar gilt für Landkreise mit einer
+                                7-Tages-Inzidenz über 200 eine Beschränkung des
+                                Bewegungsradius auf 15km um den Wohnort, sofern
+                                kein triftiger Grund vorliegt.
+                            </Explanation>
                         )}
                         <MeasureList>
                             {measures.map((measure) => (
@@ -164,7 +178,11 @@ const Heading = styled.h1`
     line-height: 1.2;
     font-size: 2rem;
     color: ${(props) =>
-        props.hotspot === 'highHotspot' ? 'var(--primary-red)' : props.hotspot === 'hotspot' ?  'var(--secondary-red)' : 'var(--secondary-green)'};
+        props.hotspot === 'highHotspot'
+            ? 'var(--primary-red)'
+            : props.hotspot === 'hotspot'
+            ? 'var(--secondary-red)'
+            : 'var(--secondary-green)'};
 `
 
 const SubHeading = styled.h2`
@@ -179,7 +197,8 @@ const InformationHeading = styled.h3`
 
 const Explanation = styled.p`
     font-size: 1rem;
-    color: ${(props) => props.highHotspot ? 'var(--primary-red)' : 'var(--gray)'};
+    color: ${(props) =>
+        props.highHotspot ? 'var(--primary-red)' : 'var(--gray)'};
     margin: 20px 0;
 `
 
@@ -190,7 +209,11 @@ const Navigation = styled.nav`
 const Result = styled.section`
     padding-bottom: 20px;
     background: ${(props) =>
-        props.hotspot === 'highHotspot' ? 'var(--primary-dark-red)' : props.hotspot === 'hotspot' ?  'var(--primary-red)' : 'var(--primary-green)'};
+        props.hotspot === 'highHotspot'
+            ? 'var(--primary-dark-red)'
+            : props.hotspot === 'hotspot'
+            ? 'var(--primary-red)'
+            : 'var(--primary-green)'};
     color: var(--silver);
 `
 
@@ -227,7 +250,11 @@ const DataDate = styled.div`
     font-weight: bold;
     font-size: 1rem;
     color: ${(props) =>
-        props.hotspot === 'highHotspot' ? 'var(--primary-red)' : props.hotspot === 'hotspot' ?  'var(--secondary-red)' : 'var(--secondary-green)'};
+        props.hotspot === 'highHotspot'
+            ? 'var(--primary-red)'
+            : props.hotspot === 'hotspot'
+            ? 'var(--secondary-red)'
+            : 'var(--secondary-green)'};
 `
 
 const MeasureList = styled.ul`
