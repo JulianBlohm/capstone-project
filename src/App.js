@@ -7,6 +7,7 @@ import MainPage from './MainPage'
 import ResultPage from './ResultPage'
 import ErrorPage from './ErrorPage'
 import LoadingPage from './LoadingPage'
+import ImpressumPage from './ImpressumPage'
 
 function App() {
     const history = useHistory()
@@ -111,6 +112,10 @@ function App() {
 
                 <Route path="/error">
                     <ErrorPage resetSearch={resetSearch} />
+                </Route>
+
+                <Route path="/impressum">
+                    <ImpressumPage/>
                 </Route>
             </Switch>
         </AppWrapper>
