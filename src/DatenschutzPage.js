@@ -12,7 +12,7 @@ function DatenschutzPage() {
                 <LogoContainer>
                     <Logo />
                 </LogoContainer>
-                <Heading>Datenschutzerklärung</Heading>
+                <Heading>Datenschutz</Heading>
             </Intro>
             <Information>
                 <Text>
@@ -119,7 +119,6 @@ const Logo = styled(VirusRedIcon)`
 
 const Information = styled.article`
     padding: 25px 30px 100px 30px;
-
 `
 
 const TextHeading = styled.h4`
@@ -139,8 +138,8 @@ const Link = styled.a`
 `
 
 const List = styled.ul`
-list-style: none;
-color: var(--gray);
+    list-style: none;
+    color: var(--gray);
 `
 
 export default DatenschutzPage
