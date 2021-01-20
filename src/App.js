@@ -7,6 +7,10 @@ import MainPage from './MainPage'
 import ResultPage from './ResultPage'
 import ErrorPage from './ErrorPage'
 import LoadingPage from './LoadingPage'
+import ImpressumPage from './ImpressumPage'
+import DatenschutzPage from './DatenschutzPage'
+import Footer from './components/Footer'
+
 
 function App() {
     const history = useHistory()
@@ -112,7 +116,16 @@ function App() {
                 <Route path="/error">
                     <ErrorPage resetSearch={resetSearch} />
                 </Route>
+
+                <Route path="/impressum">
+                    <ImpressumPage/>
+                </Route>
+
+                <Route path="/datenschutz">
+                    <DatenschutzPage/>
+                </Route>
             </Switch>
+            <Footer/>
         </AppWrapper>
     )
 }
