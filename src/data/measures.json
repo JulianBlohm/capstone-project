@@ -2,7 +2,7 @@
     {
         "id": 1,
         "heading": "Kontaktbeschränkungen",
-        "text": "Private Zusammenkünfte sind im Kreis der Angehörigen des eigenen Hausstandes und mit max. einer weiteren nicht im Haushalt lebenden Person gestattet."
+        "text": "Private Zusammenkünfte sind weiterhin im eigenen Haushalt und mit max. einer weiteren nicht im Haushalt lebenden Person gestattet. Die Zahl der Kontakt-Haushalte sollte konstant und klein sein."
     },
     {
         "id": 2,
@@ -58,5 +58,15 @@
         "id": 12,
         "heading": "Betriebsstätten",
         "text": "Arbeitgeberinnen und Arbeitgeber werden dringend gebeten zu prüfen, ob die Betriebsstätten entweder durch Betriebsferien oder großzügige Home-Office-Lösungen bis zum 31. Januar 2021 geschlossen werden können."
+    },
+    {
+        "id": 13,
+        "heading": "Homeoffice",
+        "text": "Arbeitgeber müssen künftig überall, wo es möglich ist, Arbeiten im Homeoffice ermöglichen"
+    },
+    {
+        "id": 14,
+        "heading": "Medizinische Masken",
+        "text": "In Bus und Bahn sowie in Geschäften gilt die Pflicht zum Tragen medizinischer (z.B. OP- oder FFP2-) Masken."
     }
 ]
