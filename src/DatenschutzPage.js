@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import styled from 'styled-components/macro'
-import Footer from './components/Footer'
 import { VirusRedIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
 
@@ -88,7 +87,6 @@ function DatenschutzPage() {
                     erhoben werden, erfolgt ebenfalls nicht.
                 </Text>
             </Information>
-            <Footer />
         </PageGrid>
     )
 }
@@ -98,7 +96,7 @@ const PageGrid = styled.div`
 `
 
 const Heading = styled.h1`
-    margin-bottom: 75px;
+    margin-bottom: 25px;
     font-size: 2rem;
     line-height: 1.4;
 `
@@ -120,7 +118,8 @@ const Logo = styled(VirusRedIcon)`
 `
 
 const Information = styled.article`
-    padding: 25px 30px;
+    padding: 25px 30px 100px 30px;
+
 `
 
 const TextHeading = styled.h4`

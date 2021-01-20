@@ -8,7 +8,7 @@ function ErrorPage({ resetSearch }) {
 
     function newSearch() {
         resetSearch()
-        history.push('/')
+        history.replace('/')
     }
 
     return (
@@ -57,7 +57,7 @@ const Logo = styled(VirusWhiteIcon)`
 `
 
 const Navigation = styled.nav`
-    margin: 0 18px;
+    margin: 0 18px 100px 18px;
 `
 
 const Heading = styled.h3`

@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import styled from 'styled-components/macro'
-import Footer from './components/Footer'
 import { VirusRedIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
 
@@ -107,7 +106,6 @@ function ImpressumPage() {
                     entfernen.
                 </Text>
             </Information>
-            <Footer />
         </PageGrid>
     )
 }

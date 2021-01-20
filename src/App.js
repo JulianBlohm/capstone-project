@@ -9,6 +9,8 @@ import ErrorPage from './ErrorPage'
 import LoadingPage from './LoadingPage'
 import ImpressumPage from './ImpressumPage'
 import DatenschutzPage from './DatenschutzPage'
+import Footer from './components/Footer'
+
 
 function App() {
     const history = useHistory()
@@ -123,6 +125,7 @@ function App() {
                     <DatenschutzPage/>
                 </Route>
             </Switch>
+            <Footer/>
         </AppWrapper>
     )
 }
