@@ -14,7 +14,7 @@ function Footer() {
                 <Domain href="https://hotspotornot.de" target="_blank">
                     hotspotornot.de
                 </Domain>{' '}
-                im Rahmen meines Abschlussprojektes bei Neue Fische. Die Köpfe
+                im Rahmen meines Abschlussprojektes bei <Domain href="https://www.neuefische.de/" target="_blank">Neue Fische</Domain>. Die Köpfe
                 hinter "Hotspot or not?" -{' '}
                 <Domain href="https://seb.astian.eu/" target="_blank">
                     Sebastian
