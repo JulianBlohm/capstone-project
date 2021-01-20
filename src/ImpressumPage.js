@@ -107,7 +107,6 @@ function ImpressumPage() {
                     entfernen.
                 </Text>
             </Information>
-
             <Footer />
         </PageGrid>
     )

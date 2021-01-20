@@ -5,7 +5,7 @@ function Footer() {
     return (
         <FooterBar>
             <Navigation>
-                <NavLink>Impressum</NavLink>
+                <NavLink to="/impressum">Impressum</NavLink>
                 <NavLink>Datenschutz</NavLink>
             </Navigation>
 
