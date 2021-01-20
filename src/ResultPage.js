@@ -137,16 +137,14 @@ function ResultPage({ startSearch, countyData, status }) {
                     <Information>
                         <InformationHeading>Maßnahmen</InformationHeading>
                         <Explanation>
-                            Seit dem 16.12.20 gelten in Deutschland die
-                            folgenden einheitlichen Regelungen. Diese können in
+                            In Deutschland gelten aktuell die
+                            folgenden, einheitlichen Regelungen. Diese können in
                             Außnahmefällen regional verschärft werden, deshalb
                             informiere dich auch bei deinem Gesundheitsamt.
                         </Explanation>
                         <Explanation>
-                            Alle bis zum 10. Januar befristeten Maßnahmen werden
-                            bis zum 31. Januar 2021 verlängert - auch die
-                            Einschränkungen des Schulbetriebs und der
-                            Kindertagesstätten.
+                            Alle bis zum 31. Januar befristeten Maßnahmen sind
+                            vorläufig bis zum 14. Februar 2021 verlängert.
                         </Explanation>
                         {countyData.incidence > 200 && (
                             <Explanation highHotspot>
