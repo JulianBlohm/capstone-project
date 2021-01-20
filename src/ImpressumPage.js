@@ -123,7 +123,7 @@ const Heading = styled.h1`
 `
 
 const SubHeading = styled.h2`
-    font-size: 1.5rem;
+    font-size: 2rem;
     line-height: 1.3;
     font-weight: 600;
     color: var(--gray);
@@ -153,12 +153,13 @@ const Information = styled.article`
 `
 
 const TextHeading = styled.h4`
-    font-size: 1rem;
+    font-size: 1.5rem;
+    margin-top: 50px;
 `
 
 const Text = styled.p`
     font-size: 1rem;
-    margin: 20px 0 40px 0;
+    margin: 20px 0 20px 0;
     color: var(--gray);
 `
 

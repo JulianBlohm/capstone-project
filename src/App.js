@@ -8,6 +8,7 @@ import ResultPage from './ResultPage'
 import ErrorPage from './ErrorPage'
 import LoadingPage from './LoadingPage'
 import ImpressumPage from './ImpressumPage'
+import DatenschutzPage from './DatenschutzPage'
 
 function App() {
     const history = useHistory()
@@ -116,6 +117,10 @@ function App() {
 
                 <Route path="/impressum">
                     <ImpressumPage/>
+                </Route>
+
+                <Route path="/datenschutz">
+                    <DatenschutzPage/>
                 </Route>
             </Switch>
         </AppWrapper>

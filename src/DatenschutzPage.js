@@ -59,16 +59,16 @@ function DatenschutzPage() {
                     Internet-Browser an uns bzw. an unseren Webspace-Provider
                     übermittelt, erfasst (sogenannte Serverlogfiles):
                 </Text>
-                <ul>
-                    <li>Browsertyp und -version</li>
-                    <li>verwendetes Betriebssystem</li>
+                <List>
+                    <li>- Browsertyp und -version</li>
+                    <li>- verwendetes Betriebssystem</li>
                     <li>
-                        Webseite, von der aus Sie uns besuchen (Referrer URL)
+                        - Webseite, von der aus Sie uns besuchen (Referrer URL)
                     </li>
-                    <li>Webseite, die Sie besuchen</li>
-                    <li>Datum und Uhrzeit Ihres Zugriffs</li>
-                    <li>Ihre Internet Protokoll (IP)-Adresse.</li>
-                </ul>
+                    <li>- Webseite, die Sie besuchen</li>
+                    <li>- Datum und Uhrzeit Ihres Zugriffs</li>
+                    <li>- Ihre Internet Protokoll (IP)-Adresse.</li>
+                </List>
                 <Text>
                     Diese anonymen Daten werden getrennt von Ihren eventuell
                     angegebenen personenbezogenen Daten gespeichert und lassen
@@ -98,7 +98,7 @@ const PageGrid = styled.div`
 `
 
 const Heading = styled.h1`
-    margin-bottom: 25px;
+    margin-bottom: 75px;
     font-size: 2rem;
     line-height: 1.4;
 `
@@ -120,22 +120,28 @@ const Logo = styled(VirusRedIcon)`
 `
 
 const Information = styled.article`
-    padding: 100px 30px;
+    padding: 25px 30px;
 `
 
 const TextHeading = styled.h4`
-    font-size: 1rem;
+    font-size: 1.5rem;
+    margin-top: 50px;
 `
 
 const Text = styled.p`
     font-size: 1rem;
-    margin: 20px 0 40px 0;
+    margin: 20px 0 20px 0;
     color: var(--gray);
 `
 
 const Link = styled.a`
     text-decoration: none;
     color: var(--blue);
+`
+
+const List = styled.ul`
+list-style: none;
+color: var(--gray);
 `
 
 export default DatenschutzPage
