@@ -203,7 +203,7 @@ const Explanation = styled.p`
 `
 
 const Navigation = styled.nav`
-    padding: 0 20px;
+    padding: 0 30px;
 `
 
 const Result = styled.section`
