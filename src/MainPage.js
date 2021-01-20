@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import Form from './components/Form'
 import FAQ from './components/FAQ'
 import Button from './components/Button'
+import Footer from './components/Footer'
 import { VirusRedIcon } from './lib/Icons'
 import { GpsIcon } from './lib/Icons'
 import scrollUp from './lib/scrollUp'
@@ -55,6 +56,7 @@ function MainPage({
             </Search>
 
             <FAQ data={data} />
+            <Footer/>
         </MainPageGrid>
     )
 }
