@@ -137,8 +137,8 @@ function ResultPage({ startSearch, countyData, status }) {
                     <Information>
                         <InformationHeading>Maßnahmen</InformationHeading>
                         <Explanation>
-                            In Deutschland gelten aktuell die
-                            folgenden, einheitlichen Regelungen. Diese können in
+                            In Deutschland gelten aktuell die folgenden,
+                            einheitlichen Regelungen. Diese können in
                             Außnahmefällen regional verschärft werden, deshalb
                             informiere dich auch bei deinem Gesundheitsamt.
                         </Explanation>
@@ -148,10 +148,10 @@ function ResultPage({ startSearch, countyData, status }) {
                         </Explanation>
                         {countyData.incidence > 200 && (
                             <Explanation highHotspot>
-                                Ab dem 11. Januar gilt für Landkreise mit einer
-                                7-Tages-Inzidenz über 200 eine Beschränkung des
-                                Bewegungsradius auf 15km um den Wohnort, sofern
-                                kein triftiger Grund vorliegt.
+                                Für Landkreise mit einer 7-Tages-Inzidenz über
+                                200 eine Beschränkung des Bewegungsradius auf
+                                15km um den Wohnort, sofern kein triftiger Grund
+                                vorliegt.
                             </Explanation>
                         )}
                         <MeasureList>
