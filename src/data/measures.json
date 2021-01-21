@@ -6,7 +6,7 @@
     },
     {
         "id": 2,
-        "heading": "Groß- und Einzelhandel",
+        "heading": "Einzelhandel",
         "text": "Der Einzelhandel ist geschlossen. Ausnahmen gelten für Lebensmittelgeschäfte, Drogerien, Apotheken, Optiker, Tankstellen, Autowerkstätten, Banken, die Post, Reinigungen."
     },
     {
@@ -22,7 +22,7 @@
     {
         "id": 5,
         "heading": "Dienstleistungen Körperpflege",
-        "text": "Kosmetikstudios, Massagepraxen, Tattoo-Studios, Friseure und ähnliche Betriebe bleiben geschlossen. Physio-, Ergo- und Logotherapien sowie Podologie/Fußpflege bleiben weiter möglich. Des Weiteren bleiben Friseure geöffnet."
+        "text": "Kosmetikstudios, Massagepraxen, Tattoo-Studios, Friseure und ähnliche Betriebe bleiben geschlossen. Physio-, Ergo- und Logotherapien sowie Podologie/Fußpflege bleiben weiter möglich."
     },
     {
         "id": 6,
@@ -57,7 +57,7 @@
     {
         "id": 12,
         "heading": "Betriebsstätten",
-        "text": "Arbeitgeber*Innen werden dringend gebeten zu prüfen, ob die Betriebsstätten entweder durch Betriebsferien oder großzügige Homeoffice-Lösungen geschlossen werden können."
+        "text": "Arbeitgeber*Innen werden dringend gebeten zu prüfen, ob die Betriebsstätten durch Betriebsferien geschlossen werden können."
     },
     {
         "id": 13,
@@ -72,6 +72,6 @@
     {
         "id": 15,
         "heading": "",
-        "text": "Daten: bundesregierung.de 20.01.2021 16:00"
+        "text": "Aktualisiert am 20.01.2021"
     }
 ]
